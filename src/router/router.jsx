@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 
 import DemoPage from "@/pages/DemoPage.jsx";
+import LoginPage from "@/pages/LoginPage.jsx";
 import ErrorPage from "@/pages/ErrorPage.jsx";
 
 const router = createBrowserRouter([
@@ -12,7 +13,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <h1>Login Page</h1>,
+    Component: LoginPage,
   },
   {
     path: "/unauthorized",

@@ -1,4 +1,4 @@
-const paramsToQueryString = (params) => {
+export const paramsToQueryString = (params) => {
   const filteredParams = Object.entries(params)
     .filter(([_, value]) => value !== null && value !== undefined)
     .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
@@ -6,4 +6,4 @@ const paramsToQueryString = (params) => {
   return "?" + new URLSearchParams(filteredParams).toString();
 };
 
-export default paramsToQueryString;
+// export default paramsToQueryString;

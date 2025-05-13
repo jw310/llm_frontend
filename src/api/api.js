@@ -1,4 +1,4 @@
-import { paramsToQueryString } from '@/util/index.jsx';
+import { paramsToQueryString } from '../utils/paramsToQueryString';
 
 const BASE_URL = import.meta.env.VITE_API_URL;
 
@@ -38,7 +38,7 @@ const fetcher = async (url, method, { payload } = {}) => {
 };
 
 export const requestLoginApi = async (payload) => {
-  const response = await fetcher(`${BASE_URL}/login`, 'POST', {
+  const response = await fetcher(`${BASE_URL}/auth/token`, 'POST', {
     payload,
   });
 

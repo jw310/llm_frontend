@@ -1,0 +1,27 @@
+{
+  "loginPage": {
+    "title": "歡迎來到語言模型系統",
+    "username": "帳號",
+    "usernamePlaceholder": "請輸入帳號",
+    "password": "密碼",
+    "passwordPlaceholder": "請輸入密碼",
+    "submit": "登入",
+    "successAlert": "歡迎進入語言模型系統"
+  },
+  "header": {
+    "logout": "登出"
+  },
+  "menu": {
+    "llm": "語言模型"
+  },
+  "errorMessage": {
+    "required": "此欄位為必填",
+    "number": "請輸入數字",
+    "maxResponse": "請輸入3位數字",
+    "weight": "請輸入2位數字",
+    "confirmPassword": "確認密碼與原始密碼不一致",
+    "atLeastSixCharacters": "請輸入至少六個字元",
+    "failedAlert": "帳號密碼錯誤",
+    "inputEmptyAlert": "此欄位為必填"
+  }
+}
