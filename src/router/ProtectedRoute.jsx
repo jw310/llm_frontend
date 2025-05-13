@@ -2,7 +2,7 @@
 // import { AuthContext } from '../context/auth';
 // import { useNavigate } from "react-router";
 
-// function ProtectedRoute({ children, allowedRoles = [] }) {
+function ProtectedRoute({ children, allowedRoles = [] }) {
 //   const navigate = useNavigate();
 
 //   navigate("/login");
@@ -14,6 +14,6 @@
 //   return <Navigate to="/unauthorized" replace />;
 // }
 // return children;
-// }
+}
 
-// export default ProtectedRoute;
+export default ProtectedRoute;

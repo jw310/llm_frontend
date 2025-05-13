@@ -1,6 +1,8 @@
 import SuccessIcon from '@/assets/success-icon.png';
 import ErrorIcon from '@/assets/error-icon.png';
 
+import { cn } from '@/utils/clsx.js';
+
 function Alert({ type, message }) {
   let alertStyle;
   let icon;
@@ -19,10 +21,11 @@ function Alert({ type, message }) {
 
   return (
     <div
-      className={`${alertStyle} absolute left-1/2 top-8 flex -translate-x-1/2 items-center justify-center gap-3 rounded p-[10px] text-2xl font-bold`}
+      className={cn("absolute left-1/2 top-8 flex -translate-x-1/2 items-center justify-center gap-3 rounded p-[10px] text-2xl font-bold", 
+                    `${alertStyle}`)}
     >
       {icon}
-      {message}
+      {message ? '' : 'success'}
     </div>
   );
 }

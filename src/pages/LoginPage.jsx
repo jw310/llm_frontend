@@ -4,8 +4,8 @@ import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from '@tanstack/react-query';
 
-import Alert from '../components/modal/Alert.jsx';
-import { Spinner } from '../components/loader/Spinner.jsx';
+import Alert from '@/components/modal/Alert.jsx';
+import { Spinner } from '@/components/loader/Spinner.jsx';
 
 import { cn } from '@/utils/clsx.js';
 import { requestLoginApi } from '@/api/api';
@@ -15,9 +15,15 @@ import { AuthContext } from '@/context/auth.jsx';
 function LoginPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  // const [showAlert, setShowAlert] = useState()
 
-  const { showAlert, login } = useContext(AuthContext);
+  const [showAlert, setShowAlert] = useState({
+    type: 'success',
+    message: '',
+    isShow: false,
+  });
+
+
+  const { login } = useContext(AuthContext);
   const {
     register,
     handleSubmit,
@@ -189,9 +195,9 @@ function LoginPage() {
           ></div>
         </div> */}
       </div>
-      {/* {showAlert.isShow && (
+      {showAlert.isShow && (
         <Alert type={showAlert.type} message={showAlert.message} />
-      )} */}
+      )}
       {isPending && <Spinner />}
     </div>
   );
