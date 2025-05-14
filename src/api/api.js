@@ -38,20 +38,47 @@ const fetcher = async (url, method, { payload } = {}) => {
 };
 
 export const requestLoginApi = async (payload) => {
-  const response = await fetcher(`${BASE_URL}/auth/token`, 'POST', {
-    payload,
-  });
+  try {
+    // OATH2 認證要用 application/x-www-form-urlencoded 格式
+    const formData = new URLSearchParams();
+    formData.append('username', payload.username);
+    formData.append('password', payload.password);
+    formData.append('grant_type', 'password');
 
-  const { data } = response;
-  const token = data.token;
+    const response = await fetch(`${BASE_URL}/auth/token`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: formData,
+    })
 
-  await new Promise((resolve) => setTimeout(resolve, 500));
+    if (response.status === 422) {
+      const errorData = await response.json();
+      console.error('format error:', errorData.detail);
+      // 在界面上顯示錯誤信息
+      return { error: errorData.detail };
+    }
 
-  return token;
-};
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    const token = data.access_token;
+
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    return token;
+  } catch (error) {
+      console.error('Fetch error:', error);
+    throw error;
+  }
+} ;
 
 export const getEmployeeInfoByIdApi = async (employeeId) => {
-  const response = await fetcher(`${BASE_URL}employees/${employeeId}`, 'GET');
+  const response = await fetcher(`${BASE_URL}/employees/${employeeId}`, 'GET');
 
   const { data } = response;
 

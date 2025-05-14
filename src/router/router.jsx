@@ -5,6 +5,7 @@ import DemoPage from "@/pages/DemoPage.jsx";
 import LoginPage from "@/pages/LoginPage.jsx";
 import ErrorPage from "@/pages/ErrorPage.jsx";
 import Layout from "@/pages/Layout.jsx";
+import CalendarPage from "@/pages/CalendarPage.jsx";
 
 
 const router = createBrowserRouter([
@@ -28,22 +29,30 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: '/',
-        children: [
-          {
-            index: true,
-            // element: <Navigate to='product' replace />,
-          },
-          // {
-          //   path: 'product',
-          //   element: (
-          //     // <ProtectedRoute>
-          //       <ProductInfoPage />
-          //     // </ProtectedRoute>
-          //   ),
-          // },
-        ],
+        index: true,
+        element: (
+          // <ProtectedRoute allowedRoles={[2, 3, 4]}>
+            <CalendarPage />
+          // </ProtectedRoute>
+        ),
       },
+      // {
+      //   path: '/',
+      //   children: [
+      //     {
+      //       index: true,
+      //       // element: <Navigate to='product' replace />, //輸入 / 的話，重新導向顯示 product 頁面
+      //     },
+      //     // {
+      //     //   path: 'product',
+      //     //   element: (
+      //     //     // <ProtectedRoute>
+      //     //       <ProductInfoPage />
+      //     //     // </ProtectedRoute>
+      //     //   ),
+      //     // },
+      //   ],
+      // },
     ]
   }
 ]);

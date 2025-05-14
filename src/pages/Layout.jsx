@@ -1,13 +1,13 @@
 import { Outlet } from "react-router";
 
 import Header from "@/components/Header";
-import Navbar from "@/components/Navber";
+import Navbar from "@/components/Navbar";
 
 import { cn } from "@/utils/clsx.js";
 
 function Layout() {
   return (
-    <div className={cn("flex")}>
+    <div className={cn("flex h-screen w-screen")}>
       <Navbar />
       <div className={cn("h-full w-full")}>
         <Header />
