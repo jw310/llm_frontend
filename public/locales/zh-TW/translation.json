@@ -14,6 +14,35 @@
   "menu": {
     "llm": "語言模型"
   },
+  "createUser": {
+    "username": "使用者名稱",
+    "usernamePlaceholder": "請輸入使用者名稱",
+    "password": "密碼",
+    "passwordPlaceholder": "請輸入密碼",
+    "email": "電子信箱",
+    "emailPlaceholder": "請輸入電子信箱",
+    "first_name": "名字",
+    "first_namePlaceholder": "請輸入名字",
+    "last_name": "姓氏",
+    "last_namePlaceholder": "請輸入姓氏",
+    "role": "角色",
+    "rolePlaceholder": "請選擇角色",
+    "phone_number": "電話",
+    "phonePlaceholder": "請輸入電話"
+  },
+  "common": {
+    "submit": "送出",
+    "cancel": "取消",
+    "delete": "刪除",
+    "edit": "編輯",
+    "save": "儲存",
+    "update": "更新",
+    "add": "新增",
+    "search": "搜尋",
+    "reset": "重設",
+    "confirm": "確認",
+    "close": "關閉"
+  },
   "errorMessage": {
     "required": "此欄位為必填",
     "number": "請輸入數字",

@@ -7,11 +7,11 @@ import { cn } from "@/utils/clsx.js";
 
 function Layout() {
   return (
-    <div className={cn("flex h-screen w-screen")}>
+    <div className={cn("flex h-screen")}>
       <Navbar />
-      <div className={cn("h-full w-full")}>
+      <div className={cn("h-screen w-full overflow-auto")}>
         <Header />
-        <main className={cn("hide-scrollbar h-main w-full overflow-y-scroll bg-indigo-50")}>
+        <main className={cn("bg-indigo-50")}>
           <Outlet />
         </main>
       </div>

@@ -4,10 +4,15 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 function Calendar({ eventsData }) {
   return (
     <>
-      <div className='h-full w-full rounded border-2 border-slate-800 bg-white p-6'>
+      <div className='w-full rounded border-2 border-slate-800 bg-white p-10'>
         <FullCalendar
           plugins={[dayGridPlugin]}
           initialView='dayGridMonth'
+          // headerToolbar={{
+          //   left: 'prev,next',
+          //   center: 'title',
+          //   right: 'dayGridMonth,dayGridWeek,dayGridDay'
+          // }}
           weekends={true}
           events={eventsData}
           eventContent={(eventInfo) => {

@@ -6,6 +6,7 @@ import LoginPage from "@/pages/LoginPage.jsx";
 import ErrorPage from "@/pages/ErrorPage.jsx";
 import Layout from "@/pages/Layout.jsx";
 import CalendarPage from "@/pages/CalendarPage.jsx";
+import CreateUserPage from "@/pages/admin/CreateUserPage.jsx";
 
 
 const router = createBrowserRouter([
@@ -33,6 +34,14 @@ const router = createBrowserRouter([
         element: (
           // <ProtectedRoute allowedRoles={[2, 3, 4]}>
             <CalendarPage />
+          // </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/create',
+        element: (
+          // <ProtectedRoute>
+            <CreateUserPage />
           // </ProtectedRoute>
         ),
       },

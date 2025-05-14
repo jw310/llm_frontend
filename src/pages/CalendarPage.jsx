@@ -45,7 +45,7 @@ function CalendarPage() {
 
   return (
     <div>
-      <div className='flex h-fit min-h-main w-full justify-center px-20 py-10'>
+      <div className='flex justify-center px-20 py-5'>
           <Calendar eventsData={eventsData}  />
       </div>
     </div>
