@@ -30,18 +30,18 @@ function Select({
       onClick={() => setOpenSelect((currentOpenSelect) => !currentOpenSelect)}
     >
       <div
-        className={cn('relative flex h-full w-full cursor-pointer items-center rounded-md border-2 border-gray-700 bg-grey-800 px-[14px] py-[10px] text-sm font-medium lg:text-base',
-          `${!value ? 'text-grey-400' : ''} ${ !value ? 'border-secondary-red-500' : 'border-grey-700'}`)}
+        className={cn('relative flex h-full w-full cursor-pointer items-center rounded-md border-2 border-gray-700 bg-gray-700 px-[14px] py-[10px] text-sm font-medium lg:text-base',
+          `${!value ? 'text-white' : 'text-gray-400'}`)}
       >
         {showSelectedOption()}
         {openSelect && (
-          <div className='absolute left-0 top-full z-20 mt-[2px] f-hit w-full rounded bg-gray-700 shadow-custom'>
+          <div className='absolute left-0 top-full z-20 mt-[2px] f-hit w-full rounded bg-gray-700 text-white shadow-custom'>
             <ul>
               {options?.map((el) =>
                 value === el.value ? (
                   <li
                     key={el.value}
-                    className='text-body flex cursor-pointer items-center gap-1 px-[14px] py-[10px] font-bold text-primary-yellow-500 hover:bg-grey-600'
+                    className='text-body flex cursor-pointer items-center gap-1 px-[14px] py-[10px] font-bold text-primary-yellow-500 hover:bg-grey-600 '
                     onClick={() => onChange(el.value)}
                   >
                     <img

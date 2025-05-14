@@ -87,7 +87,7 @@ function CreateUserForm() {
     },
     {
       name: 'email',
-      placeholder: t('createUser.companyPlaceholder'),
+      placeholder: t('createUser.emailPlaceholder'),
       rules: {
         required: { value: true, message: t('errorMessage.required') },
       },
@@ -192,7 +192,7 @@ function CreateUserForm() {
                 type='text'
                 id={name}
                 placeholder={placeholder}
-                className={cn('focus:none h-11 w-full rounded border-2 bg-grey-700 indent-3 text-white focus:outline-none',
+                className={cn('focus:none h-11 w-full rounded border-2 bg-gray-700 indent-3 text-white focus:outline-none',
                     `${errors?.[name] ? 'border-red-500' : 'border-grey-500'}`)}
               />
               {errors?.[name]?.type && (
@@ -217,16 +217,15 @@ function CreateUserForm() {
                   onChange={onChange}
                   options={roleOptions}
                   value={value}
-                  // customStyle='focus:none h-11 w-full rounded border-2 border-grey-500 bg-grey-700 text-white focus:outline-none'
-                  customStyle={cn('focus:none h-11 w-full rounded border-2 bg-grey-700 indent-3 text-white focus:outline-none',
+                  customStyle={cn('focus:none h-11 w-full rounded border-2 bg-gray-700 indent-3 text-white focus:outline-none',
                     `${errors?.role ? 'border-red-500' : 'border-grey-500'}`)}
                   placeholder={t('createUser.rolePlaceholder')}
                 />
               )}
             />
-            {errors?.knowledgeType?.type && (
+            {errors?.role?.type && (
               <p className='whitespace-nowrap text-red-500'>
-                {errors?.knowledgeType?.message}
+                {errors?.role?.message}
               </p>
             )}
           </div>
