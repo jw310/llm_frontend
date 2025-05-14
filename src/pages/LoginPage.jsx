@@ -112,8 +112,8 @@ function LoginPage() {
   // }, []);
 
   return (
-    <div>
-      <div className={cn('flex h-full w-full flex-col items-center justify-center gap-8')}>
+    <div className={cn('flex h-screen items-center justify-center bg-gray-600')}>
+      <div className={cn('flex flex-col items-center justify-center gap-8')}>
         <h1 className={cn('whitespace-pre-wrap text-center text-2xl font-bold leading-[34.5px] text-white')}>
           {t('loginPage.title')}
         </h1>
