@@ -1,4 +1,4 @@
-// setting color e.g. bg-mint-500, text-mint-500, border-mint-500, background-color: var(--color-mint-500)
+/* setting color e.g. bg-mint-500, text-mint-500, border-mint-500, background-color: var(--color-mint-500) */
 @theme {
   --color-mint-500: oklch(0.72 0.11 178);
   --color-red-50: oklch(0.971 0.013 17.38);
@@ -6,12 +6,27 @@
   --color-red-200: oklch(0.885 0.062 18.334);
 
   --font-sans: 'Noto Sans TC', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-  --font-inter:'Inter', system-ui, sans-serif, 
+  --font-inter:'Inter', system-ui, sans-serif,
   --font-poppins: Poppins, sans-serif;
 
   --shadow-2xs: 0 1px rgb(0 0 0 / 0.05);
   --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
   --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+
+  --shadow-3xl: 0 32px 0 #fff, -32px 0 #fff;
+
+
+  /* Animate  */
+  --animate-wiggle: wiggle 0.5s ease-out infinite;
+  @keyframes wiggle {
+    0%,
+    100% {
+      transform: rotate(-3deg);
+    }
+    50% {
+      transform: rotate(3deg);
+    }
+  }
 
   --animate-fade-in-scale: fade-in-scale 0.3s ease-out;
   @keyframes fade-in-scale {
@@ -24,49 +39,75 @@
       transform: scale(1);
     }
   }
-}
 
-.loader {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background-color: #fff;
-  box-shadow: 32px 0 #fff, -32px 0 #fff;
-  position: relative;
-  animation: flash 0.5s ease-out infinite alternate;
-}
+  --animate-flash: flash 0.5s ease-out infinite alternate;
+  @keyframes flash {
+    0% {
+      background-color: #fff2;
+      box-shadow: 32px 0 #fff2, -32px 0 #fff;
+    }
+    50% {
+      background-color: #fff;
+      box-shadow: 32px 0 #fff2, -32px 0 #fff2;
+    }
+    100% {
+      background-color: #fff2;
+      box-shadow: 32px 0 #fff, -32px 0 #fff2;
+    }
+  }
 
-@keyframes flash {
-  0% {
-    background-color: #fff2;
-    box-shadow: 32px 0 #fff2, -32px 0 #fff;
+  --animate-rotation: rotation 1s linear infinite;
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
-  50% {
-    background-color: #fff;
-    box-shadow: 32px 0 #fff2, -32px 0 #fff2;
-  }
-  100% {
-    background-color: #fff2;
-    box-shadow: 32px 0 #fff, -32px 0 #fff2;
-  }
-}
 
-.small-loader {
-  width: 18px;
-  height: 18px;
-  border: 3px solid #808080;
-  border-bottom-color: transparent;
-  border-radius: 50%;
-  display: inline-block;
-  box-sizing: border-box;
-  animation: rotation 1s linear infinite;
-}
-
-@keyframes rotation {
-  0% {
-    transform: rotate(0deg);
+  --animate-text-shimmer: text-shimmer 2.5s ease-out infinite;
+  @keyframes text-shimmer {
+    from {
+      background-position: 0 0;
+    }
+    to {
+      background-position: -200% 0;
+    }
   }
-  100% {
-    transform: rotate(360deg);
+
+  --animate-shake: shake 0.3s linear 1;
+  @keyframes shake {
+    0% {
+      transform: translateX(-5%);
+    }
+    25% { transform: translateX(5%); }
+    50% { transform: translateX(-5%); }
+    75% { transform: translateX(5%); }
+    100% { transform: translateX(-5%); }
+  }
+
+  --animate-fade-in: fade-in 0.5s ease-in-out;
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateX(-1000%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0%);
+    }
+  }
+
+  --animate-fade-out: fade-out 0.5s ease-in-out forwards;
+  @keyframes fade-out {
+    from {
+      opacity: 0;
+      transform: translateX(0%);
+    }
+    to {
+      opacity: 1,
+      transform: translateX(1000%);
+    }
   }
 }

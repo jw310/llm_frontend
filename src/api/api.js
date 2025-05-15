@@ -96,3 +96,42 @@ export const getDashboardAppliesApi = async () => {
 
   return { data, pagination };
 };
+
+
+export const uploadEmployeeFileApi = async (formData, employeeId) => {
+  const token = JSON.parse(localStorage.getItem('token'));
+
+  const response = await fetch(`${BASE_URL}employees/upload/${employeeId}`, {
+    method: 'POST',
+    headers: {
+      ...(token && {
+        Authorization: `Bearer ${token}`,
+        'X-Auth-Token': token,
+      }),
+    },
+    body: formData,
+  });
+
+  if (!response.ok) {
+    const { message } = await response.json();
+    throw new Error(message);
+  }
+
+  const { data } = await response.json();
+
+  return data;
+};
+
+export const deleteUploadFileApi = async ({ payload, employeeId }) => {
+  const response = await fetcher(
+    `${BASE_URL}employees/upload/${employeeId}`,
+    'DELETE',
+    {
+      payload,
+    }
+  );
+
+  const { message } = response;
+
+  return message;
+};
