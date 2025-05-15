@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router';
 
 import Alert from '../modal/Alert';
 import Select from '../select/Select';
+import FileUploadBtn from '../button/FileUploadBtn';
 
 import { cn } from '@/utils/clsx.js';
 // import { registerUserApi } from '@/api/api';
@@ -20,8 +21,6 @@ function CreateUserForm() {
     message: '',
     isShow: false,
   });
-
-  const [selectedOption, setSelectedOption] = useState();
 
   // const { logout } = useContext(AuthContext);
 
@@ -106,13 +105,6 @@ function CreateUserForm() {
         required: { value: true, message: t('errorMessage.required') },
       },
     },
-    // {
-    //   name: 'role',
-    //   placeholder: t('createUser.rolePlaceholder'),
-    //   rules: {
-    //     required: { value: true, message: t('errorMessage.required') },
-    //   },
-    // },
     {
       name: 'phone_number',
       placeholder: t('createUser.phonePlaceholder'),
@@ -134,13 +126,9 @@ function CreateUserForm() {
   ];
 
 
-  const clickOptionHandler = (value) => {
-    setSelectedOption(value);
-  };
-
-
   const onSubmit = async (data) => {
     console.log(data);
+
 
     // mutate({
     //   username: data.username,
@@ -228,6 +216,27 @@ function CreateUserForm() {
                 {errors?.role?.message}
               </p>
             )}
+          </div>
+          <div className='flex h-fit w-[700px] items-center gap-5'>
+            <label
+              htmlFor='attachment'
+              className='w-[100px] flex-shrink-0 text-xl'
+            >
+              附檔
+            </label>
+            <Controller
+              control={control}
+              name='attachment'
+              render={({ field: { onChange } }) => (
+                <FileUploadBtn
+                  name='attachment'
+                  max={1}
+                  employeeId={'123'}
+                  register={register}
+                  onChange={onChange}
+                />
+              )}
+            />
           </div>
         </div>
         <div className={cn('flex h-fit w-full items-center justify-center gap-5')}>

@@ -1,11 +1,12 @@
+import { useContext, useRef, useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+
 import { PlusCircleIcon } from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/20/solid';
-import { useContext, useRef, useState } from 'react';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import pdfIcon from '@/assets/pdf.png';
-import { useMutation } from '@tanstack/react-query';
-import { deleteUploadFileApi } from '@/api/api';
+import Alert from '../modal/Alert';
+
+// import { deleteUploadFileApi } from '@/api/api';
 import { AuthContext } from '@/context/auth';
 
 const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_URL;
@@ -30,9 +31,15 @@ function FileUploadBtn({
   const uploadInput = useRef(null);
   const uploadFormDataRef = useRef(new FormData());
 
-  const { mutateAsync } = useMutation({
-    mutationFn: deleteUploadFileApi,
+  const [showAlert, setShowAlert] = useState({
+    type: '',
+    message: '',
+    isShow: false,
   });
+
+  // const { mutateAsync } = useMutation({
+  //   mutationFn: deleteUploadFileApi,
+  // });
 
   const handleUploadClick = () => {
     //檢查檔案數量
@@ -41,10 +48,16 @@ function FileUploadBtn({
     const totalFileCount = defaultFileCount + uploadedFileCount;
 
     if (totalFileCount >= maxFiles) {
-      toast.error(`檔案太多，最多只能上傳${maxFiles}個檔案`, {
-        position: 'top-center',
-        autoClose: 1000,
-      });
+      // toast.error(`檔案太多，最多只能上傳${maxFiles}個檔案`, {
+      //   position: 'top-center',
+      //   autoClose: 1000,
+      // });
+      setShowAlert((prev) => ({
+        type: 'error',
+        message: `檔案太多，最多只能上傳${maxFiles}個檔案`,
+        isShow: !prev.isShow,
+      }));
+      // console.log(`檔案太多，最多只能上傳${maxFiles}個檔案`);
       return;
     }
     uploadInput.current.click();
@@ -58,18 +71,20 @@ function FileUploadBtn({
     try {
       const result = await mutateAsync({ payload: deletePayload, employeeId });
 
-      toast.success(result, {
-        position: 'top-center',
-        autoClose: 1000,
-      });
+      setShowAlert((prev) => ({
+        type: 'success',
+        message: `success`,
+        isShow: !prev.isShow,
+      }));
 
       setEditableDefaultData((prev) => prev.filter((item) => item.id !== id));
     } catch (error) {
       console.error('Delete File failed:', error);
-      toast.error(error.message, {
-        position: 'top-center',
-        autoClose: 1000,
-      });
+      setShowAlert((prev) => ({
+        type: 'error',
+        message: 'Delete File failed',
+        isShow: !prev.isShow,
+      }));
 
       if (error.message === 'Unauthorized') {
         setTimeout(() => {
@@ -116,10 +131,11 @@ function FileUploadBtn({
 
     // 檢查檔案總量
     if (totalFileCount > maxFiles) {
-      toast.error(`檔案太多，最多只能上傳${maxFiles}個檔案`, {
-        position: 'top-center',
-        autoClose: 1000,
-      });
+      setShowAlert((prev) => ({
+        type: 'error',
+        message: `檔案太多，最多只能上傳${maxFiles}個檔案`,
+        isShow: !prev.isShow,
+      }));
       return;
     }
 
@@ -236,6 +252,9 @@ function FileUploadBtn({
         <PlusCircleIcon className='h-6 w-6' />
         檔案上傳
       </button>
+      {showAlert.isShow && (
+        <Alert type={showAlert.type} message={showAlert.message} />
+      )}
     </>
   );
 }
