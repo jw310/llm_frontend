@@ -21,11 +21,12 @@ function Alert({ type, message }) {
 
   return (
     <div
-      className={cn("absolute left-1/2 top-8 flex -translate-x-1/2 items-center justify-center gap-3 rounded p-[10px] text-2xl font-bold", 
-                    `${alertStyle}`)}
+      className={
+        cn("absolute left-1/2 top-8 flex -translate-x-1/2 items-center justify-center p-[10px]",
+        `gap-3 rounded text-2xl font-bold ${alertStyle}`)}
     >
       {icon}
-      {message ? '' : 'success'}
+      {message ? message : null}
     </div>
   );
 }

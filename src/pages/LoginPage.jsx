@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from '@tanstack/react-query';
+import { jwtDecode } from 'jwt-decode';
 
 import Alert from '@/components/modal/Alert.jsx';
 import { Spinner } from '@/components/loader/Spinner.jsx';
@@ -17,7 +18,7 @@ function LoginPage() {
   const navigate = useNavigate();
 
   const [showAlert, setShowAlert] = useState({
-    type: 'success',
+    type: '',
     message: '',
     isShow: false,
   });
@@ -34,20 +35,22 @@ function LoginPage() {
   const { mutate, isPending } = useMutation({
     mutationFn: requestLoginApi,
     onSuccess: (token) => {
-      // login(token);
-      // setTimeout(() => {
-      //   const decodedToken = jwtDecode(token);
-      //   if (decodedToken.role === 1) {
-      //     return navigate('/staff/apply/record');
-      //   }
-      //   navigate('/');
-      // }, 1000);
+      login(token);
+      setShowAlert((prev) => ({
+        type: 'success',
+        message: 'Login Success',
+        isShow: !prev.isShow,
+      }));
+      setTimeout(() => {
+        const decodedToken = jwtDecode(token);
+        if (decodedToken.role === "string") {
+          return navigate('/create');
+        }
+        navigate('/');
+      }, 1000);
     },
     onError: (error) => {
-      // toast.error(error.message, {
-      //   position: 'top-center',
-      //   autoClose: 1000,
-      // });
+      console.log(error);s
     },
   });
 
@@ -112,7 +115,9 @@ function LoginPage() {
   // }, []);
 
   return (
-    <div className={cn('flex h-screen items-center justify-center bg-gray-500')}>
+    <div className={cn('flex h-screen items-center justify-center',
+          'bg-linear-65 from-[#3498db] to-[#2ecc71]'
+      )}>
       <div className={cn('flex flex-col items-center justify-center gap-8')}>
         <h1 className={cn('whitespace-pre-wrap text-center text-2xl font-bold leading-[34.5px] text-white')}>
           {t('loginPage.title')}
@@ -168,7 +173,9 @@ function LoginPage() {
 
           <button
             type='submit'
-            className={cn('h-fit w-fit rounded bg-grey-600 p-[10px] text-2xl font-medium text-grey-200 hover:bg-grey-300 hover:text-grey-600')}
+            className={cn('h-fit w-fit rounded bg-gray-100 p-[10px] text-2xl font-medium text-grey-200',
+                    'hover:bg-gray-300 hover:text-gray-600 cursor-pointer'
+            )}
           >
             {t('loginPage.submit')}
           </button>

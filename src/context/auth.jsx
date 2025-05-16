@@ -43,8 +43,9 @@ export function AuthProvider({ children }) {
   const login = (tokenData) => {
     setToken(tokenData);
     const decodedToken = jwtDecode(tokenData);
-    setCurrentUser({ id: decodedToken.id, role: decodedToken.role });
-    setIsLoggedIn(() => !isLoggedIn);
+    console.log(decodedToken);
+    // setCurrentUser({ id: decodedToken.id, role: decodedToken.role });
+    // setIsLoggedIn(() => !isLoggedIn);
     localStorage.setItem('token', JSON.stringify(tokenData));
   };
 
