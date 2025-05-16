@@ -1,6 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router";
 
-import ProtectedRoute from '@/router/ProtectedRoute.jsx';
+// import ProtectedRoute from '@/router/ProtectedRoute.jsx';
 import DemoPage from "@/pages/DemoPage.jsx";
 import LoginPage from "@/pages/LoginPage.jsx";
 import ErrorPage from "@/pages/ErrorPage.jsx";

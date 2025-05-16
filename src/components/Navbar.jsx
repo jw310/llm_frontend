@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router';
-import { AuthContext } from '@/context/auth';
+
 import {
   Squares2X2Icon,
   UserIcon,
@@ -9,6 +9,9 @@ import {
   Cog6ToothIcon,
   ArrowLeftStartOnRectangleIcon,
 } from '@heroicons/react/24/outline';
+
+import { AuthContext } from '@/context/auth';
+import { cn } from '@/utils/clsx';
 
 function filterNavItems(items, userRole) {
   return items.filter((item) => {
@@ -32,13 +35,16 @@ function extractPath(url) {
 function Navbar() {
   const navigate = useNavigate();
   const pathname = useLocation().pathname;
-  const { currentUser, logout } = useContext(AuthContext);
   const [activeNavLink, setIsActiveNavLink] = useState(extractPath(pathname));
+
+  console.log(activeNavLink);
+
+  const { currentUser, logout } = useContext(AuthContext);
 
   const navItems = [
     {
       id: 'nav-1',
-      name: 'Dashboard',
+      name: 'Calendar',
       path: '/',
       icon: Squares2X2Icon,
       allowedRoles: [2, 3, 4],
@@ -195,7 +201,9 @@ function Navbar() {
         </div>
         <button
           onClick={handleLogout}
-          className='flex h-14 w-full items-center justify-start gap-5 px-4 hover:animate-shake hover:bg-violet-500 hover:bg-opacity-5'
+          className={cn('flex h-14 w-full items-center justify-start gap-5 px-4',
+              'hover:animate-shake hover:bg-violet-500 hover:bg-opacity-5'
+          )}
         >
           <ArrowLeftStartOnRectangleIcon className='inline-block h-6 w-6' />
           Logout

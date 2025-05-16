@@ -85,7 +85,7 @@ export const getUserInfoByIdApi = async (userId) => {
 
   await new Promise((resolve) => setTimeout(resolve, 500));
 
-  return data; 
+  return data;
 };
 
 
