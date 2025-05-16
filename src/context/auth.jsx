@@ -1,7 +1,7 @@
 import { createContext, useState } from 'react';
 import { jwtDecode } from 'jwt-decode';
-// import { useQuery } from '@tanstack/react-query';
-// import { getEmployeeInfoByIdApi } from '@/api/api';
+import { useQuery } from '@tanstack/react-query';
+import { getUserInfoByIdApi } from '@/api/api';
 
 const defaultAuthContext = {
   isLoggedIn: false,
@@ -29,23 +29,22 @@ export function AuthProvider({ children }) {
 
   const [isLoggedIn, setIsLoggedIn] = useState(() => token != null);
 
-  // const {
-  //   data: userInfo,
-  //   isFetching: isUserInfoFetching,
-  //   isLoading: isUserInfoLoading,
-  // } = useQuery({
-  //   queryKey: ['employeeById', currentUser?.id],
-  //   queryFn: () => getEmployeeInfoByIdApi(currentUser.id),
-  //   enabled: Boolean(currentUser),
-  //   refetchOnWindowFocus: false,
-  // });
+  const {
+    data: userInfo,
+    isFetching: isUserInfoFetching,
+    isLoading: isUserInfoLoading,
+  } = useQuery({
+    queryKey: ['userId', currentUser?.id],
+    queryFn: () => getUserInfoByIdApi(currentUser.id),
+    enabled: Boolean(currentUser),
+    refetchOnWindowFocus: false,
+  });
 
   const login = (tokenData) => {
     setToken(tokenData);
     const decodedToken = jwtDecode(tokenData);
-    console.log(decodedToken);
-    // setCurrentUser({ id: decodedToken.id, role: decodedToken.role });
-    // setIsLoggedIn(() => !isLoggedIn);
+    setCurrentUser({ id: decodedToken.sub, role: decodedToken.role });
+    setIsLoggedIn(() => !isLoggedIn);
     localStorage.setItem('token', JSON.stringify(tokenData));
   };
 
@@ -61,9 +60,9 @@ export function AuthProvider({ children }) {
       value={{
         isLoggedIn,
         currentUser,
-        // userInfo,
-        // isUserInfoLoading,
-        // isUserInfoFetching,
+        userInfo,
+        isUserInfoLoading,
+        isUserInfoFetching,
         token,
         login,
         logout,

@@ -50,7 +50,7 @@ function LoginPage() {
       }, 1000);
     },
     onError: (error) => {
-      console.log(error);s
+      console.log(error);
     },
   });
 
@@ -173,7 +173,7 @@ function LoginPage() {
 
           <button
             type='submit'
-            className={cn('h-fit w-fit rounded bg-gray-100 p-[10px] text-2xl font-medium text-grey-200',
+            className={cn('h-fit w-fit rounded bg-gray-100 p-[10px] text-xl font-medium text-gray-600',
                     'hover:bg-gray-300 hover:text-gray-600 cursor-pointer'
             )}
           >

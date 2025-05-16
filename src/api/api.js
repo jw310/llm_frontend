@@ -77,14 +77,15 @@ export const requestLoginApi = async (payload) => {
   }
 } ;
 
-export const getEmployeeInfoByIdApi = async (employeeId) => {
-  const response = await fetcher(`${BASE_URL}/employees/${employeeId}`, 'GET');
+export const getUserInfoByIdApi = async (userId) => {
+  const queryString = paramsToQueryString({ uuid: userId });
+  const response = await fetcher(`${BASE_URL}/users/uuid${queryString}`, 'GET');
 
   const { data } = response;
 
   await new Promise((resolve) => setTimeout(resolve, 500));
 
-  return data;
+  return data; 
 };
 
 
