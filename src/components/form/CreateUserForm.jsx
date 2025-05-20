@@ -9,6 +9,7 @@ import Select from '../select/Select';
 import FileUploadBtn from '../button/FileUploadBtn';
 
 import { cn } from '@/utils/clsx.js';
+import trimString from '@/utils/trimString.js';
 // import { registerUserApi } from '@/api/api';
 // import { AuthContext } from '@/context/auth';
 
@@ -131,13 +132,13 @@ function CreateUserForm() {
 
 
     // mutate({
-    //   username: data.username,
-    //   password: data.password,
-    //   email: data.email,
-    //   fist_name: data.fist_name,
-    //   last_name: data.last_name,
-    //   role: data.role,
-    //   phone_number: data.phone_number,
+    //   username: trimString(data.username),
+    //   password: trimString(data.password),
+    //   email: trimString(data.email),
+    //   fist_name: trimString(data.fist_name),
+    //   last_name: trimString(data.last_name),
+    //   role: trimString(data.role),
+    //   phone_number: trimString(data.phone_number),
     // });
 
     // if (insufficientHours) return;

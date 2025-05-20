@@ -1,4 +1,5 @@
 import { useState, useContext } from 'react';
+import { useNavigate } from 'react-router';
 import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 // import {
@@ -7,7 +8,8 @@ import { useTranslation } from 'react-i18next';
 //   createApplyApi,
 // } from '@/api/api';
 // import { useMutation, useQuery } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
+
+import { cn } from '@/utils/clsx.js';
 // import { AuthContext } from '@/context/auth';
 
 import Alert from '../modal/Alert';
