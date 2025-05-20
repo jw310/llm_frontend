@@ -37,7 +37,7 @@ function Navbar() {
   const pathname = useLocation().pathname;
   const [activeNavLink, setIsActiveNavLink] = useState(extractPath(pathname));
 
-  console.log(activeNavLink);
+  // console.log(activeNavLink);
 
   const { currentUser, logout } = useContext(AuthContext);
 
