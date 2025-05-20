@@ -47,7 +47,7 @@ function ChatPanel() {
     <>
       <div
         // style={{height: `calc(100vh - 80px)}}
-        className={cn('flex flex-col h-full bg-slate-50 border rounded-xl shadow')}
+        className={cn('flex flex-col h-full bg-slate-50 border rounded-xl shadow p-2')}
       >
         <div className={cn("rounded-lg border-b px-3 py-2 flex flex-row items-center justify-between")}>
           {/* <div className={cn("opacity-40")}>

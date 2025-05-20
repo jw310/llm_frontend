@@ -5,6 +5,8 @@ import PendingMessage from './PendingMessage';
 import { cn } from '@/utils/clsx';
 
 function ChatList({ messages }) {
+
+  // console.log(messages)
   // const scrollIntoView = () => {
   //   //...
   // }
@@ -23,7 +25,7 @@ function ChatList({ messages }) {
               <PendingMessage />
             )}
           </div>
-          ))}
+        ))}
       {/* <div className={cn("pt-4")} scrollIntoView={messages} /> */}
     </div>
   );

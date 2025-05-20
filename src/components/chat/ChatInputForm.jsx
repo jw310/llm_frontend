@@ -7,25 +7,26 @@ import { cn } from '@/utils/clsx';
 
 function ChatInput() {
   const { t } = useTranslation();
+  const formRef = useRef(null);
 
   const { handleSubmit, register, formState: { errors } } = useForm();
 
-  let value = '';
+  let inputValue = '';
   function handleKeyDown(event) {
-    // console.log(event.target.value)
     const isCombo = event.shiftKey || event.ctrlKey || event.altKey || event.metaKey;
     if (event.key !== 'Enter' || isCombo) {
       return;
     }
 
-    if (event.key === 'Enter' && !isCombo && value === '') {
+    if (event.key === 'Enter' && !isCombo && event.target.value === '') {
       event.preventDefault();
       return;
     }
 
     event.preventDefault();
-    // ('submit', value);
-    value = '';
+    formRef.current.dispatchEvent(new Event('submit'));
+    inputValue = event.target.value;
+    event.target.value = '';
   }
 
   const onSubmit = async (data) => {
@@ -33,11 +34,11 @@ function ChatInput() {
     console.log(data.messageInput);
   }
 
-  const height = (value.match(/\n/g)?.length || 0) * 25 + 72;
+  const height = (inputValue.match(/\n/g)?.length || 0) * 25 + 72;
 
   return (
     <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
         <div>
           {/* <label className='flex-shrink-0 text-base' htmlFor='messageInput'>
               *text：
@@ -46,16 +47,15 @@ function ChatInput() {
             {...register('messageInput', {
                 required: { value: false, message: t('errorMessage.required') },
             })}
-            type='text'
-            id='messageInput'
-            className={cn("w-full mx-auto py-1.5 px-2.5 resize-none border rounded max-h-40")}
-            maxLength={50}
-            rows={5}
-            placeholder='Type your message here...'
-            onKeyDown={handleKeyDown}
-            style={{height: `${height}px`}}
-            // value={value}
-          >
+              type='text'
+              id='messageInput'
+              className={cn("w-full mx-auto py-1.5 px-2.5 resize-none border rounded max-h-40")}
+              maxLength={50}
+              rows={5}
+              placeholder='Type your message here...'
+              onKeyDown={handleKeyDown}
+              style={{height: `${height}px`}}
+            >
           </textarea>
           {errors?.messageInput?.type && (
             <p className='whitespace-nowrap text-red-500'>
