@@ -24,8 +24,8 @@ function LoginPage() {
     isShow: false,
   });
 
-
   const { login } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,

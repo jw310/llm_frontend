@@ -23,6 +23,7 @@ function ChatInput() {
     }
 
     event.preventDefault();
+    inputValue = event.target.value;
     formRef.current.dispatchEvent(new Event('submit', { bubbles: true }));
     event.target.value = '';
   }
@@ -59,14 +60,14 @@ function ChatInput() {
               {errors?.messageInput?.message}
             </p>
           )}
-          <button
+          {/* <button
             className={cn('w-fit mt-1 p-2 self-end rounded bg-blue-600 text-base text-white shadow-md',
                   'hover:bg-yellow-500 hover:text-black cursor-pointer'
             )}
             type='submit'
             >
             {t('common.submit')}
-          </button>
+          </button> */}
         </div>
       </form>
     </>

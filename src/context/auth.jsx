@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useState, useRef } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import { useQuery } from '@tanstack/react-query';
 import { getUserInfoByIdApi } from '@/api/api';
@@ -15,45 +15,47 @@ const defaultAuthContext = {
 export const AuthContext = createContext(defaultAuthContext);
 
 export function AuthProvider({ children }) {
-  const [token, setToken] = useState(() => {
-    const savedToken = localStorage.getItem('token');
-    return savedToken ? JSON.parse(savedToken) : null;
-  });
+  const tokenRef = useRef('');
+  const currentUserRef = useRef({});
+  let isLoggedInRef = useRef(false);
 
-  const [currentUser, setCurrentUser] = useState(() => {
-    const decodedToken = token ? jwtDecode(token) : null;
-    return decodedToken
-      ? { id: decodedToken.id, role: decodedToken.role }
-      : null;
-  });
+  const decodedTokenHandler = () => {
+    const decodedToken = tokenRef.current ? jwtDecode(tokenRef.current) : null;
+    return decodedToken ? { id: decodedToken.sub, role: decodedToken.role } : null;
+  };
 
-  const [isLoggedIn, setIsLoggedIn] = useState(() => token != null);
+
+  // const [isLoggedIn, setIsLoggedIn] = useState(() => tokenRef.current != null);
 
   const {
     data: userInfo,
     isFetching: isUserInfoFetching,
     isLoading: isUserInfoLoading,
   } = useQuery({
-    queryKey: ['userId', currentUser?.id],
-    queryFn: () => getUserInfoByIdApi(currentUser.id),
-    enabled: Boolean(currentUser),
+    queryKey: ['userId', currentUserRef.current?.id],
+    queryFn: () => getUserInfoByIdApi(currentUserRef.current.id),
+    enabled: Boolean(currentUserRef.current),
     refetchOnWindowFocus: false,
   });
 
-  const login = (tokenData) => {
-    setToken(tokenData);
-    const decodedToken = jwtDecode(tokenData);
-    setCurrentUser({ id: decodedToken.sub, role: decodedToken.role });
-    setIsLoggedIn(() => !isLoggedIn);
-    localStorage.setItem('token', JSON.stringify(tokenData));
+  const login = (token) => {
+    tokenRef.current = token;
+    localStorage.setItem('token', JSON.stringify(tokenRef.current));
+    const decodedToken = jwtDecode(tokenRef.current);
+    currentUserRef.current = decodedTokenHandler(decodedToken);
+    isLoggedInRef.current = !isLoggedInRef.current;
   };
 
   const logout = () => {
-    setToken(null);
-    setCurrentUser(null);
-    setIsLoggedIn(() => !isLoggedIn);
+    tokenRef.current = ''
+    currentUserRef.current = null;
+    isLoggedInRef.current = false;
     localStorage.removeItem('token');
   };
+
+  const isLoggedIn = isLoggedInRef.current;
+  const currentUser = currentUserRef.current;
+  const token = tokenRef.current;
 
   return (
     <AuthContext.Provider

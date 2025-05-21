@@ -17,7 +17,7 @@ i18n.use(Backend).use(LanguageDetector).use(initReactI18next).init({
   debug: false,
   resources,
   lng: 'zh-TW', // 一進入頁面，初始的語言
-  fallbackLng: 'zh-TW', // 如果找不到區域設定的話，就用英文
+  fallbackLng: 'zh-TW', // 如果找不到區域設定的話，就用這個
   returnEmptyString: false, // 如果是空值，就會顯示成字串
 });
 
