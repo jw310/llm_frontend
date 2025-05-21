@@ -13,6 +13,7 @@ import {
 import { AuthContext } from '@/context/auth';
 import { cn } from '@/utils/clsx';
 
+// 從權限篩選出可用的導覽項
 function filterNavItems(items, userRole) {
   return items.filter((item) => {
     if (!item.allowedRoles.includes(userRole)) {
@@ -37,8 +38,6 @@ function Navbar() {
   const pathname = useLocation().pathname;
   const [activeNavLink, setIsActiveNavLink] = useState(extractPath(pathname));
 
-  // console.log(activeNavLink);
-
   const { currentUser, logout } = useContext(AuthContext);
 
   const navItems = [
@@ -47,53 +46,35 @@ function Navbar() {
       name: 'Calendar',
       path: '/',
       icon: Squares2X2Icon,
-      allowedRoles: [2, 3, 4],
+      allowedRoles: ['admin', 'user'],
     },
-    // {
-    //   id: 'nav-2',
-    //   name: '員工管理',
-    //   path: '/staff/apply',
-    //   icon: UserIcon,
-    //   allowedRoles: [1, 2, 3, 4],
-    //   subLinks: [
-    //     {
-    //       id: 'nav-2-1',
-    //       name: '請假申請',
-    //       path: '/staff/apply/new',
-    //       allowedRoles: [1, 2, 3, 4],
-    //     },
-    //     {
-    //       id: 'nav-2-2',
-    //       name: '請假紀錄',
-    //       path: '/staff/apply/record',
-    //       allowedRoles: [1, 2, 3, 4],
-    //     },
-    //     {
-    //       id: 'nav-2-3',
-    //       name: '獲假紀錄',
-    //       path: '/staff/leave/record',
-    //       allowedRoles: [1, 2, 3, 4],
-    //     },
-    //     {
-    //       id: 'nav-2-4',
-    //       name: '請假統計',
-    //       path: '/staff/apply/statistic',
-    //       allowedRoles: [1, 2, 3, 4],
-    //     },
-    //     {
-    //       id: 'nav-2-5',
-    //       name: '特休休假統計',
-    //       path: '/staff/leave/statistic',
-    //       allowedRoles: [1, 2, 3, 4],
-    //     },
-    //   ],
-    // },
-    // {
-    //   id: 'nav-3',
-    //   name: '簽核管理',
-    //   path: '/approval/list',
-    //   icon: DocumentCheckIcon,
-    //   allowedRoles: [2, 3, 4],
+    {
+      id: 'nav-2',
+      name: 'Create',
+      path: '/create',
+      icon: UserIcon,
+      allowedRoles: ['admin', 'user'],
+      // subLinks: [
+      //   {
+      //     id: 'nav-2-1',
+      //     name: '請假申請',
+      //     path: '/staff/apply/new',
+      //     allowedRoles: ['admin', 'user'],
+      //   },
+      //   {
+      //     id: 'nav-2-2',
+      //     name: '請假紀錄',
+      //     path: '/staff/apply/record',
+      //     allowedRoles: ['admin', 'user'],
+      //   }
+      // ],
+    },
+    {
+      id: 'nav-3',
+      name: 'Chat',
+      path: '/chat',
+      icon: DocumentCheckIcon,
+      allowedRoles: ['admin', 'user'],
     //   subLinks: [
     //     {
     //       id: 'nav-3-1',
@@ -102,43 +83,7 @@ function Navbar() {
     //       allowedRoles: [2, 3, 4],
     //     },
     //   ],
-    // },
-    // {
-    //   id: 'nav-4',
-    //   name: '假別管理',
-    //   path: currentUser?.role === 3 ? '/leave/type' : '/leave/offer',
-    //   icon: ShieldCheckIcon,
-    //   allowedRoles: currentUser?.role === 3 ? [3, 4] : [2, 4],
-    //   subLinks: [
-    //     {
-    //       id: 'nav-4-1',
-    //       name: '假別管理',
-    //       path: '/leave/type/manage',
-    //       allowedRoles: [3, 4],
-    //     },
-    //     {
-    //       id: 'nav-4-2',
-    //       name: '給假管理',
-    //       path: '/leave/offer/manage',
-    //       allowedRoles: [2, 4],
-    //     },
-    //   ],
-    // },
-    // {
-    //   id: 'nav-5',
-    //   name: '系統管理',
-    //   path: '/system/crew',
-    //   icon: Cog6ToothIcon,
-    //   allowedRoles: [3, 4],
-    //   subLinks: [
-    //     {
-    //       id: 'nav-5-1',
-    //       name: '人員列表',
-    //       path: '/system/crew/list',
-    //       allowedRoles: [3, 4],
-    //     },
-    //   ],
-    // },
+    },
   ];
 
   const navItemsDependsOnCurrentUser = filterNavItems(
@@ -153,40 +98,39 @@ function Navbar() {
 
   return (
     <>
-      <nav className='hide-scrollbar flex w-fit flex-shrink-0 flex-col items-center justify-between gap-16 overflow-y-scroll bg-slate-100 p-5'>
-        <div className='flex w-[240px] flex-col gap-10 px-4'>
-          <h1 className='text-center text-2xl font-bold text-blue-900'>
+      <nav className={cn('hide-scrollbar flex w-fit flex-shrink-0 flex-col items-center justify-between gap-16 overflow-y-scroll bg-slate-100 p-5')}>
+        <div className={cn('flex w-[240px] flex-col gap-10 px-4')}>
+          <h1 className={cn('text-center text-2xl font-bold text-blue-900')}>
             LLM
           </h1>
-          <ul className='flex h-fit w-full flex-col gap-3'>
+          <ul className={cn('flex h-fit w-full flex-col gap-3')}>
             {navItemsDependsOnCurrentUser.map((item) => (
-              <li key={item.id} className='flex w-full flex-col items-center'>
+              <li key={item.id} className={cn('flex w-full flex-col items-center')}>
                 <NavLink
                   to={item.path}
                   onClick={() => setIsActiveNavLink(extractPath(item.path))}
-                  className={`flex h-14 w-full items-center justify-start gap-5 px-4 ${
-                    activeNavLink === extractPath(item.path)
-                      ? 'font-medium text-indigo-500'
-                      : 'cursor-pointer hover:animate-shake hover:bg-violet-500 hover:bg-opacity-5'
-                  }`}
-                >
-                  {item.icon && <item.icon className='inline-block h-6 w-6' />}
+                  className={cn('flex h-14 w-full items-center justify-start gap-5 px-4',
+                      activeNavLink === extractPath(item.path) ? 'font-medium text-indigo-500'
+                      : `cursor-pointer hover:animate-shake hover:bg-gray-300 hover:bg-opacity-5`
+                  )}
+                > 
+                  {item.icon && <item.icon className={cn('inline-block h-6 w-6')} />}
                   {item.name}
                 </NavLink>
                 {item.subLinks && (
                   <ul
-                    className={`flex w-full flex-col overflow-hidden ${
-                      activeNavLink === extractPath(item.path) ? 'h-fit' : 'h-0'
-                    }`}
+                    className={cn('flex w-full flex-col overflow-hidden',
+                      `activeNavLink === extractPath(item.path) ? 'h-fit' : 'h-0'`
+                    )}
                   >
                     {item.subLinks.map((subItem) => (
-                      <li key={subItem.id} className='h-14 w-full'>
+                      <li key={subItem.id} className={cn('h-14 w-full')}>
                         <NavLink
                           to={subItem.path}
                           className={({ isActive }) =>
                             isActive
                               ? 'flex h-full w-full items-center pl-[60px] font-medium text-indigo-500'
-                              : 'flex h-full w-full cursor-pointer items-center pl-[60px] hover:animate-shake hover:bg-violet-500 hover:bg-opacity-5'
+                              : 'flex h-full w-full cursor-pointer items-center pl-[60px] hover:animate-shake hover:bg-gray-300 hover:bg-opacity-5'
                           }
                         >
                           {subItem.name}
@@ -205,7 +149,7 @@ function Navbar() {
               'hover:animate-shake hover:bg-violet-500 hover:bg-opacity-5'
           )}
         >
-          <ArrowLeftStartOnRectangleIcon className='inline-block h-6 w-6' />
+          <ArrowLeftStartOnRectangleIcon className={cn('inline-block h-6 w-6')} />
           Logout
         </button>
       </nav>

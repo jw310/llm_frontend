@@ -24,21 +24,11 @@ export function AuthProvider({ children }) {
     return decodedToken ? { id: decodedToken.sub, role: decodedToken.role } : null;
   };
 
-
-  // const [isLoggedIn, setIsLoggedIn] = useState(() => tokenRef.current != null);
-
-  const {
-    data: userInfo,
-    isFetching: isUserInfoFetching,
-    isLoading: isUserInfoLoading,
-  } = useQuery({
-    queryKey: ['userId', currentUserRef.current?.id],
-    queryFn: () => getUserInfoByIdApi(currentUserRef.current.id),
-    enabled: Boolean(currentUserRef.current),
-    refetchOnWindowFocus: false,
-  });
-
   const login = (token) => {
+    const savedToken = localStorage.getItem('token');
+    if (savedToken) {
+      tokenRef.current = JSON.parse(savedToken);
+    }
     tokenRef.current = token;
     localStorage.setItem('token', JSON.stringify(tokenRef.current));
     const decodedToken = jwtDecode(tokenRef.current);
@@ -52,6 +42,17 @@ export function AuthProvider({ children }) {
     isLoggedInRef.current = false;
     localStorage.removeItem('token');
   };
+
+  const {
+    data: userInfo,
+    isFetching: isUserInfoFetching,
+    isLoading: isUserInfoLoading,
+  } = useQuery({
+    queryKey: ['userId', currentUserRef.current?.id],
+    queryFn: () => getUserInfoByIdApi(currentUserRef.current.id),
+    enabled: Boolean(currentUserRef.current),
+    refetchOnWindowFocus: true,
+  });
 
   const isLoggedIn = isLoggedInRef.current;
   const currentUser = currentUserRef.current;

@@ -52,6 +52,11 @@ function LoginPage() {
     },
     onError: (error) => {
       console.log(error);
+      setShowAlert((prev) => ({
+        type: 'error',
+        message: 'Login Success',
+        isShow: !prev.isShow,
+      }));
     },
   });
 

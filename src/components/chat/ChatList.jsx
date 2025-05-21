@@ -13,7 +13,7 @@ function ChatList({ messages }) {
     // Scroll into view whenever messages change
     if (scrollRef.current) {
       setTimeout(() => {
-        scrollRef.current.scrollIntoView();
+        scrollRef.current.scrollIntoView({ behavior: 'smooth' });
       }, 0);
     }
   }, [messages]);
