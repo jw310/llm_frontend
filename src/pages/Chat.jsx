@@ -4,7 +4,7 @@ import ChatPanel from "@/components/chat/ChatPanel";
 function ChatPage() {
 
   return (
-    <div className={cn('')}>
+    <div className={cn('p-2')}>
       <ChatPanel />
     </div>
   );

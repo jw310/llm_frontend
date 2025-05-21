@@ -24,6 +24,103 @@ function ChatPanel() {
       role: 'assistant',
       content: 'I am fine, thank you for asking.'
     },
+        {
+      role: 'user',
+      content: 'Hello, how are you?'
+    },
+    {
+      role: 'assistant',
+      content: 'I am fine, thank you for asking.'
+    },
+        {
+      role: 'user',
+      content: 'Hello, how are you?'
+    },
+    {
+      role: 'assistant',
+      content: 'I am fine, thank you for asking.'
+    },
+        {
+      role: 'user',
+      content: 'Hello, how are you?'
+    },
+    {
+      role: 'assistant',
+      content: 'I am fine, thank you for asking.'
+    },
+        {
+      role: 'user',
+      content: 'Hello, how are you?'
+    },
+    {
+      role: 'assistant',
+      content: 'I am fine, thank you for asking.'
+    },
+        {
+      role: 'user',
+      content: 'Hello, how are you?'
+    },
+    {
+      role: 'assistant',
+      content: 'I am fine, thank you for asking.'
+    },
+        {
+      role: 'user',
+      content: 'Hello, how are you?'
+    },
+    {
+      role: 'assistant',
+      content: 'I am fine, thank you for asking.'
+    },
+        {
+      role: 'user',
+      content: 'Hello, how are you?'
+    },
+    {
+      role: 'assistant',
+      content: 'I am fine, thank you for asking.'
+    },
+        {
+      role: 'user',
+      content: 'Hello, how are you?'
+    },
+    {
+      role: 'assistant',
+      content: 'I am fine, thank you for asking.'
+    },
+        {
+      role: 'user',
+      content: 'Hello, how are you?'
+    },
+    {
+      role: 'assistant',
+      content: 'I am fine, thank you for asking.'
+    },
+        {
+      role: 'user',
+      content: 'Hello, how are you?'
+    },
+    {
+      role: 'assistant',
+      content: 'I am fine, thank you for asking.'
+    },
+        {
+      role: 'user',
+      content: 'Hello, how are you?'
+    },
+    {
+      role: 'assistant',
+      content: 'I am fine, thank you for asking.'
+    },
+        {
+      role: 'user',
+      content: 'Hello, how are you?'
+    },
+    {
+      role: 'assistant',
+      content: 'I am fine, thank you for asking.'
+    },
+    
   ]
 
   const conversations = [
@@ -47,7 +144,7 @@ function ChatPanel() {
     <>
       <div
         // style={{height: `calc(100vh - 80px)}}
-        className={cn('flex flex-col h-full bg-slate-50 border rounded-xl shadow p-2')}
+        className={cn('flex flex-col h-full bg-slate-50 border rounded-xl shadow')}
       >
         <div className={cn("rounded-lg border-b px-3 py-2 flex flex-row items-center justify-between")}>
           {/* <div className={cn("opacity-40")}>

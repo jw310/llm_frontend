@@ -1,3 +1,5 @@
+import { useRef, useEffect } from 'react';
+
 import AssistantMessage from './AssistantMessage';
 import UserMessage from './UserMessage';
 import PendingMessage from './PendingMessage';
@@ -5,10 +7,16 @@ import PendingMessage from './PendingMessage';
 import { cn } from '@/utils/clsx';
 
 function ChatList({ messages }) {
+  const scrollRef = useRef(null);
 
-  const scrollIntoView = () => {
-    //...
-  }
+   useEffect(() => {
+    // Scroll into view whenever messages change
+    if (scrollRef.current) {
+      setTimeout(() => {
+        scrollRef.current.scrollIntoView();
+      }, 0);
+    }
+  }, [messages]);
 
   return (
     <div className={cn("overflow-y-auto flex flex-col flex-1")}>
@@ -25,7 +33,7 @@ function ChatList({ messages }) {
             )}
           </div>
         ))}
-      <div className={cn("pt-4")} scrollIntoView={messages} />
+      <div className={cn("pt-4")} ref={scrollRef} />
     </div>
   );
 }
