@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
-
 import { cn } from '@/utils/clsx';
 
 function ChatInput() {
@@ -24,13 +23,11 @@ function ChatInput() {
     }
 
     event.preventDefault();
-    formRef.current.dispatchEvent(new Event('submit'));
-    inputValue = event.target.value;
+    formRef.current.dispatchEvent(new Event('submit', { bubbles: true }));
     event.target.value = '';
   }
 
   const onSubmit = async (data) => {
-    // console.log(inputRef)
     console.log(data.messageInput);
   }
 
@@ -39,7 +36,7 @@ function ChatInput() {
   return (
     <>
       <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
-        <div>
+        <div className={cn('flex flex-col')}>
           {/* <label className='flex-shrink-0 text-base' htmlFor='messageInput'>
               *text：
           </label> */}
@@ -63,7 +60,9 @@ function ChatInput() {
             </p>
           )}
           <button
-            className={cn('mt-1 w-[52px] cursor-pointer rounded bg-blue-600 px-2 py-2 text-base text-white shadow-md hover:bg-yellow-500 hover:text-black')}
+            className={cn('w-fit mt-1 p-2 self-end rounded bg-blue-600 text-base text-white shadow-md',
+                  'hover:bg-yellow-500 hover:text-black cursor-pointer'
+            )}
             type='submit'
             >
             {t('common.submit')}
