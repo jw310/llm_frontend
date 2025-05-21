@@ -9,7 +9,7 @@ import { cn } from '@/utils/clsx';
 function ChatList({ messages }) {
   const scrollRef = useRef(null);
 
-   useEffect(() => {
+  useEffect(() => {
     // Scroll into view whenever messages change
     if (scrollRef.current) {
       setTimeout(() => {
