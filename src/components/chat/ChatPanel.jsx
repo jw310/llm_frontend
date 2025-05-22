@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { cn } from '@/utils/clsx';
 
 import Alert from '../modal/Alert';
+import CheckboxForm from '../form/CheckboxForm';
 import ChatInputForm from './ChatInputForm';
 import ChatList from './ChatList';
 import ConversationSelect from './ConversationSelect';
@@ -43,6 +44,8 @@ function ChatPanel() {
 		// createConversation(documentId);
 	}
 
+  let useStreaming = false
+
   return (
     <>
       <div
@@ -50,10 +53,11 @@ function ChatPanel() {
         className={cn('flex flex-col h-full bg-slate-50 border rounded-xl shadow')}
       >
         <div className={cn("rounded-lg border-b px-3 py-2 flex flex-row items-center justify-between")}>
-          {/* <div className={cn("opacity-40")}>
-            <input id="chat-type" type="checkbox" checked={useStreaming} />
-            <label htmlFor="chat-type" className={cn("italic")}>Streaming</label>
-          </div> */}
+          <div className={cn("opacity-40")}>
+            {/* <input id="chat-type" type="checkbox" checked={useStreaming} />
+            <label htmlFor="chat-type" className={cn("italic")}>Streaming</label> */}
+            <CheckboxForm />
+          </div>
           <div className={cn("flex gap-2")}>
             <ConversationSelect conversations={conversations} />
             <button className={cn("rounded text-sm border border-blue-500 px-2 py-0.5")}

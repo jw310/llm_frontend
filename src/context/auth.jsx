@@ -1,4 +1,5 @@
 import { createContext, useState, useRef } from 'react';
+import { Navigate } from 'react-router';
 import { jwtDecode } from 'jwt-decode';
 import { useQuery } from '@tanstack/react-query';
 import { getUserInfoByIdApi } from '@/api/api';
@@ -16,8 +17,8 @@ export const AuthContext = createContext(defaultAuthContext);
 
 export function AuthProvider({ children }) {
   const tokenRef = useRef('');
-  const [currentUser, setCurrentUser] = useState(null);
   let isLoggedInRef = useRef(false);
+  const [currentUser, setCurrentUser] = useState(null);
 
   const login = (token) => {
     tokenRef.current = token;
@@ -39,14 +40,24 @@ export function AuthProvider({ children }) {
     isFetching: isUserInfoFetching,
     isLoading: isUserInfoLoading,
   } = useQuery({
+    // 監聽 currentUser.id 變化，重新取得資料
     queryKey: ['userId', currentUser?.id],
-    queryFn: () => getUserInfoByIdApi(currentUser.id),
+    queryFn: async () => {
+      try {
+        const data = await getUserInfoByIdApi(currentUser.id);
+        return data;
+      } catch (error) {
+        // console.error('API Error:', error);
+        logout();
+        <Navigate to="/login" replace />
+      }
+    },
     enabled: Boolean(currentUser),
     refetchOnWindowFocus: false,
   });
 
+  // Keep logged in after handling page refresh
   let savedToken = null;
-
   savedToken = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null;
 
   if (!currentUser && savedToken !== null) {

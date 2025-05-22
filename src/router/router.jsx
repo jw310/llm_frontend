@@ -33,9 +33,9 @@ const router = createBrowserRouter([
       {
         index: true,
         element: (
-          // <ProtectedRoute allowedRoles={['admin', 'user']}>
+          <ProtectedRoute allowedRoles={['admin', 'user']}>
             <CalendarPage />
-          // </ProtectedRoute>
+          </ProtectedRoute>
         ),
       },
       {
@@ -49,9 +49,9 @@ const router = createBrowserRouter([
       {
         path: '/chat',
         element: (
-          // <ProtectedRoute>
+          <ProtectedRoute>
             <ChatPage />
-          // </ProtectedRoute>
+          </ProtectedRoute>
         ),
       }
       // {
