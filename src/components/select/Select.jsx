@@ -31,7 +31,7 @@ function Select({
     >
       <div
         className={cn('relative flex h-full w-full cursor-pointer items-center rounded-md border-2 border-gray-700 bg-gray-700 px-[14px] py-[10px] text-sm font-medium lg:text-base',
-          `${!value ? 'text-white' : 'text-gray-400'}`)}
+          `${value ? 'text-white' : 'text-gray-400'}`)}
       >
         {showSelectedOption()}
         {openSelect && (
