@@ -53,7 +53,7 @@ function Navbar() {
       name: 'Create',
       path: '/create',
       icon: UserIcon,
-      allowedRoles: ['admin', 'user'],
+      allowedRoles: ['admin'],
       // subLinks: [
       //   {
       //     id: 'nav-2-1',

@@ -16,29 +16,20 @@ export const AuthContext = createContext(defaultAuthContext);
 
 export function AuthProvider({ children }) {
   const tokenRef = useRef('');
-  const currentUserRef = useRef({});
+  const [currentUser, setCurrentUser] = useState(null);
   let isLoggedInRef = useRef(false);
 
-  const decodedTokenHandler = () => {
-    const decodedToken = tokenRef.current ? jwtDecode(tokenRef.current) : null;
-    return decodedToken ? { id: decodedToken.sub, role: decodedToken.role } : null;
-  };
-
   const login = (token) => {
-    const savedToken = localStorage.getItem('token');
-    if (savedToken) {
-      tokenRef.current = JSON.parse(savedToken);
-    }
     tokenRef.current = token;
     localStorage.setItem('token', JSON.stringify(tokenRef.current));
     const decodedToken = jwtDecode(tokenRef.current);
-    currentUserRef.current = decodedTokenHandler(decodedToken);
+    setCurrentUser({ name: decodedToken.name, id: decodedToken.sub, role: decodedToken.role });
     isLoggedInRef.current = !isLoggedInRef.current;
   };
 
   const logout = () => {
     tokenRef.current = ''
-    currentUserRef.current = null;
+    setCurrentUser(null);
     isLoggedInRef.current = false;
     localStorage.removeItem('token');
   };
@@ -48,15 +39,23 @@ export function AuthProvider({ children }) {
     isFetching: isUserInfoFetching,
     isLoading: isUserInfoLoading,
   } = useQuery({
-    queryKey: ['userId', currentUserRef.current?.id],
-    queryFn: () => getUserInfoByIdApi(currentUserRef.current.id),
-    enabled: Boolean(currentUserRef.current),
-    refetchOnWindowFocus: true,
+    queryKey: ['userId', currentUser?.id],
+    queryFn: () => getUserInfoByIdApi(currentUser.id),
+    enabled: Boolean(currentUser),
+    refetchOnWindowFocus: false,
   });
 
   const isLoggedIn = isLoggedInRef.current;
-  const currentUser = currentUserRef.current;
   const token = tokenRef.current;
+
+  let savedToken = null;
+
+  savedToken = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null;
+
+  if (!currentUser && savedToken !== null) {
+    const decodedToken = jwtDecode(savedToken);
+    setCurrentUser({ name: decodedToken.name, id: decodedToken.sub, role: decodedToken.role });
+  }
 
   return (
     <AuthContext.Provider
