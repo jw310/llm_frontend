@@ -111,3 +111,9 @@
     }
   }
 }
+
+@layer components {
+  .checkbox-label:has(input:checked) {
+    @apply border-blue-800 bg-blue-400 text-blue-800;
+  }
+}

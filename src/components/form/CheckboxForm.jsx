@@ -64,7 +64,11 @@ function CheckboxForm() {
       <div>
         {
           options.map(({name, value}, index) => (
-            <label htmlFor={name} key={index}>
+            <label htmlFor={name} key={index}
+              // className={cn('block w-fit h-10 p-2 border-2 rounded-md',
+              //   'checkbox-label',
+              // )}
+            >
               <div>
                 <input
                   {...register(name, value)}
@@ -73,6 +77,7 @@ function CheckboxForm() {
                   name={name}
                   value={value}
                   onChange={handleChange}
+                  // className={cn('hidden')}
                 />
                 {/* {errors?.[name]?.type && (
                   <p className={cn('whitespace-nowrap text-red-500')}>
