@@ -45,17 +45,19 @@ export function AuthProvider({ children }) {
     refetchOnWindowFocus: false,
   });
 
-  const isLoggedIn = isLoggedInRef.current;
-  const token = tokenRef.current;
-
   let savedToken = null;
 
   savedToken = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null;
 
   if (!currentUser && savedToken !== null) {
+    tokenRef.current = savedToken;
     const decodedToken = jwtDecode(savedToken);
     setCurrentUser({ name: decodedToken.name, id: decodedToken.sub, role: decodedToken.role });
+    isLoggedInRef.current = true;
   }
+
+  const isLoggedIn = isLoggedInRef.current;
+  const token = tokenRef.current;
 
   return (
     <AuthContext.Provider

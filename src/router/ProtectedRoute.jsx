@@ -7,13 +7,14 @@ function ProtectedRoute({ children, allowedRoles = [] }) {
 
   // navigate("/login");
   const { isLoggedIn, currentUser } = useContext(AuthContext);
-    if (!isLoggedIn) {
+
+  if (!isLoggedIn) {
       return <Navigate to="/login" replace />;
     }
-    if (allowedRoles.length > 0 && !allowedRoles.includes(currentUser.role)) {
+  if (allowedRoles.length > 0 && !allowedRoles.includes(currentUser.role)) {
       return <Navigate to="/login" replace />;
     }
-    return children;
+  return children;
 }
 
 export default ProtectedRoute;
