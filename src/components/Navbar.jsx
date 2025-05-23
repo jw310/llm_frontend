@@ -117,7 +117,7 @@ function Navbar() {
                     // className={cn('flex w-full flex-col overflow-hidden',
                     //   `activeNavLink === extractPath(item.path) ? 'h-fit' : 'h-0'`
                     // )}
-                    className={cn('flex w-full flex-col overflow-hidden')}
+                    className={cn('flex w-full pl-5 flex-col overflow-hidden')}
                   >
                     {item.subLinks.map((subItem) => (
                       <li key={subItem.id} className={cn('h-14 w-full')}>
