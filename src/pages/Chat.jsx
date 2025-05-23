@@ -1,11 +1,11 @@
 import { cn } from "@/utils/clsx";
 
-import ChatPanel from "@/components/chat/ChatPanel";
+import ChatPanelForm from "@/components/form/ChatPanelForm";
 function ChatPage() {
 
   return (
     <div className={cn('p-2')}>
-      <ChatPanel />
+      <ChatPanelForm />
     </div>
   );
 }
