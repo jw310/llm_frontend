@@ -1,5 +1,5 @@
-import { useContext, useState } from 'react';
-import { NavLink, useNavigate, useLocation } from 'react-router';
+import { useContext } from 'react';
+import { NavLink, useNavigate } from 'react-router';
 
 import {
   Squares2X2Icon,
@@ -28,15 +28,15 @@ function filterNavItems(items, userRole) {
   });
 }
 
-function extractPath(url) {
-  const parts = url.split('/');
-  return parts.length > 1 ? `/${parts[1]}` : '';
-}
+// function extractPath(url) {
+//   const parts = url.split('/');
+//   return parts.length > 1 ? `/${parts[1]}` : '';
+// }
 
 function Navbar() {
   const navigate = useNavigate();
-  const pathname = useLocation().pathname;
-  const [activeNavLink, setIsActiveNavLink] = useState(extractPath(pathname));
+  // const pathname = useLocation().pathname;
+  // const [activeNavLink, setIsActiveNavLink] = useState(extractPath(pathname));
 
   const { currentUser, logout } = useContext(AuthContext);
 
@@ -54,20 +54,14 @@ function Navbar() {
       path: '/create',
       icon: UserIcon,
       allowedRoles: ['admin'],
-      // subLinks: [
-      //   {
-      //     id: 'nav-2-1',
-      //     name: '請假申請',
-      //     path: '/staff/apply/new',
-      //     allowedRoles: ['admin', 'user'],
-      //   },
-      //   {
-      //     id: 'nav-2-2',
-      //     name: '請假紀錄',
-      //     path: '/staff/apply/record',
-      //     allowedRoles: ['admin', 'user'],
-      //   }
-      // ],
+      subLinks: [
+        {
+          id: 'nav-2-1',
+          name: 'Pdf',
+          path: '/create/pdf',
+          allowedRoles: ['admin', 'user'],
+        },
+      ],
     },
     {
       id: 'nav-3',
@@ -108,20 +102,22 @@ function Navbar() {
               <li key={item.id} className={cn('flex w-full flex-col items-center')}>
                 <NavLink
                   to={item.path}
-                  onClick={() => setIsActiveNavLink(extractPath(item.path))}
-                  className={cn('flex h-14 w-full items-center justify-start gap-5 px-4',
-                      activeNavLink === extractPath(item.path) ? 'font-medium text-indigo-500'
-                      : `cursor-pointer hover:animate-shake hover:bg-gray-300 hover:bg-opacity-5`
-                  )}
-                > 
+                  // onClick={() => setIsActiveNavLink(extractPath(item.path))}
+                  className={
+                    ({ isActive }) =>
+                      isActive ? 'flex h-14 w-full items-center justify-start gap-5 px-4 font-medium text-indigo-500' :
+                        'flex h-14 w-full items-center justify-start gap-5 px-4 cursor-pointer hover:animate-shake hover:bg-gray-300 hover:bg-opacity-5'
+                  }
+                >
                   {item.icon && <item.icon className={cn('inline-block h-6 w-6')} />}
                   {item.name}
                 </NavLink>
                 {item.subLinks && (
                   <ul
-                    className={cn('flex w-full flex-col overflow-hidden',
-                      `activeNavLink === extractPath(item.path) ? 'h-fit' : 'h-0'`
-                    )}
+                    // className={cn('flex w-full flex-col overflow-hidden',
+                    //   `activeNavLink === extractPath(item.path) ? 'h-fit' : 'h-0'`
+                    // )}
+                    className={cn('flex w-full flex-col overflow-hidden')}
                   >
                     {item.subLinks.map((subItem) => (
                       <li key={subItem.id} className={cn('h-14 w-full')}>

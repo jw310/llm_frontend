@@ -7,7 +7,8 @@ import ErrorPage from "@/pages/ErrorPage.jsx";
 import Layout from "@/pages/Layout.jsx";
 import CalendarPage from "@/pages/CalendarPage.jsx";
 import CreateUserPage from "@/pages/admin/CreateUserPage.jsx";
-import ChatPage from "@/pages/Chat.jsx";
+import ChatPage from "@/pages/ChatPage.jsx";
+import PDFViewerPage from "../pages/pdfPage";
 
 
 const router = createBrowserRouter([
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
     path: "/login",
     Component: LoginPage,
   },
+  // {
+  //   path: "/pdf",
+  //   Component: PDFViewerPage,
+  // },
   {
     path: "/unauthorized",
     Component: <ErrorPage />,
@@ -43,6 +48,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute allowedRoles={['admin']}>
             <CreateUserPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/create/pdf',
+        element: (
+          <ProtectedRoute allowedRoles={['admin', 'user']}>
+            <PDFViewerPage />
           </ProtectedRoute>
         ),
       },
