@@ -8,7 +8,7 @@ import Layout from "@/pages/Layout.jsx";
 import CalendarPage from "@/pages/CalendarPage.jsx";
 import CreateUserPage from "@/pages/admin/CreateUserPage.jsx";
 import ChatPage from "@/pages/ChatPage.jsx";
-import PDFViewerPage from "../pages/pdfPage";
+import PdfViewerPage from "@/pages/PdfPage";
 
 
 const router = createBrowserRouter([
@@ -55,7 +55,7 @@ const router = createBrowserRouter([
         path: '/create/pdf',
         element: (
           <ProtectedRoute allowedRoles={['admin', 'user']}>
-            <PDFViewerPage />
+            <PdfViewerPage />
           </ProtectedRoute>
         ),
       },

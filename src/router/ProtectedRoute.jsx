@@ -3,9 +3,7 @@ import { AuthContext } from '../context/auth';
 import { Navigate } from "react-router";
 
 function ProtectedRoute({ children, allowedRoles = [] }) {
-  // const navigate = useNavigate();
 
-  // navigate("/login");
   const { isLoggedIn, currentUser } = useContext(AuthContext);
 
   if (!isLoggedIn) {
