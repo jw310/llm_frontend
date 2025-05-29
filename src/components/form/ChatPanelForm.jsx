@@ -1,13 +1,14 @@
 import { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-
-import { cn } from '@/utils/clsx';
+import trimString from '@/utils/trimString.js';
 
 import Alert from '../modal/Alert';
 import Checkbox from '../checkbox/Checkbox';
 import ChatList from '../chat/ChatList';
 import ConversationSelect from '../chat/ConversationSelect';
+
+import { cn } from '@/utils/clsx';
 
 function ChatPanel() {
   const { t } = useTranslation();
@@ -41,21 +42,20 @@ function ChatPanel() {
     handleSubmit,
     formState: { errors },
     control,
+    watch
   } = useForm({
     defaultValues: {
-      useStreaming: false,
+      streaming: false,
+      messageInput: '',
     }
   });
+
+  let watchedValues = watch();
 
 	function handleNewChat() {
 		// createConversation(documentId);
 	}
 
-  const onSubmit = async (data) => {
-    console.log(data);
-  }
-
-  let inputValue = '';
   function handleKeyDown(event) {
     const isCombo = event.shiftKey || event.ctrlKey || event.altKey || event.metaKey;
     if (event.key !== 'Enter' || isCombo) {
@@ -66,26 +66,29 @@ function ChatPanel() {
       return;
     }
     event.preventDefault();
-    inputValue = event.target.value;
     formRef.current.dispatchEvent(new Event('submit', { bubbles: true }));
     event.target.value = '';
   }
 
-  const height = (inputValue.match(/\n/g)?.length || 0) * 25 + 72;
+  const height = (watchedValues.messageInput?.match(/\n/g)?.length || 0) * 25 + 72;
+
+  const onSubmit = async (data) => {
+    data.messageInput = trimString(data.messageInput);
+    console.log(data);
+  }
 
   return (
     <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
       <div
-        // style={{height: `calc(100vh - 80px)}}
-        className={cn('flex flex-col h-full bg-slate-50 border rounded-xl shadow')}
+        className={cn('flex flex-col h-[calc(100vh-80px)] bg-slate-50 rounded-xl shadow')}
       >
-        <div className={cn("rounded-lg border-b px-3 py-2 flex flex-row items-center justify-between")}>
+        <div className={cn("rounded border-b px-3 py-1 flex flex-row items-center justify-between")}>
           <div className={cn("opacity-40")}>
             <Checkbox
-              name="useStreaming"
-              label="useStreaming"
+              name="streaming"
+              label="Streaming"
               control={control}
-              rules={{ required: { false: true, message: 'useStreaming' } }}
+              rules={{ required: { false: true, message: 'Streaming' } }}
             />
           </div>
           <div className={cn("flex gap-2")}>

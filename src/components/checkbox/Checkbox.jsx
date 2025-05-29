@@ -1,5 +1,6 @@
-import { cn } from '@/utils/clsx';
 import { Controller } from 'react-hook-form';
+
+import { cn } from '@/utils/clsx';
 
 function Checkbox({ name, control, rules = {} }) {
 
@@ -34,7 +35,7 @@ function Checkbox({ name, control, rules = {} }) {
                     {error.message}
                   </p>
                 )}
-                {name}
+                &nbsp;{name}
               </div>
             </label>
         )}
