@@ -1,5 +1,6 @@
 import { useContext } from 'react';
 import { NavLink, useNavigate } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 import {
   Squares2X2Icon,
@@ -29,6 +30,7 @@ function filterNavItems(items, userRole) {
 }
 
 function Navbar() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   // const pathname = useLocation().pathname;
   // const [activeNavLink, setIsActiveNavLink] = useState(extractPath(pathname));
@@ -153,7 +155,7 @@ function Navbar() {
           )}
         >
           <ArrowLeftStartOnRectangleIcon className={cn('inline-block h-6 w-6')} />
-          Logout
+          { t('header.logout') }
         </button>
       </nav>
     </>
