@@ -28,11 +28,6 @@ function filterNavItems(items, userRole) {
   });
 }
 
-// function extractPath(url) {
-//   const parts = url.split('/');
-//   return parts.length > 1 ? `/${parts[1]}` : '';
-// }
-
 function Navbar() {
   const navigate = useNavigate();
   // const pathname = useLocation().pathname;
@@ -57,6 +52,12 @@ function Navbar() {
       subLinks: [
         {
           id: 'nav-2-1',
+          name: 'User',
+          path: '/create/user',
+          allowedRoles: ['admin', 'user'],
+        },
+        {
+          id: 'nav-2-2',
           name: 'Pdf',
           path: '/create/pdf',
           allowedRoles: ['admin', 'user'],
@@ -69,14 +70,20 @@ function Navbar() {
       path: '/chat',
       icon: DocumentCheckIcon,
       allowedRoles: ['admin', 'user'],
-    //   subLinks: [
-    //     {
-    //       id: 'nav-3-1',
-    //       name: '簽核列表',
-    //       path: '/approval/list',
-    //       allowedRoles: [2, 3, 4],
-    //     },
-    //   ],
+      subLinks: [
+        {
+          id: 'nav-3-1',
+          name: 'New Chat',
+          path: '/chat/new',
+          allowedRoles: ['admin', 'user'],
+        },
+        {
+          id: 'nav-3-2',
+          name: 'Recents',
+          path: '/chat/recents',
+          allowedRoles: ['admin', 'user'],
+        }
+      ],
     },
   ];
 

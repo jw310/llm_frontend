@@ -7,7 +7,8 @@ import ErrorPage from "@/pages/ErrorPage.jsx";
 import Layout from "@/pages/Layout.jsx";
 import CalendarPage from "@/pages/CalendarPage.jsx";
 import CreateUserPage from "@/pages/admin/CreateUserPage.jsx";
-import ChatPage from "@/pages/ChatPage.jsx";
+import ChatPage from "@/pages/chat/ChatPage.jsx";
+import RecentPage from "@/pages/chat/RecentPage.jsx";
 import PdfViewerPage from "@/pages/PdfPage";
 
 
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
   },
   // {
   //   path: "/pdf",
-  //   Component: PDFViewerPage,
+  //   Component: PdfViewerPage,
   // },
   {
     path: "/unauthorized",
@@ -45,45 +46,62 @@ const router = createBrowserRouter([
       },
       {
         path: '/create',
-        element: (
-          <ProtectedRoute allowedRoles={['admin']}>
-            <CreateUserPage />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: '/create/pdf',
-        element: (
-          <ProtectedRoute allowedRoles={['admin', 'user']}>
-            <PdfViewerPage />
-          </ProtectedRoute>
-        ),
+        children: [
+          {
+            index: true,
+            element: <Navigate to='user' replace />, // 輸入 /create 的話，重新導向顯示 user 頁面
+          },
+          {
+            path: 'user',
+            element: (
+              <ProtectedRoute allowedRoles={['admin']}>
+                <CreateUserPage />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: 'pdf',
+            element: (
+              <ProtectedRoute allowedRoles={['admin']}>
+                <PdfViewerPage />
+              </ProtectedRoute>
+            ),
+          },
+        ],
       },
       {
         path: '/chat',
-        element: (
-          <ProtectedRoute>
-            <ChatPage />
-          </ProtectedRoute>
-        ),
-      }
-      // {
-      //   path: '/',
-      //   children: [
-      //     {`
-      //       index: true,
-      //       // element: <Navigate to='product' replace />, //輸入 / 的話，重新導向顯示 product 頁面
-      //     },
-      //     // {
-      //     //   path: 'product',
-      //     //   element: (
-      //     //     // <ProtectedRoute>
-      //     //       <ProductInfoPage />
-      //     //     // </ProtectedRoute>
-      //     //   ),
-      //     // },
-      //   ],
-      // },
+        children: [
+          {
+            index: true,
+            element: <Navigate to='new' replace />,
+          },
+          {
+            path: 'new',
+            element: (
+              <ProtectedRoute>
+                <ChatPage />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: 'recents',
+            element: (
+              <ProtectedRoute>
+                <RecentPage />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: ':id',
+            element: (
+              <ProtectedRoute>
+                <ChatPage />
+              </ProtectedRoute>
+            ),
+          },
+        ],
+      },
     ]
   }
 ]);

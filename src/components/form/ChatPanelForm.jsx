@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
+import { useLocation } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import trimString from '@/utils/trimString.js';
 
 import Alert from '../modal/Alert';
 import Checkbox from '../checkbox/Checkbox';
@@ -9,9 +9,11 @@ import ChatList from '../chat/ChatList';
 import ConversationSelect from '../chat/ConversationSelect';
 
 import { cn } from '@/utils/clsx';
+import trimString from '@/utils/trimString.js';
 
 function ChatPanel() {
   const { t } = useTranslation();
+  // const pathname = useLocation().pathname;
   const formRef = useRef(null);
 
   const [showAlert, setShowAlert] = useState({
@@ -93,10 +95,10 @@ function ChatPanel() {
           </div>
           <div className={cn("flex gap-2")}>
             <ConversationSelect conversations={conversations} />
-            <button className={cn("rounded text-sm border border-blue-500 px-2 py-0.5")}
+            {/* <button className={cn("rounded text-sm border border-blue-500 px-2 py-0.5")}
               onClick={handleNewChat}
               >New Chat</button
-            >
+            > */}
           </div>
         </div>
         <div className={cn("flex flex-col flex-1 px-3 py-2 overflow-y-scroll")}>
