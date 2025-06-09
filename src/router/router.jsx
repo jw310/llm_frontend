@@ -11,7 +11,6 @@ import ChatPage from "@/pages/chat/ChatPage.jsx";
 import RecentPage from "@/pages/chat/RecentPage.jsx";
 import PdfViewerPage from "@/pages/PdfPage";
 
-
 const router = createBrowserRouter([
   {
     path: "/demo",
@@ -22,6 +21,7 @@ const router = createBrowserRouter([
   {
     path: "/login",
     Component: LoginPage,
+    errorElement: <ErrorPage />,
   },
   // {
   //   path: "/pdf",
@@ -37,7 +37,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        index: true,
+        index: true, // index:true 用以取代 { path: ''}，那麼這個路由，就會是上層路由的預設渲染路由頁面
         element: (
           <ProtectedRoute allowedRoles={['admin', 'user']}>
             <CalendarPage />

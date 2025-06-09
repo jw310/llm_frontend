@@ -12,9 +12,6 @@ function Header() {
   const [openLang, setOpenLang] = useState(false);
   const { userInfo, isUserInfoLoading, isUserInfoFetching } = useContext(AuthContext);
 
-  const headerRef = useRef(null);
-  const langRef = useRef(null);
-
   const languages = [
     {
       id: 'zh-TW',
@@ -26,30 +23,13 @@ function Header() {
     },
   ];
 
-  useEffect(() => {
-    const handleClickOutside = (e) => {
-      if (
-        langRef.current && !langRef.current.contains(e.target)
-      ) {
-        setOpenLang(false);
-      }
-    };
-    // 監聽整個畫面
-    document.addEventListener('click', handleClickOutside);
-    // 移除監聽
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  }, []);
-
   return (
-    <header ref={headerRef} className={cn('flex h-fit w-full items-center justify-end p-3')}>
+    <header className={cn('flex h-fit w-full items-center justify-end p-3')}>
       <Language
         languages={languages}
         openLang={openLang}
         setOpenLang={setOpenLang}
         locale={i18n.language}
-        langRef={langRef}
       />
       <div className={cn('flex items-center gap-2')}>
         <div className={cn('h-12 w-12 overflow-hidden rounded-full')}>

@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import chevronDownIcon from '@/assets/chevron-down.svg';
@@ -11,13 +12,30 @@ function Language({
   openLang,
   setOpenLang,
   locale,
-  langRef,
 }) {
 
+  const langRef = useRef(null);
+  
   const { i18n } = useTranslation();
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
   }
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (
+        langRef.current && !langRef.current.contains(e.target)
+      ) {
+        setOpenLang(false);
+      }
+    };
+    // 監聽整個畫面
+    document.addEventListener('click', handleClickOutside);
+    // 移除監聽
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div

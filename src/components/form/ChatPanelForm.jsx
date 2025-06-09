@@ -1,5 +1,5 @@
 import { useState, useRef } from 'react';
-import { useLocation } from 'react-router';
+// import { useLocation } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -14,6 +14,8 @@ import trimString from '@/utils/trimString.js';
 function ChatPanel() {
   const { t } = useTranslation();
   // const pathname = useLocation().pathname;
+  // console.log('ChatPanel pathname:', pathname);
+
   const formRef = useRef(null);
 
   const [showAlert, setShowAlert] = useState({
