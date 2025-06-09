@@ -9,10 +9,19 @@
     "successAlert": "歡迎進入語言模型系統"
   },
   "header": {
+    "welcome": "歡迎回來",
     "logout": "登出"
   },
-  "menu": {
-    "llm": "語言模型"
+  "navbar": {
+    "title": "語言模型",
+    "calendar": "行事曆",
+    "admin": "管理員",
+    "createUser": "新增使用者",
+    "pdf": "PDF",
+    "chat": "對話",
+    "newChat": "新增對話",
+    "recent": "最近對話",
+    "logout": "登出"
   },
   "createUser": {
     "username": "使用者名稱",

@@ -40,27 +40,27 @@ function Navbar() {
   const navItems = [
     {
       id: 'nav-1',
-      name: 'Calendar',
+      name: t('navbar.calendar'),
       path: '/',
       icon: Squares2X2Icon,
       allowedRoles: ['admin', 'user'],
     },
     {
       id: 'nav-2',
-      name: 'Create',
+      name: t('navbar.admin'),
       path: '/create',
       icon: UserIcon,
       allowedRoles: ['admin'],
       subLinks: [
         {
           id: 'nav-2-1',
-          name: 'User',
+          name: t('navbar.createUser'),
           path: '/create/user',
           allowedRoles: ['admin', 'user'],
         },
         {
           id: 'nav-2-2',
-          name: 'Pdf',
+          name: t('navbar.pdf'),
           path: '/create/pdf',
           allowedRoles: ['admin', 'user'],
         },
@@ -68,20 +68,20 @@ function Navbar() {
     },
     {
       id: 'nav-3',
-      name: 'Chat',
+      name: t('navbar.chat'),
       path: '/chat',
       icon: DocumentCheckIcon,
       allowedRoles: ['admin', 'user'],
       subLinks: [
         {
           id: 'nav-3-1',
-          name: 'New Chat',
+          name: t('navbar.newChat'),
           path: '/chat/new',
           allowedRoles: ['admin', 'user'],
         },
         {
           id: 'nav-3-2',
-          name: 'Recents',
+          name: t('navbar.recent'),
           path: '/chat/recents',
           allowedRoles: ['admin', 'user'],
         }
@@ -104,7 +104,7 @@ function Navbar() {
       <nav className={cn('hide-scrollbar flex w-fit flex-shrink-0 flex-col items-center justify-between gap-16 overflow-y-scroll bg-slate-100 p-5')}>
         <div className={cn('flex w-[240px] flex-col gap-10 px-4')}>
           <h1 className={cn('text-center text-2xl font-bold text-blue-900')}>
-            LLM
+            {t('navbar.title')}
           </h1>
           <ul className={cn('flex h-fit w-full flex-col gap-3')}>
             {navItemsDependsOnCurrentUser.map((item) => (
@@ -155,7 +155,7 @@ function Navbar() {
           )}
         >
           <ArrowLeftStartOnRectangleIcon className={cn('inline-block h-6 w-6')} />
-          { t('header.logout') }
+          { t('navbar.logout') }
         </button>
       </nav>
     </>
