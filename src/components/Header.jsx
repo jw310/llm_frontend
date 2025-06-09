@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Language from '@/components/modal/Language';
@@ -9,7 +9,6 @@ import { cn } from '@/utils/clsx';
 
 function Header() {
   const { t, i18n } = useTranslation();
-  const [openLang, setOpenLang] = useState(false);
   const { userInfo, isUserInfoLoading, isUserInfoFetching } = useContext(AuthContext);
 
   const languages = [
@@ -27,8 +26,6 @@ function Header() {
     <header className={cn('flex h-fit w-full items-center justify-end p-3')}>
       <Language
         languages={languages}
-        openLang={openLang}
-        setOpenLang={setOpenLang}
         locale={i18n.language}
       />
       <div className={cn('flex items-center gap-2')}>

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import chevronDownIcon from '@/assets/chevron-down.svg';
@@ -9,13 +9,14 @@ import { cn } from '@/utils/clsx';
 
 function Language({
   languages,
-  openLang,
-  setOpenLang,
+  // openLang,
+  // setOpenLang,
   locale,
 }) {
 
+  const [openLang, setOpenLang] = useState(false);
   const langRef = useRef(null);
-  
+
   const { i18n } = useTranslation();
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
@@ -35,7 +36,7 @@ function Language({
     return () => {
       document.removeEventListener('click', handleClickOutside);
     };
-  }, []);
+  }, [langRef, setOpenLang]);
 
   return (
     <div
