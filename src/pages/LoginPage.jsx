@@ -44,10 +44,10 @@ function LoginPage() {
       }));
       setTimeout(() => {
         const decodedToken = jwtDecode(token);
-        if (decodedToken.role === "string") {
-          return navigate('/create');
+        if (decodedToken.role === "admin") {
+          return navigate('/zh-TW/create');
         }
-        navigate('/');
+        navigate('/zh-TW');
       }, 1000);
     },
     onError: (error) => {

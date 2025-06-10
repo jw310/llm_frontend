@@ -23,10 +23,9 @@ function Language({languages, locale}) {
   // }
 
   // url 加上語系路徑的語系切換
-  const changeLanguageParams = (newLang) => {
-    // console.log('changeLanguageParams newLang:', newLang);
-    const path = window.location.pathname.replace(`/${pathname}`, `/${newLang}`)
-    // console.log('changeLanguageParams path:', path);
+  const changeLanguageParams = (newLocale) => {
+    // window.location.pathname 當前路徑
+    const path = window.location.pathname.replace(`/${pathname}`, `/${newLocale}`)
     navigate(path)
   }
 
