@@ -1,0 +1,40 @@
+@hostname = localhost
+@port = 8000
+@host = {{hostname}}:{{port}}
+@baseUrl = http://{{host}}/api/v1
+@username = admin
+@password = admin
+@createdAt = {{$datetime iso8601}}
+
+# @name login
+POST {{baseUrl}}/auth/token HTTP/1.1
+Accept: application/json
+Content-Type: application/x-www-form-urlencoded
+
+username={{username}}&password={{password}}
+
+### File Variables
+# @name getUserByUsername
+@authToken = {{login.response.body.access_token}}
+
+GET {{baseUrl}}/users/username?username={{username}} HTTP/1.1
+Accept: application/json
+Authorization: Bearer {{authToken}}
+
+###
+# @name createUser
+@authToken = {{login.response.body.access_token}}
+POST {{baseUrl}}/users/create HTTP/1.1
+Accept: application/json
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "username": "admin",
+  "email": "admin@email.com",
+  "first_name": "admin",
+  "last_name": "admin",
+  "password": "admin",
+  "role": "admin",
+  "phone_number": "0911111111"
+}
