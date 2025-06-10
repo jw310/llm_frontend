@@ -26,7 +26,7 @@ export const showApplyStatus = (statusId) => {
   }
 };
 
-export function extractPath(url) {
+export function extractPathname(url) {
   const parts = url.split('/');
-  return parts.length > 1 ? `/${parts[1]}` : '';
+  return parts.length > 1 ? `${parts[1]}` : '';
 }

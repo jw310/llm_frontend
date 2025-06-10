@@ -1,25 +1,33 @@
 import { useState, useEffect, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
+// import { useTranslation } from 'react-i18next';
+import { useNavigate, useLocation } from 'react-router';
 
 import chevronDownIcon from '@/assets/chevron-down.svg';
 import chevronLeftIcon from '@/assets/chevron-left.svg';
 import earthIcon from '@/assets/ic_language.svg';
 
 import { cn } from '@/utils/clsx';
+import { extractPathname } from '@/utils/index.js';
 
-function Language({
-  languages,
-  // openLang,
-  // setOpenLang,
-  locale,
-}) {
-
+function Language({languages, locale}) {
   const [openLang, setOpenLang] = useState(false);
   const langRef = useRef(null);
 
-  const { i18n } = useTranslation();
-  const changeLanguage = (lang) => {
-    i18n.changeLanguage(lang);
+  const navigate = useNavigate();
+  const pathname = extractPathname(useLocation().pathname);
+
+  // 一般語系切換
+  // const { i18n } = useTranslation();
+  // const changeLanguage = (locale) => {
+  //   i18n.changeLanguage(locale);
+  // }
+
+  // url 加上語系路徑的語系切換
+  const changeLanguageParams = (newLang) => {
+    // console.log('changeLanguageParams newLang:', newLang);
+    const path = window.location.pathname.replace(`/${pathname}`, `/${newLang}`)
+    // console.log('changeLanguageParams path:', path);
+    navigate(path)
   }
 
   useEffect(() => {
@@ -87,10 +95,11 @@ function Language({
               }}
             >
               <li>
-                <button className={cn('flex w-full justify-start px-[14px] py-[10px] hover:bg-grey-600 cursor-pointer',
+                <button className={cn('flex w-full justify-start px-[14px] py-[10px] hover:bg-gray-500 cursor-pointer',
                     el.id === locale ? 'font-bold text-primary-yellow-500' : '')}
                   onClick={() => {
-                    changeLanguage(el.id);
+                    // changeLanguage(el.id);
+                    changeLanguageParams(el.id);
                     setOpenLang(false);
                   }}>
                   {el.id === locale && (
