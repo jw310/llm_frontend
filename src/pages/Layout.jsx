@@ -1,7 +1,7 @@
 import { Outlet } from "react-router";
 
-import Header from "@/components/Header";
-import Navbar from "@/components/Navbar";
+import Header from "@/components/layout/Header";
+import Navbar from "@/components/layout/Navbar";
 
 import { cn } from "@/utils/clsx.js";
 
