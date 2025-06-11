@@ -28,7 +28,10 @@ const Table = ({ tableHead, tableData }) => {
         className={cn(
           'hidden h-10 items-center justify-center px-5 md:grid',
           'rounded-t-lg bg-gray-300 text-gray-900',
-          `md:grid-cols-${tableHead.length}`
+          tableHead.length === 3 && 'md:grid-cols-3',
+          tableHead.length === 4 && 'md:grid-cols-4',
+          tableHead.length === 5 && 'md:grid-cols-5',
+          tableHead.length === 6 && 'md:grid-cols-6'
         )}
       >
         {tableHead.map((item, index) => {
@@ -43,7 +46,10 @@ const Table = ({ tableHead, tableData }) => {
                 className={cn(
                   'grid grid-cols-1 items-center justify-center px-5 md:h-[72px]',
                   'border-b-[1px] border-gray-600 bg-gray-600 whitespace-nowrap text-gray-100',
-                  `md:grid-cols-${tableHead.length}`
+                  tableHead.length === 3 && 'md:grid-cols-3',
+                  tableHead.length === 4 && 'md:grid-cols-4',
+                  tableHead.length === 5 && 'md:grid-cols-5',
+                  tableHead.length === 6 && 'md:grid-cols-6'
                 )}
                 key={index}
               >
