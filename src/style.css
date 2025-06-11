@@ -14,3 +14,7 @@
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
 }
+
+.infoHover:hover > div > svg > path {
+  stroke: #EFF2F5;
+}

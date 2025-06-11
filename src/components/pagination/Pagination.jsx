@@ -6,7 +6,7 @@ import { cn } from '@/utils/clsx.js';
 const Pagination = ({ totalPages, currentPage, onClick }) => {
 
   return (
-      <div className={cn('flex items-center justify-center min-h-screen')}>
+      <div className={cn('flex items-center justify-center')}>
           <div className={cn("flex justify-center items-center space-x-4")}>
               <div className={cn("flex justify-center items-center text-slate-500")}>
                   <span className={cn("w-[58px] h-10 mr-2 flex items-center justify-center rounded-md",

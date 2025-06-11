@@ -1,20 +1,22 @@
 import { useState } from 'react';
 
+import Table from '@/components/table/Table';
 import Pagination from '@/components/pagination/Pagination';
-
-import useWindowMeasurer from '@/hooks/useWindowMeasurer';
 
 import { cn } from '@/utils/clsx';
 function RecentPage() {
   const [currentPage, setCurrentPage] = useState(1);
 
+  const tableHead = ['1', '2', '3', '4', '5', '6'];
+  const tableData = [
+    ['1', '2', '3', '4', '5', '6'],
+  ];
+
+
   const pageInfo = {
     totalPages: 10,
     currentPage: 1
   }
-
-  let windowWidth = useWindowMeasurer();
-  console.log('windowWidth', windowWidth);
   const setCurrentPageHandler = (type) => {
     if (type === 'previous') {
       setCurrentPage((prev) => {
@@ -31,8 +33,10 @@ function RecentPage() {
 
   return (
     <div className={cn('flex flex-col h-[calc(100vh-80px)] bg-slate-50 rounded-xl shadow')}>
-      RecentPage
-
+      <Table
+        tableHead={tableHead}
+        tableData={tableData}
+      />
       <Pagination
         totalPages={pageInfo.totalPages}
         currentPage={currentPage}
