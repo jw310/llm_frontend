@@ -9,7 +9,7 @@ import earthIcon from '@/assets/ic_language.svg';
 import { cn } from '@/utils/clsx';
 import { extractPathname } from '@/utils/index.js';
 
-function Language({languages, locale}) {
+function Language({ languages, locale }) {
   const [openLang, setOpenLang] = useState(false);
   const langRef = useRef(null);
 
@@ -25,15 +25,16 @@ function Language({languages, locale}) {
   // url 加上語系路徑的語系切換
   const changeLanguageParams = (newLocale) => {
     // window.location.pathname 當前路徑
-    const path = window.location.pathname.replace(`/${pathname}`, `/${newLocale}`)
-    navigate(path)
-  }
+    const path = window.location.pathname.replace(
+      `/${pathname}`,
+      `/${newLocale}`
+    );
+    navigate(path);
+  };
 
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (
-        langRef.current && !langRef.current.contains(e.target)
-      ) {
+      if (langRef.current && !langRef.current.contains(e.target)) {
         setOpenLang(false);
       }
     };
@@ -50,7 +51,9 @@ function Language({languages, locale}) {
       ref={langRef}
       role='button'
       tabIndex='0'
-      className={cn('relative flex cursor-pointer items-center gap-1 text-grey-300')}
+      className={cn(
+        'text-grey-300 relative flex cursor-pointer items-center gap-1'
+      )}
       onClick={() => setOpenLang(!openLang)}
       onKeyDown={(e) => {
         if (e.key === 'Enter' || e.key === ' ') {
@@ -76,8 +79,9 @@ function Language({languages, locale}) {
         <ul
           aria-label='language menu'
           role='menu'
-          className={cn('absolute -left-18 top-8 flex w-[122px] flex-col bg-gray-300 py-2',
-              'whitespace-nowrap rounded-md z-50'
+          className={cn(
+            'absolute top-8 -left-18 flex w-[122px] flex-col bg-gray-300 py-2',
+            'z-50 rounded-md whitespace-nowrap'
           )}
         >
           {languages.map((el) => (
@@ -94,13 +98,17 @@ function Language({languages, locale}) {
               }}
             >
               <li>
-                <button className={cn('flex w-full justify-start px-[14px] py-[10px] hover:bg-gray-500 cursor-pointer',
-                    el.id === locale ? 'font-bold text-primary-yellow-500' : '')}
+                <button
+                  className={cn(
+                    'flex w-full cursor-pointer justify-start px-[14px] py-[10px] hover:bg-gray-500',
+                    el.id === locale ? 'text-primary-yellow-500 font-bold' : ''
+                  )}
                   onClick={() => {
                     // changeLanguage(el.id);
                     changeLanguageParams(el.id);
                     setOpenLang(false);
-                  }}>
+                  }}
+                >
                   {el.id === locale && (
                     <img
                       src={chevronLeftIcon}

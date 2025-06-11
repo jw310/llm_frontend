@@ -126,10 +126,8 @@ function CreateUserForm() {
     },
   ];
 
-
   const onSubmit = async (data) => {
     console.log(data);
-
 
     // mutate({
     //   username: trimString(data.username),
@@ -181,8 +179,10 @@ function CreateUserForm() {
                 type='text'
                 id={name}
                 placeholder={placeholder}
-                className={cn('focus:none h-11 w-full rounded border-2 bg-gray-700 indent-3 text-white focus:outline-none',
-                    `${errors?.[name] ? 'border-red-500' : 'border-grey-500'}`)}
+                className={cn(
+                  'focus:none h-11 w-full rounded border-2 bg-gray-700 indent-3 text-white focus:outline-none',
+                  `${errors?.[name] ? 'border-red-500' : 'border-grey-500'}`
+                )}
               />
               {errors?.[name]?.type && (
                 <p className={cn('whitespace-nowrap text-red-500')}>
@@ -206,8 +206,10 @@ function CreateUserForm() {
                   onChange={onChange}
                   options={roleOptions}
                   value={value}
-                  customStyle={cn('focus:none h-11 w-full rounded border-2 bg-gray-700 indent-3 text-white focus:outline-none',
-                    `${errors?.role ? 'border-red-500' : 'border-grey-500'}`)}
+                  customStyle={cn(
+                    'focus:none h-11 w-full rounded border-2 bg-gray-700 indent-3 text-white focus:outline-none',
+                    `${errors?.role ? 'border-red-500' : 'border-grey-500'}`
+                  )}
                   placeholder={t('createUser.rolePlaceholder')}
                 />
               )}
@@ -240,7 +242,9 @@ function CreateUserForm() {
             />
           </div>
         </div>
-        <div className={cn('flex h-fit w-full items-center justify-center gap-5')}>
+        <div
+          className={cn('flex h-fit w-full items-center justify-center gap-5')}
+        >
           {/* <button
             type='button'
             onClick={handleReturnClick}
@@ -249,7 +253,9 @@ function CreateUserForm() {
             {t('common.cancel')}
           </button> */}
           <button
-            className={cn('mt-6 w-[52px] cursor-pointer rounded bg-blue-600 px-2 py-2 text-base text-white shadow-md hover:bg-yellow-500 hover:text-black')}
+            className={cn(
+              'mt-6 w-[52px] cursor-pointer rounded bg-blue-600 px-2 py-2 text-base text-white shadow-md hover:bg-yellow-500 hover:text-black'
+            )}
             type='submit'
           >
             {t('common.submit')}

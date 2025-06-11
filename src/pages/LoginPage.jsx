@@ -33,7 +33,6 @@ function LoginPage() {
     formState: { errors },
   } = useForm();
 
-
   const { mutate, isPending } = useMutation({
     mutationFn: requestLoginApi,
     onSuccess: (token) => {
@@ -45,7 +44,7 @@ function LoginPage() {
       }));
       setTimeout(() => {
         const decodedToken = jwtDecode(token);
-        if (decodedToken.role === "admin") {
+        if (decodedToken.role === 'admin') {
           return navigate('/admin/create-user');
         }
         navigate('/calendar');
@@ -73,8 +72,10 @@ function LoginPage() {
   // });
 
   const onSubmit = async (data) => {
-
-    mutate({ username: trimString(data.username), password: trimString(data.password) });
+    mutate({
+      username: trimString(data.username),
+      password: trimString(data.password),
+    });
   };
 
   // const handleGoogleLogin = (response) => {
@@ -123,11 +124,18 @@ function LoginPage() {
   // }, []);
 
   return (
-    <div className={cn('flex h-screen items-center justify-center',
-          'bg-linear-65 from-[#3498db] to-[#2ecc71]'
-      )}>
+    <div
+      className={cn(
+        'flex h-screen items-center justify-center',
+        'bg-linear-65 from-[#3498db] to-[#2ecc71]'
+      )}
+    >
       <div className={cn('flex flex-col items-center justify-center gap-8')}>
-        <h1 className={cn('whitespace-pre-wrap text-center text-2xl font-bold leading-[34.5px] text-white')}>
+        <h1
+          className={cn(
+            'text-center text-2xl leading-[34.5px] font-bold whitespace-pre-wrap text-white'
+          )}
+        >
           {t('loginPage.title')}
         </h1>
         <form
@@ -148,7 +156,9 @@ function LoginPage() {
                 })}
                 type='text'
                 placeholder={t('loginPage.usernamePlaceholder')}
-                className={cn('focus:none h-11 w-full rounded border border-grey-600 bg-grey-700 px-3 py-[10px] text-white focus:outline-none')}
+                className={cn(
+                  'focus:none border-grey-600 bg-grey-700 h-11 w-full rounded border px-3 py-[10px] text-white focus:outline-none'
+                )}
               />
               {errors?.username?.type && (
                 <p className={cn('text-xs font-medium text-red-400')}>
@@ -169,7 +179,9 @@ function LoginPage() {
                 })}
                 placeholder={t('loginPage.passwordPlaceholder')}
                 type='password'
-                className={cn('focus:none h-11 w-full rounded border border-grey-600 bg-grey-700 px-3 py-[10px] text-white focus:outline-none')}
+                className={cn(
+                  'focus:none border-grey-600 bg-grey-700 h-11 w-full rounded border px-3 py-[10px] text-white focus:outline-none'
+                )}
               />
               {errors?.password?.type && (
                 <p className={cn('text-xs font-medium text-red-400')}>
@@ -181,8 +193,9 @@ function LoginPage() {
 
           <button
             type='submit'
-            className={cn('h-fit w-fit rounded bg-gray-100 p-[10px] text-xl font-medium text-gray-600',
-                    'hover:bg-gray-300 hover:text-gray-600 cursor-pointer'
+            className={cn(
+              'h-fit w-fit rounded bg-gray-100 p-[10px] text-xl font-medium text-gray-600',
+              'cursor-pointer hover:bg-gray-300 hover:text-gray-600'
             )}
           >
             {t('loginPage.submit')}

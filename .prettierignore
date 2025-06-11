@@ -1,3 +1,15 @@
 package-lock.json
 vite.config.js
+.next
 prettier --ignore-path .gitignore
+.vscode-test/
+out/
+dist/
+test-fixtures/
+node_modules/
+build
+public
+
+server/
+docs/
+src/assets/

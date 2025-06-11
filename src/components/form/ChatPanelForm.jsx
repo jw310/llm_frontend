@@ -27,41 +27,42 @@ function ChatPanel() {
   const messages = [
     {
       role: 'user',
-      content: 'Hello, how are you?'
+      content: 'Hello, how are you?',
     },
     {
       role: 'assistant',
-      content: 'I am fine, thank you for asking.'
+      content: 'I am fine, thank you for asking.',
     },
-  ]
+  ];
 
   const conversations = [
     {
       id: '1',
-    }
-  ]
+    },
+  ];
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     control,
-    watch
+    watch,
   } = useForm({
     defaultValues: {
       streaming: false,
       messageInput: '',
-    }
+    },
   });
 
   let watchedValues = watch();
 
-	function handleNewChat() {
-		// createConversation(documentId);
-	}
+  function handleNewChat() {
+    // createConversation(documentId);
+  }
 
   function handleKeyDown(event) {
-    const isCombo = event.shiftKey || event.ctrlKey || event.altKey || event.metaKey;
+    const isCombo =
+      event.shiftKey || event.ctrlKey || event.altKey || event.metaKey;
     if (event.key !== 'Enter' || isCombo) {
       return;
     }
@@ -74,28 +75,35 @@ function ChatPanel() {
     event.target.value = '';
   }
 
-  const height = (watchedValues.messageInput?.match(/\n/g)?.length || 0) * 25 + 72;
+  const height =
+    (watchedValues.messageInput?.match(/\n/g)?.length || 0) * 25 + 72;
 
   const onSubmit = async (data) => {
     data.messageInput = trimString(data.messageInput);
     console.log(data);
-  }
+  };
 
   return (
     <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
       <div
-        className={cn('flex flex-col h-[calc(100vh-80px)] bg-slate-50 rounded-xl shadow')}
+        className={cn(
+          'flex h-[calc(100vh-80px)] flex-col rounded-xl bg-slate-50 shadow'
+        )}
       >
-        <div className={cn("rounded border-b px-3 py-1 flex flex-row items-center justify-between")}>
-          <div className={cn("opacity-40")}>
+        <div
+          className={cn(
+            'flex flex-row items-center justify-between rounded border-b px-3 py-1'
+          )}
+        >
+          <div className={cn('opacity-40')}>
             <Checkbox
-              name="streaming"
-              label="Streaming"
+              name='streaming'
+              label='Streaming'
               control={control}
               rules={{ required: { false: true, message: 'Streaming' } }}
             />
           </div>
-          <div className={cn("flex gap-2")}>
+          <div className={cn('flex gap-2')}>
             <ConversationSelect conversations={conversations} />
             {/* <button className={cn("rounded text-sm border border-blue-500 px-2 py-0.5")}
               onClick={handleNewChat}
@@ -103,15 +111,13 @@ function ChatPanel() {
             > */}
           </div>
         </div>
-        <div className={cn("flex flex-col flex-1 px-3 py-2 overflow-y-scroll")}>
+        <div className={cn('flex flex-1 flex-col overflow-y-scroll px-3 py-2')}>
           <ChatList messages={messages || []} />
-          <div className={cn("relative")}>
-            <div className={cn("p-4")}>
-              {
-                showAlert.isShow && (
-                  <Alert type={showAlert.type} message={showAlert.message} />
-                )
-              }
+          <div className={cn('relative')}>
+            <div className={cn('p-4')}>
+              {showAlert.isShow && (
+                <Alert type={showAlert.type} message={showAlert.message} />
+              )}
             </div>
             <div className={cn('flex flex-col')}>
               {/* <label className='flex-shrink-0 text-base' htmlFor='messageInput'>
@@ -119,18 +125,22 @@ function ChatPanel() {
               </label> */}
               <textarea
                 {...register('messageInput', {
-                    required: { value: false, message: t('errorMessage.required') },
+                  required: {
+                    value: false,
+                    message: t('errorMessage.required'),
+                  },
                 })}
-                  type='text'
-                  id='messageInput'
-                  className={cn("w-full mx-auto py-1.5 px-2.5 resize-none border rounded max-h-40")}
-                  maxLength={50}
-                  rows={5}
-                  placeholder='Type your message here...'
-                  onKeyDown={handleKeyDown}
-                  style={{height: `${height}px`}}
-                >
-              </textarea>
+                type='text'
+                id='messageInput'
+                className={cn(
+                  'mx-auto max-h-40 w-full resize-none rounded border px-2.5 py-1.5'
+                )}
+                maxLength={50}
+                rows={5}
+                placeholder='Type your message here...'
+                onKeyDown={handleKeyDown}
+                style={{ height: `${height}px` }}
+              ></textarea>
               {errors?.messageInput?.type && (
                 <p className='whitespace-nowrap text-red-500'>
                   {errors?.messageInput?.message}
@@ -149,7 +159,7 @@ function ChatPanel() {
         </div>
       </div>
     </form>
-  )
-};
+  );
+}
 
 export default ChatPanel;

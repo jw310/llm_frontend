@@ -85,7 +85,7 @@ function Navbar() {
           name: t('navbar.recent'),
           path: '/chat/recents',
           allowedRoles: ['admin', 'user'],
-        }
+        },
       ],
     },
   ];
@@ -102,23 +102,32 @@ function Navbar() {
 
   return (
     <>
-      <nav className={cn('hide-scrollbar flex w-fit flex-shrink-0 flex-col items-center justify-between gap-16 overflow-y-scroll bg-slate-100 p-5')}>
+      <nav
+        className={cn(
+          'hide-scrollbar flex w-fit flex-shrink-0 flex-col items-center justify-between gap-16 overflow-y-scroll bg-slate-100 p-5'
+        )}
+      >
         <div className={cn('flex w-[240px] flex-col gap-10 px-4')}>
           <h1 className={cn('text-center text-2xl font-bold text-blue-900')}>
             {t('navbar.title')}
           </h1>
           <ul className={cn('flex h-fit w-full flex-col gap-3')}>
             {navItemsDependsOnCurrentUser.map((item) => (
-              <li key={item.id} className={cn('flex w-full flex-col items-center')}>
+              <li
+                key={item.id}
+                className={cn('flex w-full flex-col items-center')}
+              >
                 <LocaleNavLink
                   to={item.path}
-                  className={
-                    ({ isActive }) =>
-                      isActive ? 'flex h-14 w-full items-center justify-start gap-5 px-4 font-medium text-indigo-500'
-                      : 'flex h-14 w-full items-center justify-start gap-5 px-4 cursor-pointer hover:animate-shake hover:bg-gray-300 hover:bg-opacity-5'
+                  className={({ isActive }) =>
+                    isActive
+                      ? 'flex h-14 w-full items-center justify-start gap-5 px-4 font-medium text-indigo-500'
+                      : 'hover:animate-shake hover:bg-opacity-5 flex h-14 w-full cursor-pointer items-center justify-start gap-5 px-4 hover:bg-gray-300'
                   }
                 >
-                  {item.icon && <item.icon className={cn('inline-block h-6 w-6')} />}
+                  {item.icon && (
+                    <item.icon className={cn('inline-block h-6 w-6')} />
+                  )}
                   {item.name}
                 </LocaleNavLink>
                 {item.subLinks && (
@@ -126,7 +135,7 @@ function Navbar() {
                     // className={cn('flex w-full flex-col overflow-hidden',
                     //   `activeNavLink === extractPath(item.path) ? 'h-fit' : 'h-0'`
                     // )}
-                    className={cn('flex w-full pl-5 flex-col overflow-hidden')}
+                    className={cn('flex w-full flex-col overflow-hidden pl-5')}
                   >
                     {item.subLinks.map((subItem) => (
                       <li key={subItem.id} className={cn('h-14 w-full')}>
@@ -135,7 +144,7 @@ function Navbar() {
                           className={({ isActive }) =>
                             isActive
                               ? 'flex h-full w-full items-center pl-[60px] font-medium text-indigo-500'
-                              : 'flex h-full w-full cursor-pointer items-center pl-[60px] hover:animate-shake hover:bg-gray-300 hover:bg-opacity-5'
+                              : 'hover:animate-shake hover:bg-opacity-5 flex h-full w-full cursor-pointer items-center pl-[60px] hover:bg-gray-300'
                           }
                         >
                           {subItem.name}
@@ -150,12 +159,15 @@ function Navbar() {
         </div>
         <button
           onClick={handleLogout}
-          className={cn('flex h-14 w-full items-center justify-start gap-5 px-4',
-              'hover:animate-shake hover:bg-violet-500 hover:bg-opacity-5'
+          className={cn(
+            'flex h-14 w-full items-center justify-start gap-5 px-4',
+            'hover:animate-shake hover:bg-opacity-5 hover:bg-violet-500'
           )}
         >
-          <ArrowLeftStartOnRectangleIcon className={cn('inline-block h-6 w-6')} />
-          { t('navbar.logout') }
+          <ArrowLeftStartOnRectangleIcon
+            className={cn('inline-block h-6 w-6')}
+          />
+          {t('navbar.logout')}
         </button>
       </nav>
     </>

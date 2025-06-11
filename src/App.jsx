@@ -1,7 +1,7 @@
-import { RouterProvider } from "react-router";
-import router from "@/router/router";
-import { AuthProvider } from "./context/auth";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { RouterProvider } from 'react-router';
+import router from '@/router/router';
+import { AuthProvider } from './context/auth';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient({
   defaultOptions: {

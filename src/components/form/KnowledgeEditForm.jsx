@@ -177,7 +177,7 @@ function KnowledgeEditForm({ knowledgeDataById, knowledgeId }) {
         <button
           type='button'
           onClick={handleReturnClick}
-          className='mt-6 w-[52px] cursor-pointer rounded bg-grey-600 px-2 py-2 text-base text-white shadow-md hover:bg-grey-300 hover:text-grey-600'
+          className='bg-grey-600 hover:bg-grey-300 hover:text-grey-600 mt-6 w-[52px] cursor-pointer rounded px-2 py-2 text-base text-white shadow-md'
         >
           {t('knowledge.cancel')}
         </button>

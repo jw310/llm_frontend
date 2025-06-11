@@ -24,12 +24,16 @@ export function AuthProvider({ children }) {
     tokenRef.current = token;
     localStorage.setItem('token', JSON.stringify(tokenRef.current));
     const decodedToken = jwtDecode(tokenRef.current);
-    setCurrentUser({ name: decodedToken.name, id: decodedToken.sub, role: decodedToken.role });
+    setCurrentUser({
+      name: decodedToken.name,
+      id: decodedToken.sub,
+      role: decodedToken.role,
+    });
     isLoggedInRef.current = !isLoggedInRef.current;
   };
 
   const logout = () => {
-    tokenRef.current = ''
+    tokenRef.current = '';
     setCurrentUser(null);
     isLoggedInRef.current = false;
     localStorage.removeItem('token');
@@ -50,7 +54,7 @@ export function AuthProvider({ children }) {
         // console.error('API Error:', error);
         console.log('auth Error:', error);
         logout();
-        <Navigate to="/login" replace />
+        <Navigate to='/login' replace />;
       }
     },
     enabled: Boolean(currentUser),
@@ -60,12 +64,18 @@ export function AuthProvider({ children }) {
 
   // Keep logged in after handling page refresh
   let savedToken = null;
-  savedToken = localStorage.getItem('token') ? JSON.parse(localStorage.getItem('token')) : null;
+  savedToken = localStorage.getItem('token')
+    ? JSON.parse(localStorage.getItem('token'))
+    : null;
 
   if (!currentUser && savedToken !== null) {
     tokenRef.current = savedToken;
     const decodedToken = jwtDecode(savedToken);
-    setCurrentUser({ name: decodedToken.name, id: decodedToken.sub, role: decodedToken.role });
+    setCurrentUser({
+      name: decodedToken.name,
+      id: decodedToken.sub,
+      role: decodedToken.role,
+    });
     isLoggedInRef.current = true;
   }
 

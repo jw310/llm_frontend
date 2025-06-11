@@ -1,6 +1,6 @@
-import { useContext } from "react";
-import { Navigate } from "react-router";
-import { useTranslation } from "react-i18next";
+import { useContext } from 'react';
+import { Navigate } from 'react-router';
+import { useTranslation } from 'react-i18next';
 
 import { AuthContext } from '../context/auth';
 
@@ -24,11 +24,11 @@ function ProtectedRoute({ children, allowedRoles = [] }) {
   const path = `/${i18n.language}/login`;
 
   if (!isLoggedIn) {
-      return <Navigate to={path} replace />;
-    }
+    return <Navigate to={path} replace />;
+  }
   if (allowedRoles.length > 0 && !allowedRoles.includes(currentUser.role)) {
-      return <Navigate to={path} replace />;
-    }
+    return <Navigate to={path} replace />;
+  }
   return children;
 }
 

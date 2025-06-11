@@ -21,9 +21,10 @@ function Alert({ type, message }) {
 
   return (
     <div
-      className={
-        cn("absolute left-1/2 top-8 flex -translate-x-1/2 items-center justify-center p-[10px]",
-        `gap-3 rounded text-2xl font-bold ${alertStyle}`)}
+      className={cn(
+        'absolute top-8 left-1/2 flex -translate-x-1/2 items-center justify-center p-[10px]',
+        `gap-3 rounded text-2xl font-bold ${alertStyle}`
+      )}
     >
       {icon}
       {message ? message : null}

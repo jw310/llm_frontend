@@ -6,13 +6,7 @@ import ChevronLeft from '@/assets/chevron-left.svg';
 
 import { cn } from '@/utils/clsx.js';
 
-function Select({
-  options,
-  name,
-  value,
-  onChange,
-  placeholder,
-}) {
+function Select({ options, name, value, onChange, placeholder }) {
   const { t } = useTranslation();
   const [openSelect, setOpenSelect] = useState(false);
 
@@ -30,18 +24,20 @@ function Select({
       onClick={() => setOpenSelect((currentOpenSelect) => !currentOpenSelect)}
     >
       <div
-        className={cn('relative flex h-full w-full cursor-pointer items-center rounded-md border-2 border-gray-700 bg-gray-700 px-[14px] py-[10px] text-sm font-medium lg:text-base',
-          `${value ? 'text-white' : 'text-gray-400'}`)}
+        className={cn(
+          'relative flex h-full w-full cursor-pointer items-center rounded-md border-2 border-gray-700 bg-gray-700 px-[14px] py-[10px] text-sm font-medium lg:text-base',
+          `${value ? 'text-white' : 'text-gray-400'}`
+        )}
       >
         {showSelectedOption()}
         {openSelect && (
-          <div className='absolute left-0 top-full z-20 mt-[2px] f-hit w-full rounded bg-gray-700 text-white shadow-custom'>
+          <div className='f-hit shadow-custom absolute top-full left-0 z-20 mt-[2px] w-full rounded bg-gray-700 text-white'>
             <ul>
               {options?.map((el) =>
                 value === el.value ? (
                   <li
                     key={el.value}
-                    className='text-body flex cursor-pointer items-center gap-1 px-[14px] py-[10px] font-bold text-primary-yellow-500 hover:bg-grey-600 '
+                    className='text-body text-primary-yellow-500 hover:bg-grey-600 flex cursor-pointer items-center gap-1 px-[14px] py-[10px] font-bold'
                     onClick={() => onChange(el.value)}
                   >
                     <img
@@ -55,7 +51,7 @@ function Select({
                 ) : (
                   <li
                     key={el.value}
-                    className='text-body cursor-pointer px-[14px] py-[10px] text-grey-100 hover:bg-grey-600'
+                    className='text-body text-grey-100 hover:bg-grey-600 cursor-pointer px-[14px] py-[10px]'
                     onClick={() => onChange(el.value)}
                   >
                     {name === 'role' ? `${t(el.name)}` : t(el.name)}
@@ -71,9 +67,7 @@ function Select({
         alt='chevrondown-icon'
         width={24}
         height={24}
-        className={`absolute right-[14px] cursor-pointer
-          ${openSelect ? '' : 'rotate-180'}
-        `}
+        className={`absolute right-[14px] cursor-pointer ${openSelect ? '' : 'rotate-180'} `}
       />
     </div>
   );

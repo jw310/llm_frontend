@@ -1,17 +1,17 @@
-import { createBrowserRouter, Navigate } from "react-router";
-import I18nWrapper from "@/components/I18nWrapper";
+import { createBrowserRouter, Navigate } from 'react-router';
+import I18nWrapper from '@/components/I18nWrapper';
 
 import ProtectedRoute from '@/router/ProtectedRoute.jsx';
-import DemoPage from "@/pages/DemoPage.jsx";
-import LoginPage from "@/pages/LoginPage.jsx";
-import ErrorPage from "@/pages/ErrorPage.jsx";
-import Layout from "@/pages/Layout.jsx";
-import HomePage from "@/pages/HomePage.jsx";
-import CalendarPage from "@/pages/CalendarPage.jsx";
-import CreateUserPage from "@/pages/admin/CreateUserPage.jsx";
-import ChatPage from "@/pages/chat/ChatPage.jsx";
-import RecentPage from "@/pages/chat/RecentPage.jsx";
-import PdfViewerPage from "@/pages/PdfPage";
+import DemoPage from '@/pages/DemoPage.jsx';
+import LoginPage from '@/pages/LoginPage.jsx';
+import ErrorPage from '@/pages/ErrorPage.jsx';
+import Layout from '@/pages/Layout.jsx';
+import HomePage from '@/pages/HomePage.jsx';
+import CalendarPage from '@/pages/CalendarPage.jsx';
+import CreateUserPage from '@/pages/admin/CreateUserPage.jsx';
+import ChatPage from '@/pages/chat/ChatPage.jsx';
+import RecentPage from '@/pages/chat/RecentPage.jsx';
+import PdfViewerPage from '@/pages/PdfPage';
 
 // const router = createBrowserRouter([
 //   {
@@ -111,17 +111,17 @@ import PdfViewerPage from "@/pages/PdfPage";
 // 將路由設定包裝在 I18nWrapper 中，以便於處理 url 的語系參數
 const router = createBrowserRouter([
   {
-    path: "/:locale",
+    path: '/:locale',
     Component: I18nWrapper,
     children: [
       {
-        path: "demo",
+        path: 'demo',
         // element: <DemoPage />,
         Component: DemoPage,
         errorElement: <ErrorPage />,
       },
       {
-        path: "login",
+        path: 'login',
         Component: LoginPage,
         errorElement: <ErrorPage />,
       },
@@ -130,7 +130,7 @@ const router = createBrowserRouter([
       //   Component: PdfViewerPage,
       // },
       {
-        path: "unauthorized",
+        path: 'unauthorized',
         Component: <ErrorPage />,
       },
       {
@@ -212,9 +212,9 @@ const router = createBrowserRouter([
               },
             ],
           },
-        ]
-      }
-    ]
+        ],
+      },
+    ],
   },
   {
     path: '*', // 匹配所有未定義的路由，跳轉錯誤處理
@@ -222,6 +222,5 @@ const router = createBrowserRouter([
     element: <ErrorPage />,
   },
 ]);
-
 
 export default router;

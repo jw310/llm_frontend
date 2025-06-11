@@ -33,7 +33,7 @@ function CalendarPage() {
   //   refetchOnWindowFocus: false,
   // });
 
-  const eventsData = {}
+  const eventsData = {};
 
   // const eventsData = data?.data?.map((item) => {
   //   return {
@@ -46,7 +46,7 @@ function CalendarPage() {
   return (
     <div>
       <div className='flex justify-center px-20 py-5'>
-          <Calendar eventsData={eventsData}  />
+        <Calendar eventsData={eventsData} />
       </div>
     </div>
   );

@@ -215,7 +215,7 @@ function FileUploadBtn({
           </a>
           <p className='w-full truncate text-xs'>{attach.name}</p>
           <div
-            className='absolute -left-2 -top-2 h-fit w-fit cursor-pointer rounded-full bg-red-600'
+            className='absolute -top-2 -left-2 h-fit w-fit cursor-pointer rounded-full bg-red-600'
             onClick={() => handleDeleteFileClick(attach.id)}
           >
             <XMarkIcon className='h-4 w-4 text-white' />
@@ -237,7 +237,7 @@ function FileUploadBtn({
           </a>
           <p className='w-full truncate text-xs'>{file.name}</p>
           <div
-            className='absolute -left-2 -top-2 h-fit w-fit cursor-pointer rounded-full bg-red-600'
+            className='absolute -top-2 -left-2 h-fit w-fit cursor-pointer rounded-full bg-red-600'
             onClick={() => handleRemoveFileClick(index)}
           >
             <XMarkIcon className='h-4 w-4 text-white' />

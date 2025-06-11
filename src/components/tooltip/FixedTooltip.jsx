@@ -1,21 +1,22 @@
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 import { cn } from '@/utils/clsx';
 const FixedTooltip = ({ children, text }) => {
   const { t } = useTranslation();
 
   return (
-    <div className="group flex relative">
+    <div className='group relative flex'>
       {children}
-      {
-        text ?
-          <div className={cn("hidden absolute w-[210px] px-2 py-1 text-gray-800 text-base bg-gray-300",
-            "md:-top-[6px] md:left-[-6px] rounded-[4px] group-hover:block transition-opacity break-words")}
-          >
-            {t(text)}
-          </div>
-        : null
-      }
+      {text ? (
+        <div
+          className={cn(
+            'absolute hidden w-[210px] bg-gray-300 px-2 py-1 text-base text-gray-800',
+            'rounded-[4px] break-words transition-opacity group-hover:block md:-top-[6px] md:left-[-6px]'
+          )}
+        >
+          {t(text)}
+        </div>
+      ) : null}
     </div>
   );
 };

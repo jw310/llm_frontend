@@ -3,7 +3,7 @@ export const paramsToQueryString = (params) => {
     .filter(([_, value]) => value !== null && value !== undefined)
     .reduce((acc, [key, value]) => ({ ...acc, [key]: value }), {});
 
-  return "?" + new URLSearchParams(filteredParams).toString();
+  return '?' + new URLSearchParams(filteredParams).toString();
 };
 
 // export default paramsToQueryString;

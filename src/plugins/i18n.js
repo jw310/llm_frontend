@@ -17,20 +17,16 @@ const resources = {
   },
 };
 
-i18n
-  .use(HttpBackend)
-  .use(LanguageDetector)
-  .use(initReactI18next)
-  .init({
-    debug: false, // 開發環境時顯示 debug 訊息：import.meta.env.DEV (Vite 環境變數)
-    resources, // 載入語言檔案
-    lng: 'zh-TW', // 一進入頁面，初始的語言
-    fallbackLng: 'zh-TW', // 若找不到對應語系則回傳此語系
-    // detection: {
-    //   order: ['querystring', 'navigator'], // 定義語言檢測的順序，例如通過查詢參數或瀏覽器語言
-    //   caches: [], // 不緩存語言設定，不使用 localStorage 或 cookie
-    // },
-    returnEmptyString: false, // 如果是空值，就會顯示成字串
-  });
+i18n.use(HttpBackend).use(LanguageDetector).use(initReactI18next).init({
+  debug: false, // 開發環境時顯示 debug 訊息：import.meta.env.DEV (Vite 環境變數)
+  resources, // 載入語言檔案
+  lng: 'zh-TW', // 一進入頁面，初始的語言
+  fallbackLng: 'zh-TW', // 若找不到對應語系則回傳此語系
+  // detection: {
+  //   order: ['querystring', 'navigator'], // 定義語言檢測的順序，例如通過查詢參數或瀏覽器語言
+  //   caches: [], // 不緩存語言設定，不使用 localStorage 或 cookie
+  // },
+  returnEmptyString: false, // 如果是空值，就會顯示成字串
+});
 
 export default i18n;

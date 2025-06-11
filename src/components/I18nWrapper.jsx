@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useParams, Outlet } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
-
 const I18nWrapper = () => {
   const { locale } = useParams();
   const { i18n } = useTranslation();
@@ -13,9 +12,7 @@ const I18nWrapper = () => {
     }
   }, [locale, i18n]);
 
-  return (
-    <Outlet />
-  )
-}
+  return <Outlet />;
+};
 
 export default I18nWrapper;

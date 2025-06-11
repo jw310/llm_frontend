@@ -8,35 +8,33 @@ function RecentPage() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const tableHead = ['1', '2', '3', '4', '5', '6'];
-  const tableData = [
-    ['1', '2', '3', '4', '5', '6'],
-  ];
-
+  const tableData = [['1', '2', '3', '4', '5', '6']];
 
   const pageInfo = {
     totalPages: 10,
-    currentPage: 1
-  }
+    currentPage: 1,
+  };
   const setCurrentPageHandler = (type) => {
     if (type === 'previous') {
       setCurrentPage((prev) => {
-          if (prev === 1 ) return 1;
-          return prev - 1;
+        if (prev === 1) return 1;
+        return prev - 1;
       });
     } else {
       setCurrentPage((prev) => {
-          if (prev ===  pageInfo.totalPages) return pageInfo.totalPages;
-          return prev + 1;
+        if (prev === pageInfo.totalPages) return pageInfo.totalPages;
+        return prev + 1;
       });
     }
   };
 
   return (
-    <div className={cn('flex flex-col h-[calc(100vh-80px)] bg-slate-50 rounded-xl shadow')}>
-      <Table
-        tableHead={tableHead}
-        tableData={tableData}
-      />
+    <div
+      className={cn(
+        'flex h-[calc(100vh-80px)] flex-col rounded-xl bg-slate-50 shadow'
+      )}
+    >
+      <Table tableHead={tableHead} tableData={tableData} />
       <Pagination
         totalPages={pageInfo.totalPages}
         currentPage={currentPage}

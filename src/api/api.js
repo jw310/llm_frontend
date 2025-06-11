@@ -52,7 +52,7 @@ export const requestLoginApi = async (payload) => {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: formData,
-    })
+    });
 
     if (response.status === 422) {
       const errorData = await response.json();
@@ -72,10 +72,10 @@ export const requestLoginApi = async (payload) => {
 
     return token;
   } catch (error) {
-      console.error('Fetch error:', error);
+    console.error('Fetch error:', error);
     throw error;
   }
-} ;
+};
 
 export const getUserInfoByIdApi = async (userId) => {
   const queryString = paramsToQueryString({ uuid: userId });
@@ -88,7 +88,6 @@ export const getUserInfoByIdApi = async (userId) => {
   return data;
 };
 
-
 export const getDashboardAppliesApi = async () => {
   const queryString = paramsToQueryString({ status: 2 });
   const response = await fetcher(`${BASE_URL}/dashboards${queryString}`, 'GET');
@@ -97,7 +96,6 @@ export const getDashboardAppliesApi = async () => {
 
   return { data, pagination };
 };
-
 
 export const uploadEmployeeFileApi = async (formData, employeeId) => {
   const token = JSON.parse(localStorage.getItem('token'));

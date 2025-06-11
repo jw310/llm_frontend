@@ -9,7 +9,8 @@ import { cn } from '@/utils/clsx';
 
 function Header() {
   const { t, i18n } = useTranslation();
-  const { userInfo, isUserInfoLoading, isUserInfoFetching } = useContext(AuthContext);
+  const { userInfo, isUserInfoLoading, isUserInfoFetching } =
+    useContext(AuthContext);
 
   const languages = [
     {
@@ -24,10 +25,7 @@ function Header() {
 
   return (
     <header className={cn('flex h-fit w-full items-center justify-end p-3')}>
-      <Language
-        languages={languages}
-        locale={i18n.language}
-      />
+      <Language languages={languages} locale={i18n.language} />
       <div className={cn('flex items-center gap-2')}>
         <div className={cn('h-12 w-12 overflow-hidden rounded-full')}>
           <img
@@ -37,7 +35,9 @@ function Header() {
           />
         </div>
         <div className={cn('flex flex-col gap-1')}>
-          <p className={cn('text-[11px] text-slate-500')}>{t('header.welcome')},</p>
+          <p className={cn('text-[11px] text-slate-500')}>
+            {t('header.welcome')},
+          </p>
           {isUserInfoLoading || isUserInfoFetching ? (
             <SmallSpinner />
           ) : (
@@ -46,7 +46,7 @@ function Header() {
         </div>
       </div>
     </header>
-  )
+  );
 }
 
 export default Header;
