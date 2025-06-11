@@ -28,7 +28,7 @@ const Table = ({ tableHead, tableData }) => {
         className={cn(
           'hidden h-10 items-center justify-center px-5 md:grid',
           'rounded-t-lg bg-gray-300 text-gray-900',
-          tableHead.length && `md:grid-cols-${tableHead.length}`
+          `md:grid-cols-${tableHead.length}`
         )}
       >
         {tableHead.map((item, index) => {
@@ -43,13 +43,13 @@ const Table = ({ tableHead, tableData }) => {
                 className={cn(
                   'grid grid-cols-1 items-center justify-center px-5 md:h-[72px]',
                   'border-b-[1px] border-gray-600 bg-gray-600 whitespace-nowrap text-gray-100',
-                  tableHead.length && `md:grid-cols-${tableHead.length}`
+                  `md:grid-cols-${tableHead.length}`
                 )}
                 key={index}
               >
                 <div
                   className={cn(
-                    'w-ful flex items-center justify-start py-2 text-base whitespace-normal',
+                    'flex w-full items-center justify-start py-2 text-base whitespace-normal',
                     'before:block before:w-1/2 before:bg-gray-600 before:text-gray-300 before:content-[attr(data-title)]',
                     'md:flex-none md:items-baseline md:justify-normal md:py-0 md:text-base md:before:hidden'
                   )}
