@@ -13,6 +13,7 @@ import {
 
 import { AuthContext } from '@/context/auth';
 import { cn } from '@/utils/clsx';
+import LocaleNavLink from '@/plugins/LocaleNavLink';
 
 // 從權限篩選出可用的導覽項
 function filterNavItems(items, userRole) {
@@ -41,27 +42,27 @@ function Navbar() {
     {
       id: 'nav-1',
       name: t('navbar.calendar'),
-      path: '/',
+      path: '/calendar',
       icon: Squares2X2Icon,
       allowedRoles: ['admin', 'user'],
     },
     {
       id: 'nav-2',
       name: t('navbar.admin'),
-      path: '/create',
+      path: '/admin',
       icon: UserIcon,
       allowedRoles: ['admin'],
       subLinks: [
         {
           id: 'nav-2-1',
           name: t('navbar.createUser'),
-          path: '/create/user',
-          allowedRoles: ['admin', 'user'],
+          path: '/admin/create-user',
+          allowedRoles: ['admin'],
         },
         {
           id: 'nav-2-2',
           name: t('navbar.pdf'),
-          path: '/create/pdf',
+          path: '/admin/pdf',
           allowedRoles: ['admin', 'user'],
         },
       ],
@@ -109,18 +110,17 @@ function Navbar() {
           <ul className={cn('flex h-fit w-full flex-col gap-3')}>
             {navItemsDependsOnCurrentUser.map((item) => (
               <li key={item.id} className={cn('flex w-full flex-col items-center')}>
-                <NavLink
+                <LocaleNavLink
                   to={item.path}
-                  // onClick={() => setIsActiveNavLink(extractPath(item.path))}
                   className={
                     ({ isActive }) =>
-                      isActive ? 'flex h-14 w-full items-center justify-start gap-5 px-4 font-medium text-indigo-500' :
-                        'flex h-14 w-full items-center justify-start gap-5 px-4 cursor-pointer hover:animate-shake hover:bg-gray-300 hover:bg-opacity-5'
+                      isActive ? 'flex h-14 w-full items-center justify-start gap-5 px-4 font-medium text-indigo-500'
+                      : 'flex h-14 w-full items-center justify-start gap-5 px-4 cursor-pointer hover:animate-shake hover:bg-gray-300 hover:bg-opacity-5'
                   }
                 >
                   {item.icon && <item.icon className={cn('inline-block h-6 w-6')} />}
                   {item.name}
-                </NavLink>
+                </LocaleNavLink>
                 {item.subLinks && (
                   <ul
                     // className={cn('flex w-full flex-col overflow-hidden',
@@ -130,7 +130,7 @@ function Navbar() {
                   >
                     {item.subLinks.map((subItem) => (
                       <li key={subItem.id} className={cn('h-14 w-full')}>
-                        <NavLink
+                        <LocaleNavLink
                           to={subItem.path}
                           className={({ isActive }) =>
                             isActive
@@ -139,7 +139,7 @@ function Navbar() {
                           }
                         >
                           {subItem.name}
-                        </NavLink>
+                        </LocaleNavLink>
                       </li>
                     ))}
                   </ul>

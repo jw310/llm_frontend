@@ -6,6 +6,7 @@ import DemoPage from "@/pages/DemoPage.jsx";
 import LoginPage from "@/pages/LoginPage.jsx";
 import ErrorPage from "@/pages/ErrorPage.jsx";
 import Layout from "@/pages/Layout.jsx";
+import HomePage from "@/pages/HomePage.jsx";
 import CalendarPage from "@/pages/CalendarPage.jsx";
 import CreateUserPage from "@/pages/admin/CreateUserPage.jsx";
 import ChatPage from "@/pages/chat/ChatPage.jsx";
@@ -138,7 +139,15 @@ const router = createBrowserRouter([
         errorElement: <ErrorPage />,
         children: [
           {
-            index: true, // index:true 用以取代 { path: ''}，那麼這個路由，就會是上層路由的預設渲染路由頁面
+            index: 'true',
+            element: (
+              <ProtectedRoute allowedRoles={['admin', 'user']}>
+                <HomePage />
+              </ProtectedRoute>
+            ),
+          },
+          {
+            path: 'calendar',
             element: (
               <ProtectedRoute allowedRoles={['admin', 'user']}>
                 <CalendarPage />
@@ -146,14 +155,14 @@ const router = createBrowserRouter([
             ),
           },
           {
-            path: 'create',
+            path: 'admin',
             children: [
               {
-                index: true,
-                element: <Navigate to='user' replace />, // 輸入 /create 的話，重新導向顯示 user 頁面
+                index: true, // index:true 用以取代 { path: ''}，那麼這個路由，就會是上層路由的預設渲染路由頁面
+                element: <Navigate to='create-user' replace />, // 輸入 /create 的話，重新導向顯示 create-user 頁面
               },
               {
-                path: 'user',
+                path: 'create-user',
                 element: (
                   <ProtectedRoute allowedRoles={['admin']}>
                     <CreateUserPage />
@@ -163,7 +172,7 @@ const router = createBrowserRouter([
               {
                 path: 'pdf',
                 element: (
-                  <ProtectedRoute allowedRoles={['admin']}>
+                  <ProtectedRoute>
                     <PdfViewerPage />
                   </ProtectedRoute>
                 ),

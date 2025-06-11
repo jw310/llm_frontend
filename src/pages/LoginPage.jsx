@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router';
+// import { useNavigate } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useMutation } from '@tanstack/react-query';
@@ -12,11 +12,12 @@ import { cn } from '@/utils/clsx.js';
 import trimString from '@/utils/trimString.js';
 import { requestLoginApi } from '@/api/api';
 import { AuthContext } from '@/context/auth.jsx';
+import { useLocaleNavigate } from '@/plugins/navigation.jsx';
 // import useCustomMutation from '@/hooks/useCustomMutation.jsx';
 
 function LoginPage() {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  const navigate = useLocaleNavigate();
 
   const [showAlert, setShowAlert] = useState({
     type: '',
@@ -45,9 +46,9 @@ function LoginPage() {
       setTimeout(() => {
         const decodedToken = jwtDecode(token);
         if (decodedToken.role === "admin") {
-          return navigate('/zh-TW/create');
+          return navigate('/admin/create-user');
         }
-        navigate('/zh-TW');
+        navigate('/calendar');
       }, 1000);
     },
     onError: (error) => {
