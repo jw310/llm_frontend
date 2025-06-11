@@ -2,6 +2,8 @@ import { useState } from 'react';
 
 import Pagination from '@/components/pagination/Pagination';
 
+import useWindowMeasurer from '@/hooks/useWindowMeasurer';
+
 import { cn } from '@/utils/clsx';
 function RecentPage() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -11,8 +13,9 @@ function RecentPage() {
     currentPage: 1
   }
 
+  let windowWidth = useWindowMeasurer();
+  console.log('windowWidth', windowWidth);
   const setCurrentPageHandler = (type) => {
-    console.log(type)
     if (type === 'previous') {
       setCurrentPage((prev) => {
           if (prev === 1 ) return 1;
