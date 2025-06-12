@@ -12,7 +12,7 @@ import { cn } from '@/utils/clsx.js';
 import trimString from '@/utils/trimString.js';
 import { requestLoginApi } from '@/api/api';
 import { AuthContext } from '@/context/auth.jsx';
-import { useLocaleNavigate } from '@/plugins/navigation.jsx';
+import { useLocaleNavigate } from '@/hooks/useLocaleNavigate.jsx';
 // import useCustomMutation from '@/hooks/useCustomMutation.jsx';
 
 function LoginPage() {

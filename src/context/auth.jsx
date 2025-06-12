@@ -51,7 +51,7 @@ export function AuthProvider({ children }) {
         const data = await getUserInfoByIdApi(currentUser.id);
         return data;
       } catch (error) {
-        // console.error('API Error:', error);
+        console.error('API Error:', error);
         logout();
         <Navigate to='/login' replace />;
       }
