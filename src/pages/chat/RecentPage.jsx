@@ -12,8 +12,11 @@ function RecentPage() {
       'A LLM is a language model that is trained on a large dataset of text to generate human-like text. A GPT is a language model that is trained on a large dataset of text to generate human-like text.',
   };
 
-  const tableHead = ['1', '2', '3', '4', '5', '6'];
-  const tableData = [['1', '2', '3', '4', '5', '6']];
+  const tableHead = ['Data', 'Status', 'Title', ''];
+  const tableData = [
+    { date: '2025-06-01', state: 1, title: 'test' },
+    { date: '2025-06-01', state: 2, title: 'test2' },
+  ];
 
   const [pageNum, setPageNum] = useState({
     current_page: 1,
@@ -37,7 +40,6 @@ function RecentPage() {
       {/* <Accordion header={qa.question} panel={qa.answer} /> */}
       <Table tableHead={tableHead} tableData={tableData} />
       <Pagination pageNum={pageNum} onGetPage={handlePageChange} />
-      {/* <Pagination pageNum={pageNum} onGetPage={handlePageChange} /> */}
     </div>
   );
 }

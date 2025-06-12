@@ -52,7 +52,6 @@ export function AuthProvider({ children }) {
         return data;
       } catch (error) {
         // console.error('API Error:', error);
-        console.log('auth Error:', error);
         logout();
         <Navigate to='/login' replace />;
       }

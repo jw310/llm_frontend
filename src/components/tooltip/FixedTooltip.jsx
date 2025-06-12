@@ -10,7 +10,7 @@ const FixedTooltip = ({ children, text }) => {
       {text ? (
         <div
           className={cn(
-            'absolute hidden w-[210px] bg-gray-300 px-2 py-1 text-base text-gray-800',
+            'absolute hidden w-fit bg-gray-300 px-2 py-1 text-base text-gray-800',
             'rounded-[4px] break-words transition-opacity group-hover:block md:-top-[6px] md:left-[-6px]'
           )}
         >
