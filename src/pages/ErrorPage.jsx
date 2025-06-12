@@ -1,7 +1,7 @@
 import ErrorImg from '@/assets/404-image.png';
 
-// import Navbar from "@/components/Navbar.jsx";
-// import Header from "@/components/Header.jsx";
+// import Header from '@/components/layout/Header';
+// import Navbar from '@/components/layout/Navbar';
 
 import { cn } from '@/utils/clsx.js';
 
