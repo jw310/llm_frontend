@@ -1,5 +1,14 @@
+import { useState, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import SingleDatePicker from '@/components/date-picker/SingleDatePicker.jsx';
+import DataRangePicker from '@/components/date-picker/DataRangePicker.jsx';
+
+import { DayPicker } from 'react-day-picker';
+import { setHours, setMinutes } from 'date-fns';
+
+import dayjs from 'dayjs';
+
+import 'react-day-picker/dist/style.css';
 
 import { cn } from '@/utils/clsx';
 
@@ -35,13 +44,13 @@ const DatePickerForm = () => {
             name='date'
             rules={{
               required: {
-                value: true,
+                value: false,
                 message: '日期為必填項！',
               },
             }}
             render={({ field: { onChange, value } }) => (
               <SingleDatePicker
-                error={errors?.dateOfHire}
+                error={errors?.data}
                 onChange={onChange}
                 value={value}
               />
@@ -55,6 +64,34 @@ const DatePickerForm = () => {
         )}
         <button type='submit'>submit</button>
       </div>
+      <div>
+        <label
+          htmlFor='dateRange'
+          className={cn('w-[50px] flex-shrink-0 text-xl')}
+        >
+          <span className={cn('text-red-500')}>*</span>DateRange
+        </label>
+        <Controller
+          control={control}
+          name='dateRange'
+          rules={{
+            validate: (v) =>
+              v?.from && v?.to ? true : '請選擇開始與結束的日期時間',
+          }}
+          render={({ field: { onChange, value } }) => (
+            <DataRangePicker
+              onChange={onChange}
+              value={value}
+              error={errors?.dateRange}
+            />
+          )}
+        />
+      </div>
+      {errors?.dateRange && (
+        <p className={cn('whitespace-nowrap text-red-500')}>
+          {errors.dateRange.message}
+        </p>
+      )}
     </form>
   );
 };

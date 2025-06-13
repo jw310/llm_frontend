@@ -48,10 +48,6 @@ function FileUploadBtn({
     const totalFileCount = defaultFileCount + uploadedFileCount;
 
     if (totalFileCount >= maxFiles) {
-      // toast.error(`檔案太多，最多只能上傳${maxFiles}個檔案`, {
-      //   position: 'top-center',
-      //   autoClose: 1000,
-      // });
       setShowAlert((prev) => ({
         type: 'error',
         message: `檔案太多，最多只能上傳${maxFiles}個檔案`,

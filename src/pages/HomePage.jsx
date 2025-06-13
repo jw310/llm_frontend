@@ -20,7 +20,7 @@ const HomePage = () => {
   return (
     <>
       <DatePickerForm />
-      <div className='min-h-screen bg-gray-100 p-4'>
+      {/* <div className='min-h-screen bg-gray-100 p-4'>
         <h3 className='mb-2 text-sm'>Pay Method</h3>
 
         <button
@@ -46,7 +46,7 @@ const HomePage = () => {
           options={checkboxOptions}
           onChange={setSelected}
         />
-      </div>
+      </div> */}
     </>
   );
 };
