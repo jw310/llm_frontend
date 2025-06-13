@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Table from '@/components/table/Table';
 import Pagination from '@/components/pagination/Pagination';
 import Accordion from '@/components/accordion/Accordion';
+import Breadcrumb from '@/components/breadcrumb/Breadcrumb';
 
 import { cn } from '@/utils/clsx';
 function RecentPage() {
@@ -38,6 +39,7 @@ function RecentPage() {
   return (
     <div className={cn('flex flex-col rounded-xl bg-slate-50 shadow')}>
       {/* <Accordion header={qa.question} panel={qa.answer} /> */}
+      <Breadcrumb />
       <Table tableHead={tableHead} tableData={tableData} />
       <Pagination pageNum={pageNum} onGetPage={handlePageChange} />
     </div>
