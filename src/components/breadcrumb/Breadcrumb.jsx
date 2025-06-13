@@ -7,16 +7,16 @@ const Breadcrumb = () => {
   const { i18n } = useTranslation();
   const [breadcrumbList, setBreadcrumbList] = useState([]);
 
-  // 模擬路由配置，您可以根據實際情況調整
-  // const routeConfig = {
-  //   '/': { title: '首頁' },
-  //   '/products': { title: '產品列表' },
-  //   '/products/detail': { title: '產品詳情' },
-  //   '/users': { title: '用戶管理' },
-  //   '/users/profile': { title: '用戶資料' },
-  //   '/settings': { title: '設置' },
-  //   '/settings/general': { title: '一般設置' },
-  // };
+  // 模擬路由設定
+  const routeConfig = {
+    '/': { title: '首頁' },
+    '/products': { title: '產品列表' },
+    '/products/detail': { title: '產品詳情' },
+    '/users': { title: '用戶管理' },
+    '/users/profile': { title: '用戶資料' },
+    '/settings': { title: '設置' },
+    '/settings/general': { title: '一般設置' },
+  };
 
   const isHome = (pathname) => {
     return pathname === '/';
@@ -37,12 +37,12 @@ const Breadcrumb = () => {
 
     // 建構麵包屑路徑
     let currentPath = '';
-    pathSegments.forEach((segment, index) => {
+    pathSegments.forEach((segment) => {
       currentPath += `/${segment}`;
 
       // 從路由設定中獲取標題，如果沒有設定則使用路徑段作為標題
       const title =
-        // routeConfig[currentPath]?.title ||
+        routeConfig[currentPath]?.title ||
         segment.charAt(0).toUpperCase() + segment.slice(1);
 
       breadcrumbs.push({

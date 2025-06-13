@@ -1,5 +1,13 @@
+import React from 'react';
+
+import DatePickerForm from '@/components/form/datePickerForm';
+
 const HomePage = () => {
-  return <div>HomePage</div>;
+  return (
+    <>
+      <DatePickerForm />
+    </>
+  );
 };
 
 export default HomePage;
