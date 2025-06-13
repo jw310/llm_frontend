@@ -5,12 +5,6 @@ import Pagination from '@/components/pagination/Pagination';
 
 import { cn } from '@/utils/clsx';
 function RecentPage() {
-  const qa = {
-    question: 'What is the difference between a LLM and a GPT?',
-    answer:
-      'A LLM is a language model that is trained on a large dataset of text to generate human-like text. A GPT is a language model that is trained on a large dataset of text to generate human-like text.',
-  };
-
   const tableHead = ['Data', 'Status', 'Title', ''];
   const tableData = [
     { date: '2025-06-01', state: 1, title: 'test' },
@@ -36,8 +30,6 @@ function RecentPage() {
 
   return (
     <div className={cn('flex flex-col rounded-xl bg-slate-50 shadow')}>
-      {/* <Accordion header={qa.question} panel={qa.answer} /> */}
-      {/* <Breadcrumb /> */}
       <Table tableHead={tableHead} tableData={tableData} />
       <Pagination pageNum={pageNum} onGetPage={handlePageChange} />
     </div>
