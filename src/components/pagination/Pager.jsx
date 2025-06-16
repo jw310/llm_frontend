@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from 'react';
 
+import { EllipsisHorizontalIcon } from '@heroicons/react/24/outline';
+
 import { cn } from '@/utils/clsx';
 
 const Pager = ({

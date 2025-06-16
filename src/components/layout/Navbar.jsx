@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 
 import {
   Squares2X2Icon,
+  ChatBubbleLeftRightIcon,
   UserIcon,
   DocumentCheckIcon,
   ShieldCheckIcon,
@@ -71,7 +72,7 @@ function Navbar() {
       id: 'nav-3',
       name: t('navbar.chat'),
       path: '/chat',
-      icon: DocumentCheckIcon,
+      icon: ChatBubbleLeftRightIcon,
       allowedRoles: ['admin', 'user'],
       subLinks: [
         {

@@ -1,12 +1,13 @@
 import { useState, useRef } from 'react';
 // import { useLocation } from 'react-router';
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
 import Alert from '../modal/Alert';
 import Checkbox from '../checkbox/Checkbox';
 import ChatList from '../chat/ChatList';
 import ConversationSelect from '../chat/ConversationSelect';
+import Textarea from '../input/Textarea';
 
 import { cn } from '@/utils/clsx';
 import trimString from '@/utils/trimString.js';
@@ -79,7 +80,7 @@ function ChatPanel() {
     (watchedValues.messageInput?.match(/\n/g)?.length || 0) * 25 + 72;
 
   const onSubmit = async (data) => {
-    data.messageInput = trimString(data.messageInput);
+    data.messageInput = trimString(data.messageInput).split('\n');
     console.log(data);
   };
 
@@ -141,17 +142,39 @@ function ChatPanel() {
                 onKeyDown={handleKeyDown}
                 style={{ height: `${height}px` }}
               ></textarea>
-              {errors?.messageInput?.type && (
+              {/* <Controller
+                control={control}
+                name='textarea'
+                rules={{
+                  required: {
+                    value: true,
+                    message: 'Please input your message',
+                  },
+                }}
+                render={({ field: { onChange, value } }) => (
+                  <Textarea
+                    onChange={onChange}
+                    value={value}
+                    // customStyle={cn(
+                    //   'focus:none h-11 w-full rounded border-2 bg-gray-700 indent-3 text-white focus:outline-none',
+                    //   `${errors?.role ? 'border-red-500' : 'border-grey-500'}`
+                    // )}
+                    // placeholder={t('createUser.rolePlaceholder')}
+                  />
+                )}
+              /> */}
+              {errors?.textarea?.type && (
                 <p className='whitespace-nowrap text-red-500'>
-                  {errors?.messageInput?.message}
+                  {errors?.textarea?.message}
                 </p>
               )}
               {/* <button
-                className={cn('w-fit mt-1 p-2 self-end rounded bg-blue-600 text-base text-white shadow-md',
-                      'hover:bg-yellow-500 hover:text-black cursor-pointer'
+                className={cn(
+                  'mt-1 w-fit self-end rounded bg-blue-600 p-2 text-base text-white shadow-md',
+                  'cursor-pointer hover:bg-yellow-500 hover:text-black'
                 )}
                 type='submit'
-                >
+              >
                 {t('common.submit')}
               </button> */}
             </div>

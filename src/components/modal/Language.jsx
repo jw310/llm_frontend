@@ -2,8 +2,11 @@ import { useState, useEffect, useRef } from 'react';
 // import { useTranslation } from 'react-i18next';
 import { useNavigate, useLocation } from 'react-router';
 
-import chevronDownIcon from '@/assets/chevron-down.svg';
-import chevronLeftIcon from '@/assets/chevron-left.svg';
+import {
+  ChevronDownIcon,
+  ChevronRightIcon,
+  GlobeAltIcon,
+} from '@heroicons/react/24/outline';
 import earthIcon from '@/assets/ic_language.svg';
 
 import { cn } from '@/utils/clsx';
@@ -61,16 +64,21 @@ function Language({ languages, locale }) {
         }
       }}
     >
-      <img
+      {/* <img
         src={earthIcon}
         alt='earth-icon'
         width={24}
         height={24}
         className={cn('h-6 w-6')}
+      /> */}
+      <GlobeAltIcon
+        alt='globe-alt-icon'
+        width={24}
+        height={24}
+        className={cn('h-6 w-6 text-gray-500')}
       />
-      <img
-        src={chevronDownIcon}
-        alt='chevronDown-icon'
+      <ChevronDownIcon
+        alt='chevron-down-icon'
         width={24}
         height={24}
         className={cn(openLang ? '' : 'rotate-180')}
@@ -110,11 +118,11 @@ function Language({ languages, locale }) {
                   }}
                 >
                   {el.id === locale && (
-                    <img
-                      src={chevronLeftIcon}
-                      alt='chevronLeft-icon'
+                    <ChevronRightIcon
+                      alt='chevron-right-icon'
                       width={24}
                       height={24}
+                      className={cn('text-amber-700')}
                     />
                   )}
                   {el.title}

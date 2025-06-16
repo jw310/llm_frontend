@@ -5,6 +5,8 @@ import PayModal from '@/components/modal/PayModal';
 import TabGroup from '@/components/tab/TabGroup';
 import Tab1Content from '@/components/tab/Tab1Content';
 import Tab2Content from '@/components/tab/Tab2Content';
+import DeleteModal from '@/components/modal/DeleteModal';
+import DetailModal from '@/components/modal/DetailModal';
 
 const checkboxOptions = [
   { id: 'cash', img: 'ic_pay_cash_24', name: '現金' },
@@ -25,9 +27,102 @@ const HomePage = () => {
   const modalRef = useRef();
   const [selected, setSelected] = useState([]);
 
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedDeleteTheme, setSelectedDeleteTheme] = useState({
+    id: '1',
+    name: 'Test',
+  });
+
+  const [showDetailModal, setShowDetailModal] = useState(false);
+
+  const handleConfirmDeleteClick = async () => {
+    setShowDeleteModal((prev) => !prev);
+    // const response = await removeChatbotKnowledgeByIdApi(
+    //   selectedDeleteTheme.id
+    // );
+
+    // if (response.statusCode !== 200) {
+    //   toggleAlert({
+    //     type: 'error',
+    //     message: t('knowledge.fail'),
+    //   });
+    // }
+    // toggleAlert({
+    //   type: 'success',
+    //   message: t('knowledge.success'),
+    //   /* 重新 query， queryFn: getChatbotKnowledgeApi queryKey: ['knowledgeData'] */
+    //   refreshDataFn: () => queryClient.invalidateQueries(['knowledgeData']),
+    // });
+  };
+
+  const handleConfirmClick = () => {
+    setShowDetailModal((prev) => !prev);
+    // setShowAlert((prev) => ({
+    //   ...prev,
+    //   type: 'success',
+    //   message: 'Success',
+    //   isShow: !prev.isShow,
+    // }));
+
+    // setTimeout(() => {
+    //   setShowAlert((prev) => ({
+    //     ...prev,
+    //     isShow: !prev.isShow,
+    //   }));
+    // }, 1500);
+  };
+
+  const handleCloseClick = (type, id, name) => {
+    if (type === 'deleteModal') {
+      setShowDeleteModal((prev) => !prev);
+      if (showDeleteModal) return;
+      setSelectedDeleteTheme((prev) => {
+        return { ...prev, id, name };
+      });
+    } else if (type === 'detailModal') {
+      setShowDetailModal((prev) => !prev);
+    }
+  };
+
   return (
     <>
       <DatePickerForm />
+      {showDeleteModal && (
+        <DeleteModal
+          onCloseClick={() =>
+            handleCloseClick(
+              'deleteModal',
+              selectedDeleteTheme.id,
+              selectedDeleteTheme.name
+            )
+          }
+          onDeleteClick={handleConfirmDeleteClick}
+          selectedData={selectedDeleteTheme}
+        />
+      )}
+      <button
+        className={
+          'mt-1 w-fit cursor-pointer self-end rounded bg-blue-600 p-2 text-base text-white shadow-md hover:bg-yellow-500 hover:text-black'
+        }
+        onClick={() => setShowDetailModal((prev) => !prev)}
+      >
+        {'DetailModal'}
+      </button>
+      {showDetailModal && (
+        <DetailModal
+          onCloseClick={() => handleCloseClick('detailModal')}
+          onConfirmClick={handleConfirmClick}
+          // selectedData={selectedDeleteTheme}
+        />
+      )}
+      <button
+        className={
+          'mt-1 w-fit cursor-pointer self-end rounded bg-blue-600 p-2 text-base text-white shadow-md hover:bg-yellow-500 hover:text-black'
+        }
+        onClick={() => setShowDeleteModal((prev) => !prev)}
+      >
+        {'DeleteModal'}
+      </button>
       {/* <TabGroup tabs={tabs} /> */}
       {/* <div className='min-h-screen bg-gray-100 p-4'>
         <h3 className='mb-2 text-sm'>Pay Method</h3>

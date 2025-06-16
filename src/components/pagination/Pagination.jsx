@@ -1,5 +1,10 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 
+import {
+  EllipsisHorizontalIcon,
+  ChevronRightIcon,
+} from '@heroicons/react/24/outline';
+
 import leftIcon from '@/assets/left_icon.svg';
 import rightIcon from '@/assets/right_icon.svg';
 import Pager from './Pager';

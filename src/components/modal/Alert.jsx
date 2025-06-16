@@ -1,6 +1,8 @@
 import SuccessIcon from '@/assets/success-icon.png';
 import ErrorIcon from '@/assets/error-icon.png';
 
+import { CheckIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+
 import { cn } from '@/utils/clsx.js';
 
 function Alert({ type, message }) {

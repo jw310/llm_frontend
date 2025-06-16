@@ -1,53 +1,50 @@
-import { useTranslation } from 'react-i18next';
-
 import ModalBackground from './ModalBackground';
 
 import { cn } from '@/utils/clsx.js';
 
 function DetailModal({ onCloseClick, onConfirmClick }) {
-  const { t } = useTranslation();
   return (
     <>
       <dialog
         className={cn(
-          'bg-grey-100 top-1/2 z-10 flex h-fit w-[560px] -translate-y-1/2 flex-col items-center justify-between gap-6 rounded-xl p-10'
+          'top-1/2 left-1/2 z-20 flex h-fit w-[350px] -translate-x-1/2 -translate-y-1/2 flex-col justify-between gap-6 rounded-md bg-white p-10'
         )}
       >
         <header className={cn('text-2xl font-bold text-blue-950')}>
-          {t('plan.orderConfirm')}
+          {'Confirm'}
         </header>
         <main className={cn('flex w-full flex-col gap-3')}>
           <div
             className={cn(
-              'text-grey-500 flex items-center justify-between text-xl'
+              'flex items-center justify-between text-xl text-gray-500'
             )}
           >
-            <label>{t('plan.model')}：</label>
-            <p>{t('plan.train')}</p>
+            <label>{'model'}：</label>
+            <p>{'train'}</p>
           </div>
           <div
             className={cn(
-              'text-grey-500 flex items-center justify-between text-xl'
+              'flex items-center justify-between text-xl text-gray-500'
             )}
           >
-            <label>{t('plan.unitPrice')}</label>
+            <label>{'unitPrice'}</label>
             <p>NT$100,000</p>
           </div>
           <div
             className={cn(
-              'text-grey-500 flex items-center justify-between text-xl'
+              'flex items-center justify-between text-xl text-gray-500'
             )}
           >
-            <label>{t('plan.number')}</label>
+            <label>{'number'}</label>
             <p>1</p>
           </div>
-          <hr className={cn('border-grey-900 mt-2 w-full border-b-1')} />
+          <hr className={cn('mt-2 w-full border-b-1 border-gray-900')} />
           <div
             className={cn(
-              'text-grey-500 flex items-center justify-between text-2xl font-bold'
+              'flex items-center justify-between text-2xl font-bold text-gray-500'
             )}
           >
-            <label>{t('plan.total')}</label>
+            <label>{'total'}</label>
             <p>NT$100,000</p>
           </div>
         </main>
@@ -57,18 +54,18 @@ function DetailModal({ onCloseClick, onConfirmClick }) {
           <button
             onClick={onCloseClick}
             className={cn(
-              'bg-grey-600 text-grey-200 hover:bg-grey-300 hover:text-grey-600 rounded p-[10px]'
+              'rounded bg-gray-600 p-[10px] text-gray-200 hover:bg-gray-300 hover:text-gray-600'
             )}
           >
-            {t('plan.cancel')}
+            {'cancel'}
           </button>
           <button
             onClick={onConfirmClick}
             className={cn(
-              'text-grey-800 rounded bg-yellow-400 p-[10px] hover:bg-yellow-200 hover:text-yellow-600'
+              'rounded bg-yellow-400 p-[10px] text-gray-800 hover:bg-yellow-200 hover:text-yellow-600'
             )}
           >
-            {t('plan.confirm')}
+            {'confirm'}
           </button>
         </footer>
       </dialog>

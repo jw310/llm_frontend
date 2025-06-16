@@ -1,8 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import ChevronDown from '@/assets/chevron-down.svg';
-import ChevronLeft from '@/assets/chevron-left.svg';
+import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
 import { cn } from '@/utils/clsx.js';
 
@@ -31,7 +30,7 @@ function Select({ options, name, value, onChange, placeholder }) {
       >
         {showSelectedOption()}
         {openSelect && (
-          <div className='f-hit shadow-custom absolute top-full left-0 z-20 mt-[2px] w-full rounded bg-gray-700 text-white'>
+          <div className='f-hit shadow-custom absolute top-full left-0 z-20 w-full rounded bg-gray-700 text-white'>
             <ul>
               {options?.map((el) =>
                 value === el.value ? (
@@ -40,9 +39,8 @@ function Select({ options, name, value, onChange, placeholder }) {
                     className='text-body text-primary-yellow-500 hover:bg-grey-600 flex cursor-pointer items-center gap-1 px-[14px] py-[10px] font-bold'
                     onClick={() => onChange(el.value)}
                   >
-                    <img
-                      src={ChevronLeft}
-                      alt='chevron-left-icon'
+                    <ChevronRightIcon
+                      alt='chevron-right-icon'
                       width={24}
                       height={24}
                     />
@@ -62,12 +60,14 @@ function Select({ options, name, value, onChange, placeholder }) {
           </div>
         )}
       </div>
-      <img
-        src={ChevronDown}
-        alt='chevrondown-icon'
+      <ChevronDownIcon
+        alt='Chevron-down-icon'
         width={24}
         height={24}
-        className={`absolute right-[14px] cursor-pointer ${openSelect ? '' : 'rotate-180'} `}
+        className={cn(
+          'absolute right-[14px] cursor-pointer text-gray-300',
+          openSelect ? '' : 'rotate-180'
+        )}
       />
     </div>
   );
