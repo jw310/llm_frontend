@@ -86,12 +86,12 @@ const DatePickerForm = () => {
             />
           )}
         />
+        {errors?.dateRange && (
+          <p className={cn('whitespace-nowrap text-red-500')}>
+            {errors.dateRange.message}
+          </p>
+        )}
       </div>
-      {errors?.dateRange && (
-        <p className={cn('whitespace-nowrap text-red-500')}>
-          {errors.dateRange.message}
-        </p>
-      )}
     </form>
   );
 };

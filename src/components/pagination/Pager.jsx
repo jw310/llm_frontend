@@ -77,15 +77,16 @@ const Pager = ({
   return (
     <div>
       <nav aria-label='Page navigation'>
-        <ul className='flex flex-wrap'>
+        <ul className={cn('flex flex-wrap')}>
           {/* First page */}
           {totalPages > 1 && (
             <li
-              className={`mr-3 h-7 w-7 cursor-pointer px-2 text-center leading-7 ${
+              className={cn(
+                'mr-3 h-7 w-7 cursor-pointer px-2 text-center leading-7',
                 currentPage === 1
                   ? 'border border-[#5D86AF] bg-[#5D86AF] text-white'
                   : 'hover:bg-gray-100'
-              }`}
+              )}
             >
               <a
                 href='#'
@@ -93,10 +94,10 @@ const Pager = ({
                   e.preventDefault();
                   getPage(1);
                 }}
-                className='block h-full w-full'
+                className={cn('block h-full w-full')}
               >
                 <span aria-hidden='true'>1</span>
-                <span className='sr-only'>First page</span>
+                <span className={cn('sr-only')}>First page</span>
               </a>
             </li>
           )}
@@ -104,14 +105,18 @@ const Pager = ({
           {/* Left ellipsis */}
           {totalPages > centerSize + 2 &&
             currentPage - centerSize / 2 - 1 > 1 && (
-              <li className='mr-3 h-7 w-7 cursor-pointer px-2 text-center leading-7 hover:bg-gray-100'>
+              <li
+                className={cn(
+                  'mr-3 h-7 w-7 cursor-pointer px-2 text-center leading-7 hover:bg-gray-100'
+                )}
+              >
                 <a
                   href='#'
                   onClick={(e) => {
                     e.preventDefault();
                     getPage(currentPage - jumpSize);
                   }}
-                  className='block h-full w-full'
+                  className={cn('block h-full w-full')}
                 >
                   ...
                 </a>
@@ -122,11 +127,12 @@ const Pager = ({
           {centerPages.map((page) => (
             <li
               key={page}
-              className={`mr-3 h-7 w-7 cursor-pointer px-2 text-center leading-7 ${
+              className={cn(
+                'mr-3 h-7 w-7 cursor-pointer px-2 text-center leading-7',
                 page === currentPage
                   ? 'border border-[#5D86AF] bg-[#5D86AF] text-white'
                   : 'hover:bg-gray-100'
-              }`}
+              )}
             >
               <a
                 href='#'
@@ -134,7 +140,7 @@ const Pager = ({
                   e.preventDefault();
                   getPage(page);
                 }}
-                className='block h-full w-full'
+                className={cn('block h-full w-full')}
               >
                 {page}
               </a>
@@ -144,14 +150,18 @@ const Pager = ({
           {/* Right ellipsis */}
           {totalPages > centerSize + 2 &&
             currentPage + centerSize / 2 + 1 < totalPages && (
-              <li className='mr-3 h-7 w-7 cursor-pointer px-2 text-center leading-7 hover:bg-gray-100'>
+              <li
+                className={cn(
+                  'mr-3 h-7 w-7 cursor-pointer px-2 text-center leading-7 hover:bg-gray-100'
+                )}
+              >
                 <a
                   href='#'
                   onClick={(e) => {
                     e.preventDefault();
                     getPage(currentPage + jumpSize);
                   }}
-                  className='block h-full w-full'
+                  className={cn('block h-full w-full')}
                 >
                   ...
                 </a>
@@ -160,11 +170,12 @@ const Pager = ({
 
           {/* Last page */}
           <li
-            className={`mr-3 h-7 w-7 cursor-pointer px-2 text-center leading-7 ${
+            className={cn(
+              'mr-3 h-7 w-7 cursor-pointer px-2 text-center leading-7',
               currentPage === totalPages
                 ? 'border border-[#5D86AF] bg-[#5D86AF] text-white'
                 : 'hover:bg-gray-100'
-            }`}
+            )}
           >
             <a
               href='#'
@@ -172,10 +183,10 @@ const Pager = ({
                 e.preventDefault();
                 getPage(totalPages);
               }}
-              className='block h-full w-full'
+              className={cn('block h-full w-full')}
             >
               <span aria-hidden='true'>{totalPages}</span>
-              <span className='sr-only'>Last page</span>
+              <span className={cn('sr-only')}>Last page</span>
             </a>
           </li>
         </ul>
