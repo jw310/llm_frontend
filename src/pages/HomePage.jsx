@@ -2,6 +2,9 @@ import { useState, useRef } from 'react';
 
 import DatePickerForm from '@/components/form/datePickerForm';
 import PayModal from '@/components/modal/PayModal';
+import TabGroup from '@/components/tab/TabGroup';
+import Tab1Content from '@/components/tab/Tab1Content';
+import Tab2Content from '@/components/tab/Tab2Content';
 
 const checkboxOptions = [
   { id: 'cash', img: 'ic_pay_cash_24', name: '現金' },
@@ -13,6 +16,11 @@ const checkboxOptions = [
   { id: 'other', img: 'ic_pay_other_24', name: '其他' },
 ];
 
+const tabs = [
+  { label: 'A', content: <Tab1Content /> },
+  { label: 'B', content: <Tab2Content /> },
+];
+
 const HomePage = () => {
   const modalRef = useRef();
   const [selected, setSelected] = useState([]);
@@ -20,6 +28,7 @@ const HomePage = () => {
   return (
     <>
       <DatePickerForm />
+      {/* <TabGroup tabs={tabs} /> */}
       {/* <div className='min-h-screen bg-gray-100 p-4'>
         <h3 className='mb-2 text-sm'>Pay Method</h3>
 
