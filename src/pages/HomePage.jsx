@@ -7,6 +7,10 @@ import Tab1Content from '@/components/tab/Tab1Content';
 import Tab2Content from '@/components/tab/Tab2Content';
 import PriceCard from '@/components/card/PriceCard';
 
+const LazyProgressBar = lazy(() => import('@/components/progress/ProgressBar'));
+const LazyProgressCircle = lazy(
+  () => import('@/components/progress/ProgressCircle')
+);
 const LazyLineChart = lazy(() => import('@/components/chart/LineChart'));
 const LazyRadarChart = lazy(() => import('@/components/chart/RadarChart'));
 const LazyDeleteModal = lazy(() => import('@/components/modal/DeleteModal'));
@@ -61,6 +65,8 @@ const HomePage = () => {
   });
 
   const [showDetailModal, setShowDetailModal] = useState(false);
+
+  const progress = '60';
 
   const handleConfirmDeleteClick = async () => {
     setShowDeleteModal((prev) => !prev);
@@ -165,6 +171,18 @@ const HomePage = () => {
         {planList.map((el) => (
           <PriceCard key={el.id} plan={el} />
         ))}
+      </div>
+      <div
+        className={cn(
+          'mt-5 flex h-fit w-full flex-row-reverse items-center justify-center gap-3'
+        )}
+      >
+        <div>
+          <LazyProgressCircle value={progress} strokeColor='#53B77A' />
+        </div>
+        <div className='w-full'>
+          <LazyProgressBar value={progress} barColor='rgba(83, 183, 122, 1)' />
+        </div>
       </div>
       {/* <TabGroup tabs={tabs} /> */}
       {/* <div className='min-h-screen bg-gray-100 p-4'>
