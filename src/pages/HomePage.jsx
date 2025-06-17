@@ -5,11 +5,14 @@ import PayModal from '@/components/modal/PayModal';
 import TabGroup from '@/components/tab/TabGroup';
 import Tab1Content from '@/components/tab/Tab1Content';
 import Tab2Content from '@/components/tab/Tab2Content';
+import PriceCard from '@/components/card/PriceCard';
 
 const LazyLineChart = lazy(() => import('@/components/chart/LineChart'));
 const LazyRadarChart = lazy(() => import('@/components/chart/RadarChart'));
 const LazyDeleteModal = lazy(() => import('@/components/modal/DeleteModal'));
 const LazyDetailModal = lazy(() => import('@/components/modal/DetailModal'));
+
+import { cn } from '@/utils/clsx';
 
 const checkboxOptions = [
   { id: 'cash', img: 'ic_pay_cash_24', name: '現金' },
@@ -24,6 +27,27 @@ const checkboxOptions = [
 const tabs = [
   { label: 'A', content: <Tab1Content /> },
   { label: 'B', content: <Tab2Content /> },
+];
+
+const planList = [
+  {
+    id: '24-month',
+    title: 'twoYear',
+    NTDPrice: '60',
+    USDPrice: '2.00',
+  },
+  {
+    id: '12-month',
+    title: 'oneYear',
+    NTDPrice: '90',
+    USDPrice: '3.00',
+  },
+  {
+    id: '1-month',
+    title: 'monthly',
+    NTDPrice: '857',
+    USDPrice: '28.50',
+  },
 ];
 
 const HomePage = () => {
@@ -104,9 +128,9 @@ const HomePage = () => {
         />
       )}
       <button
-        className={
+        className={cn(
           'mt-1 w-fit cursor-pointer self-end rounded bg-blue-600 p-2 text-base text-white shadow-md hover:bg-yellow-500 hover:text-black'
-        }
+        )}
         onClick={() => setShowDetailModal((prev) => !prev)}
       >
         {'DetailModal'}
@@ -119,9 +143,9 @@ const HomePage = () => {
         />
       )}
       <button
-        className={
+        className={cn(
           'mt-1 w-fit cursor-pointer self-end rounded bg-blue-600 p-2 text-base text-white shadow-md hover:bg-yellow-500 hover:text-black'
-        }
+        )}
         onClick={() => setShowDeleteModal((prev) => !prev)}
       >
         {'DeleteModal'}
@@ -132,6 +156,16 @@ const HomePage = () => {
       <Suspense fallback={<h2>Dynamic Loading...</h2>}>
         <LazyRadarChart isExecute={true} />
       </Suspense>
+      <div
+        className={cn(
+          'mt-5 flex h-fit w-full flex-col items-center justify-center gap-3',
+          'lg:flex-3 lg:flex-row-reverse lg:gap-4'
+        )}
+      >
+        {planList.map((el) => (
+          <PriceCard key={el.id} plan={el} />
+        ))}
+      </div>
       {/* <TabGroup tabs={tabs} /> */}
       {/* <div className='min-h-screen bg-gray-100 p-4'>
         <h3 className='mb-2 text-sm'>Pay Method</h3>
