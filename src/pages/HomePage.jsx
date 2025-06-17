@@ -5,11 +5,11 @@ import PayModal from '@/components/modal/PayModal';
 import TabGroup from '@/components/tab/TabGroup';
 import Tab1Content from '@/components/tab/Tab1Content';
 import Tab2Content from '@/components/tab/Tab2Content';
-import DeleteModal from '@/components/modal/DeleteModal';
-import DetailModal from '@/components/modal/DetailModal';
 
 const LazyLineChart = lazy(() => import('@/components/chart/LineChart'));
-const RadarChart = lazy(() => import('@/components/chart/RadarChart'));
+const LazyRadarChart = lazy(() => import('@/components/chart/RadarChart'));
+const LazyDeleteModal = lazy(() => import('@/components/modal/DeleteModal'));
+const LazyDetailModal = lazy(() => import('@/components/modal/DetailModal'));
 
 const checkboxOptions = [
   { id: 'cash', img: 'ic_pay_cash_24', name: '現金' },
@@ -91,7 +91,7 @@ const HomePage = () => {
     <>
       <DatePickerForm />
       {showDeleteModal && (
-        <DeleteModal
+        <LazyDeleteModal
           onCloseClick={() =>
             handleCloseClick(
               'deleteModal',
@@ -112,7 +112,7 @@ const HomePage = () => {
         {'DetailModal'}
       </button>
       {showDetailModal && (
-        <DetailModal
+        <LazyDetailModal
           onCloseClick={() => handleCloseClick('detailModal')}
           onConfirmClick={handleConfirmClick}
           // selectedData={selectedDeleteTheme}
@@ -130,7 +130,7 @@ const HomePage = () => {
         <LazyLineChart isExecute={true} />
       </Suspense>
       <Suspense fallback={<h2>Dynamic Loading...</h2>}>
-        <RadarChart isExecute={true} />
+        <LazyRadarChart isExecute={true} />
       </Suspense>
       {/* <TabGroup tabs={tabs} /> */}
       {/* <div className='min-h-screen bg-gray-100 p-4'>

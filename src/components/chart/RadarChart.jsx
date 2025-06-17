@@ -153,7 +153,7 @@ export default function RadarChart({ isExecute }) {
 
   return (
     <div className='h-[350px] w-full'>
-      <Radar data={chartData} options={chartOptions} redraw={true} />
+      <Radar data={chartData} options={chartOptions} redraw={false} />
     </div>
   );
 }

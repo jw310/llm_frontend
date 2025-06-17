@@ -1,7 +1,10 @@
 import { useContext, useRef, useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 
-import { PlusCircleIcon } from '@heroicons/react/24/outline';
+import {
+  PlusCircleIcon,
+  ArrowUpOnSquareIcon,
+} from '@heroicons/react/24/outline';
 import { XMarkIcon } from '@heroicons/react/20/solid';
 import pdfIcon from '@/assets/pdf.png';
 import Alert from '../modal/Alert';
@@ -245,7 +248,7 @@ function FileUploadBtn({
         onClick={handleUploadClick}
         className='flex h-fit w-fit cursor-pointer items-center justify-between gap-2 rounded-md bg-indigo-300 px-7 py-2 text-lg hover:bg-indigo-600 hover:text-white'
       >
-        <PlusCircleIcon className='h-6 w-6' />
+        <ArrowUpOnSquareIcon className='h-6 w-6' />
         檔案上傳
       </button>
       {showAlert.isShow && (

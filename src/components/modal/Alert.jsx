@@ -1,7 +1,7 @@
+import { CheckIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
+
 import SuccessIcon from '@/assets/success-icon.png';
 import ErrorIcon from '@/assets/error-icon.png';
-
-import { CheckIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
 import { cn } from '@/utils/clsx.js';
 
@@ -25,7 +25,8 @@ function Alert({ type, message }) {
     <div
       className={cn(
         'absolute top-8 left-1/2 flex -translate-x-1/2 items-center justify-center p-[10px]',
-        `gap-3 rounded text-2xl font-bold ${alertStyle}`
+        'gap-3 rounded text-2xl font-bold',
+        alertStyle
       )}
     >
       {icon}

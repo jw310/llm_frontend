@@ -162,7 +162,7 @@ function Navbar() {
           onClick={handleLogout}
           className={cn(
             'flex h-14 w-full items-center justify-start gap-5 px-4',
-            'hover:animate-shake hover:bg-opacity-5 hover:bg-violet-500'
+            'hover:animate-shake hover:bg-opacity-5 hover:bg-gray-300'
           )}
         >
           <ArrowLeftStartOnRectangleIcon
