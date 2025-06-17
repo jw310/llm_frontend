@@ -62,10 +62,10 @@ export default function LineChart({ isExecute }) {
         // backgroundColor: 'rgba(221, 169, 35, 1)',
         backgroundColor: ({ chart: { ctx } }) => {
           // More config for your gradient
-          const bg = ctx.createLinearGradient(0, 0, 0, 350);
-          bg.addColorStop(0, 'rgba(221, 169, 35, 1)');
-          // bg.addColorStop(0.5, 'rgba(221, 169, 35, 0.5)');
-          bg.addColorStop(1, 'rgba(221, 169, 35, 0)');
+          const gradient = ctx.createLinearGradient(0, 0, 0, 350);
+          gradient.addColorStop(0, 'rgba(221, 169, 35, 1)');
+          // // bg.addColorStop(0.5, 'rgba(221, 169, 35, 0.5)');
+          gradient.addColorStop(1, 'rgba(221, 169, 35, 0)');
           // ctx.fillStyle = bg;
           // let x0 = 100;
           // let y0 = 100;
@@ -73,10 +73,10 @@ export default function LineChart({ isExecute }) {
           // let h = 300;
           // ctx.fillRect(x0, y0, w, h);
 
-          return bg;
+          return gradient;
         },
         fill: true, // backgroundColor fill
-        label: 'My First Dataset',
+        label: 'Line Chart',
         data: dataArray,
         borderColor: [
           'rgba(255, 99, 132, 1)',

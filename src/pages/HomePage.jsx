@@ -7,7 +7,9 @@ import Tab1Content from '@/components/tab/Tab1Content';
 import Tab2Content from '@/components/tab/Tab2Content';
 import DeleteModal from '@/components/modal/DeleteModal';
 import DetailModal from '@/components/modal/DetailModal';
-import LineChart from '@/components/chart/LineChart';
+
+const LazyLineChart = lazy(() => import('@/components/chart/LineChart'));
+const RadarChart = lazy(() => import('@/components/chart/RadarChart'));
 
 const checkboxOptions = [
   { id: 'cash', img: 'ic_pay_cash_24', name: '現金' },
@@ -23,8 +25,6 @@ const tabs = [
   { label: 'A', content: <Tab1Content /> },
   { label: 'B', content: <Tab2Content /> },
 ];
-
-const LazyLineChart = lazy(() => import('@/components/chart/LineChart'));
 
 const HomePage = () => {
   const modalRef = useRef();
@@ -128,6 +128,9 @@ const HomePage = () => {
       </button>
       <Suspense fallback={<h2>Dynamic Loading...</h2>}>
         <LazyLineChart isExecute={true} />
+      </Suspense>
+      <Suspense fallback={<h2>Dynamic Loading...</h2>}>
+        <RadarChart isExecute={true} />
       </Suspense>
       {/* <TabGroup tabs={tabs} /> */}
       {/* <div className='min-h-screen bg-gray-100 p-4'>
