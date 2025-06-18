@@ -37,18 +37,21 @@ const planList = [
   {
     id: '24-month',
     title: 'twoYear',
+    bestPrice: true,
     NTDPrice: '60',
     USDPrice: '2.00',
   },
   {
     id: '12-month',
     title: 'oneYear',
+    bestPrice: false,
     NTDPrice: '90',
     USDPrice: '3.00',
   },
   {
     id: '1-month',
     title: 'monthly',
+    bestPrice: false,
     NTDPrice: '857',
     USDPrice: '28.50',
   },

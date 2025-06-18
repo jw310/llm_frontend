@@ -3,6 +3,7 @@ import I18nWrapper from '@/components/I18nWrapper';
 
 import ProtectedRoute from '@/router/ProtectedRoute.jsx';
 import DemoPage from '@/pages/DemoPage.jsx';
+import SvgPage from '@/pages/SvgPage.jsx';
 import LoginPage from '@/pages/LoginPage.jsx';
 import ErrorPage from '@/pages/ErrorPage.jsx';
 import Layout from '@/pages/Layout.jsx';
@@ -26,8 +27,8 @@ import PdfViewerPage from '@/pages/PdfPage';
 //     errorElement: <ErrorPage />,
 //   },
 //   // {
-//   //   path: "/pdf",
-//   //   Component: PdfViewerPage,
+//   //   path: "/svg",
+//   //   Component: SvgPage,
 //   // },
 //   {
 //     path: "/unauthorized",
@@ -125,10 +126,11 @@ const router = createBrowserRouter([
         Component: LoginPage,
         errorElement: <ErrorPage />,
       },
-      // {
-      //   path: "/pdf",
-      //   Component: PdfViewerPage,
-      // },
+      {
+        path: 'svg',
+        Component: SvgPage,
+        errorElement: <ErrorPage />,
+      },
       {
         path: 'unauthorized',
         Component: <ErrorPage />,

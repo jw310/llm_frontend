@@ -15,10 +15,10 @@ export default function PriceCard({ plan }) {
       className={cn(
         'relative flex h-fit w-full flex-col justify-between gap-4 rounded-md border-[3px] px-5 py-10',
         'lg:h-[400px] lg:max-w-[288px] lg:flex-1',
-        plan.id === '24-month' ? 'border-yellow-500' : 'border-gray-700'
+        plan.bestPrice ? 'border-yellow-500' : 'border-gray-700'
       )}
     >
-      {plan.id === '24-month' && (
+      {plan.bestPrice && (
         <div
           className={cn(
             'absolute -top-[1px] -left-[1px] flex h-7 w-[140px] items-center justify-center rounded-br-md bg-yellow-500 text-sm font-medium text-gray-800'
