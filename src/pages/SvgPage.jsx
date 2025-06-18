@@ -61,14 +61,16 @@ function SvgPage() {
         </div>
       </div>
       {/* Interactive */}
-      <div className='rounded-lg bg-white/10 p-6 backdrop-blur-sm'>
-        <h2 className='mb-4 text-xl font-semibold text-black'>Interactive</h2>
-        <div className='flex flex-col items-center space-y-4'>
+      <div className={cn('rounded-lg bg-white/10 p-6 backdrop-blur-sm')}>
+        <h2 className={cn('mb-4 text-xl font-semibold text-black')}>
+          Interactive
+        </h2>
+        <div className={cn('flex flex-col items-center space-y-4')}>
           <svg
             width='120'
             height='120'
             viewBox='0 0 120 120'
-            className='cursor-pointer'
+            className={cn('cursor-pointer')}
             onClick={() => setIsAnimating(!isAnimating)}
           >
             <rect
@@ -78,14 +80,17 @@ function SvgPage() {
               height='60'
               fill='#ef4444'
               rx='10'
-              className={`origin-[60px_60px] transform transition-all duration-500 ${
+              className={cn(
+                'origin-[60px_60px] transform transition-all duration-500',
                 isAnimating ? 'scale-125 rotate-45' : 'scale-100 rotate-0'
-              }`}
+              )}
             />
           </svg>
           <button
             onClick={() => setIsAnimating(!isAnimating)}
-            className='rounded-lg bg-red-500 px-4 py-2 text-white transition-colors hover:bg-red-600'
+            className={cn(
+              'rounded-lg bg-red-500 px-4 py-2 text-white transition-colors hover:bg-red-600'
+            )}
           >
             {isAnimating ? 'Start' : 'Stop'}
           </button>

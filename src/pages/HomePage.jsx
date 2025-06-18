@@ -6,6 +6,7 @@ import TabGroup from '@/components/tab/TabGroup';
 import Tab1Content from '@/components/tab/Tab1Content';
 import Tab2Content from '@/components/tab/Tab2Content';
 import PriceCard from '@/components/card/PriceCard';
+import Timeline from '@/components/timeline/Timeline';
 
 const LazyProgressBar = lazy(() => import('@/components/progress/ProgressBar'));
 const LazyProgressCircle = lazy(
@@ -175,7 +176,7 @@ const HomePage = () => {
           <PriceCard key={el.id} plan={el} />
         ))}
       </div>
-      <div
+      {/* <div
         className={cn(
           'mt-5 flex h-fit w-full flex-row-reverse items-center justify-center gap-3'
         )}
@@ -186,9 +187,12 @@ const HomePage = () => {
         <div className='w-full'>
           <LazyProgressBar value={progress} barColor='rgba(83, 183, 122, 1)' />
         </div>
+      </div> */}
+      <div className={cn('mt-10')}>
+        <Timeline />
       </div>
       {/* <TabGroup tabs={tabs} /> */}
-      {/* <div className='min-h-screen bg-gray-100 p-4'>
+      {/* <div className='h-fit bg-gray-100 p-4'>
         <h3 className='mb-2 text-sm'>Pay Method</h3>
 
         <button
