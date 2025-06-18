@@ -189,7 +189,7 @@ const HomePage = () => {
         </div>
       </div> */}
       <div className={cn('mt-10')}>
-        <Timeline />
+        <Timeline vertical={true} />
       </div>
       {/* <TabGroup tabs={tabs} /> */}
       {/* <div className='h-fit bg-gray-100 p-4'>
