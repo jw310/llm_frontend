@@ -6,7 +6,8 @@ import TabGroup from '@/components/tab/TabGroup';
 import Tab1Content from '@/components/tab/Tab1Content';
 import Tab2Content from '@/components/tab/Tab2Content';
 import PriceCard from '@/components/card/PriceCard';
-import Timeline from '@/components/timeline/Timeline';
+import PrintBtn from '@/components/print/PrintBtn';
+import Print from '@/components/print/Print';
 
 const LazyProgressBar = lazy(() => import('@/components/progress/ProgressBar'));
 const LazyProgressCircle = lazy(
@@ -60,6 +61,7 @@ const planList = [
 
 const HomePage = () => {
   const modalRef = useRef();
+  const printRef = useRef();
   const [selected, setSelected] = useState([]);
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -176,21 +178,11 @@ const HomePage = () => {
           <PriceCard key={el.id} plan={el} />
         ))}
       </div>
-      {/* <div
-        className={cn(
-          'mt-5 flex h-fit w-full flex-row-reverse items-center justify-center gap-3'
-        )}
-      >
-        <div>
-          <LazyProgressCircle value={progress} strokeColor='#53B77A' />
-        </div>
-        <div className='w-full'>
-          <LazyProgressBar value={progress} barColor='rgba(83, 183, 122, 1)' />
-        </div>
+      {/* <PrintBtn documentTitle='print' printContent={printRef} />
+      <div ref={printRef}>
+        <div className='hidden print:block'>僅列印時顯示</div>
+        <div className='print:hidden'>僅畫面上顯示</div>
       </div> */}
-      <div className={cn('mt-10')}>
-        <Timeline vertical={true} />
-      </div>
       {/* <TabGroup tabs={tabs} /> */}
       {/* <div className='h-fit bg-gray-100 p-4'>
         <h3 className='mb-2 text-sm'>Pay Method</h3>

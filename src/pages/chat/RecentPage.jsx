@@ -1,11 +1,12 @@
 import { useState } from 'react';
 
 import Table from '@/components/table/Table';
+// import Table from '@/components/table/Table';
 import Pagination from '@/components/pagination/Pagination';
 
 import { cn } from '@/utils/clsx';
 function RecentPage() {
-  const tableHead = ['Data', 'Status', 'Title', ''];
+  const tableHead = ['Date', 'Status', 'Title', 'Function'];
   const tableData = [
     { date: '2025-06-01', state: 1, title: 'test' },
     { date: '2025-06-01', state: 2, title: 'test2' },
