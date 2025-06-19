@@ -15,6 +15,7 @@
 
   --shadow-3xl: 0 32px 0 #fff, -32px 0 #fff;
 
+  --shadow-red: -24px 0 #FFF, 24px 0 #FFF;
 
   --animate-wiggle: wiggle 0.5s ease-out infinite;
   @keyframes wiggle {
@@ -52,6 +53,22 @@
     100% {
       background-color: #fff2;
       box-shadow: 32px 0 #fff, -32px 0 #fff2;
+    }
+  }
+
+  --animate-shadow-pulse: shadow-pulse 2s linear infinite;
+  @keyframes shadow-pulse {
+    0% {
+      background-color: #FF3D00;
+      box-shadow: 18px 0 #FF3D00, -18px 0 #fff;
+    }
+    50% {
+      background-color: #fff;
+      box-shadow: 18px 0 #FF3D00, -18px 0 #FF3D00;
+    }
+    100% {
+      background-color: #FF3D00;
+      box-shadow: 18px 0 #fff, -18px 0 #FF3D00;
     }
   }
 

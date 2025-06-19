@@ -7,12 +7,22 @@ export function Spinner() {
         'fixed inset-0 z-10 flex items-center justify-center bg-black opacity-60'
       )}
     >
-      <span className='shadow-3xl animate-flash relative h-4 w-4 rounded-full bg-white'></span>
+      <span className='shadow-3xl animate-flash relative inline-block h-4 w-4 rounded-full bg-white'></span>
     </div>
   );
 }
 
 export function SmallSpinner() {
+  return (
+    <span
+      className={cn(
+        'shadow-3xl animate-shadow-pulse relative ml-3 inline-block h-3 w-3 rounded-full bg-white'
+      )}
+    ></span>
+  );
+}
+
+export function RotateSpinner() {
   return (
     <span
       className={cn(

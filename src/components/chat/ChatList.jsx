@@ -3,6 +3,7 @@ import { useRef, useEffect } from 'react';
 import AssistantMessage from './AssistantMessage';
 import UserMessage from './UserMessage';
 import PendingMessage from './PendingMessage';
+import { SmallSpinner } from '@/components/loader/Spinner';
 
 import { cn } from '@/utils/clsx';
 
@@ -31,7 +32,7 @@ function ChatList({ messages }) {
           {(message.role === 'assistant' || message.role === 'ai') && (
             <AssistantMessage content={message.content} />
           )}
-          {message.role === 'pending' && <PendingMessage />}
+          {message.role === 'pending' && <SmallSpinner />}
         </div>
       ))}
       <div className={cn('pt-4')} ref={scrollRef} />
