@@ -8,3 +8,7 @@ export default function toThousands(num) {
   const re = /(\d{1,3})(?=(\d{3})+$)/g;
   return arr[0].replace(re, '$1,') + (arr.length == 2 ? '.' + arr[1] : '');
 }
+
+// const toThousands = (num) => {
+//   return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+// };

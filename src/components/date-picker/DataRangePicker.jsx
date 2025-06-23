@@ -35,6 +35,20 @@ import { cn } from '@/utils/clsx';
 //   );
 // };
 
+// 24 hours
+const TIME_OPTIONS = Array.from(
+  { length: 24 },
+  (_, i) => String(i).padStart(2, '0') + ':00'
+);
+
+// 30 minutes
+// const TIME_OPTIONS = Array.from({ length: 48 }, (_, i) =>
+//   dayjs()
+//     .startOf('day')
+//     .add(i * 30, 'minute')
+//     .format('HH:mm')
+// );
+
 const DataRangePicker = ({
   onChange,
   value = { from: undefined, to: undefined },
@@ -117,7 +131,7 @@ const DataRangePicker = ({
           )}
         >
           <div className={cn('space-y-2')}>
-            <div className={cn('flex flex-col justify-center gap-2')}>
+            <div className={cn('flex justify-center gap-2')}>
               <DayPicker
                 mode='range'
                 selected={value}
@@ -143,7 +157,7 @@ const DataRangePicker = ({
                 }
               />
               <div className={cn('flex gap-4')}>
-                <div>
+                {/* <div>
                   <label className={cn('text-sm')}>From：</label>
                   <input
                     type='time'
@@ -160,6 +174,49 @@ const DataRangePicker = ({
                     value={timeTo}
                     onChange={(e) => setTimeTo(e.target.value)}
                   />
+                </div> */}
+                {/* 時間欄 From */}
+                <div>
+                  <label className='text-sm font-medium text-gray-700'>
+                    From：
+                  </label>
+                  <div className='mt-1 max-h-[260px] w-[80px] overflow-y-auto rounded-md border'>
+                    {TIME_OPTIONS.map((time) => (
+                      <div
+                        key={time}
+                        onClick={() => setTimeFrom(time)}
+                        className={cn(
+                          'cursor-pointer px-3 py-1 text-sm hover:bg-blue-100',
+                          timeFrom === time &&
+                            'bg-blue-500 font-semibold text-white'
+                        )}
+                      >
+                        {time}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* 時間欄 To */}
+                <div>
+                  <label className='text-sm font-medium text-gray-700'>
+                    To：
+                  </label>
+                  <div className='mt-1 max-h-[260px] w-[80px] overflow-y-auto rounded-md border'>
+                    {TIME_OPTIONS.map((time) => (
+                      <div
+                        key={time}
+                        onClick={() => setTimeTo(time)}
+                        className={cn(
+                          'cursor-pointer px-3 py-1 text-sm hover:bg-blue-100',
+                          timeTo === time &&
+                            'bg-blue-500 font-semibold text-white'
+                        )}
+                      >
+                        {time}
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>

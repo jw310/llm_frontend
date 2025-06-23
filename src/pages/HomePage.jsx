@@ -8,6 +8,7 @@ import Tab2Content from '@/components/tab/Tab2Content';
 import PriceCard from '@/components/card/PriceCard';
 import PrintBtn from '@/components/print/PrintBtn';
 import Print from '@/components/print/Print';
+import Countdown from '@/components/Countdown';
 
 const LazyProgressBar = lazy(() => import('@/components/progress/ProgressBar'));
 const LazyProgressCircle = lazy(
@@ -62,6 +63,9 @@ const planList = [
 const HomePage = () => {
   const modalRef = useRef();
   const printRef = useRef();
+
+  const counterObserverRef = useRef(null);
+
   const [selected, setSelected] = useState([]);
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
@@ -211,6 +215,9 @@ const HomePage = () => {
           onChange={setSelected}
         />
       </div> */}
+      <div className={cn('mt-[300px]')}>
+        <Countdown counterObserverRef={counterObserverRef} />
+      </div>
     </>
   );
 };
