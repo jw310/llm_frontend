@@ -1,5 +1,5 @@
-import { useContext } from 'react';
-import { NavLink, useNavigate } from 'react-router';
+import { useState, useContext, useRef } from 'react';
+import { NavLink, useNavigate, useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -31,11 +31,19 @@ function filterNavItems(items, userRole) {
   });
 }
 
+function extractPath(url) {
+  const parts = url.split('/');
+  return parts.length > 1 ? `/${parts[2]}` : '';
+}
+
 function Navbar() {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  // const pathname = useLocation().pathname;
+  const pathname = useLocation().pathname;
+
   // const [activeNavLink, setIsActiveNavLink] = useState(extractPath(pathname));
+
+  console.log(extractPath(pathname));
 
   const { currentUser, logout } = useContext(AuthContext);
 
@@ -133,8 +141,9 @@ function Navbar() {
                 </LocaleNavLink>
                 {item.subLinks && (
                   <ul
-                    // className={cn('flex w-full flex-col overflow-hidden',
-                    //   `activeNavLink === extractPath(item.path) ? 'h-fit' : 'h-0'`
+                    // className={cn(
+                    //   'flex w-full flex-col overflow-hidden',
+                    //   pathname === item.path ? 'h-fit' : 'h-0'
                     // )}
                     className={cn('flex w-full flex-col overflow-hidden pl-5')}
                   >

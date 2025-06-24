@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import Language from '@/components/modal/Language';
+import Dropdown from '@/components/dropdowns/Dropdown';
 import { SmallSpinner } from '@/components/loader/Spinner.jsx';
 
 import { AuthContext } from '@/context/auth';
@@ -25,6 +26,7 @@ function Header() {
 
   return (
     <header className={cn('flex h-fit w-full items-center justify-end p-3')}>
+      <Dropdown />
       <Language languages={languages} locale={i18n.language} />
       <div className={cn('flex items-center gap-2')}>
         <div className={cn('h-12 w-12 overflow-hidden rounded-full')}>

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap");
+
 /* setting color e.g. bg-mint-500, text-mint-500, border-mint-500, background-color: var(--color-mint-500) */
 @theme {
   --color-mint-500: oklch(0.72 0.11 178);
@@ -5,8 +7,8 @@
   --color-red-100: oklch(0.936 0.032 17.717);
   --color-red-200: oklch(0.885 0.062 18.334);
 
-  --font-sans: 'Noto Sans TC', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
-  --font-inter:'Inter', system-ui, sans-serif,
+  --font-sans: 'Noto Sans TC', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji";
+  --font-inter:'Inter', system-ui, sans-serif;
   --font-poppins: Poppins, sans-serif;
 
   --shadow-2xs: 0 1px rgb(0 0 0 / 0.05);
