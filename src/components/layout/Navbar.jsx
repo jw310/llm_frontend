@@ -1,4 +1,4 @@
-import { useState, useContext, useRef } from 'react';
+import { useState, useContext } from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router';
 import { useTranslation } from 'react-i18next';
 
@@ -6,6 +6,7 @@ import {
   Squares2X2Icon,
   ChatBubbleLeftRightIcon,
   UserIcon,
+  ChevronDownIcon,
   DocumentCheckIcon,
   ShieldCheckIcon,
   Cog6ToothIcon,
@@ -14,6 +15,7 @@ import {
 
 import { AuthContext } from '@/context/auth';
 import { cn } from '@/utils/clsx';
+import { extractPathname } from '@/utils/index';
 import LocaleNavLink from '@/plugins/LocaleNavLink';
 
 // 從權限篩選出可用的導覽項
@@ -31,19 +33,18 @@ function filterNavItems(items, userRole) {
   });
 }
 
-function extractPath(url) {
-  const parts = url.split('/');
-  return parts.length > 1 ? `/${parts[2]}` : '';
-}
+// function extractPath(url) {
+//   const parts = url.split('/');
+//   return parts.length > 1 ? `/${parts[1]}` : '';
+// }
 
 function Navbar() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const pathname = useLocation().pathname;
-
-  // const [activeNavLink, setIsActiveNavLink] = useState(extractPath(pathname));
-
-  console.log(extractPath(pathname));
+  const [activeNavLink, setIsActiveNavLink] = useState(
+    extractPathname(pathname)
+  );
 
   const { currentUser, logout } = useContext(AuthContext);
 
@@ -128,6 +129,7 @@ function Navbar() {
               >
                 <LocaleNavLink
                   to={item.path}
+                  onClick={() => setIsActiveNavLink(extractPathname(item.path))}
                   className={({ isActive }) =>
                     isActive
                       ? 'flex h-14 w-full items-center justify-start gap-5 px-4 font-medium text-indigo-500'
@@ -138,14 +140,21 @@ function Navbar() {
                     <item.icon className={cn('inline-block h-6 w-6')} />
                   )}
                   {item.name}
+                  {item.subLinks && (
+                    <ChevronDownIcon
+                      className={cn('ml-10 inline-block h-5 w-5')}
+                    />
+                  )}
                 </LocaleNavLink>
                 {item.subLinks && (
                   <ul
-                    // className={cn(
-                    //   'flex w-full flex-col overflow-hidden',
-                    //   pathname === item.path ? 'h-fit' : 'h-0'
-                    // )}
-                    className={cn('flex w-full flex-col overflow-hidden pl-5')}
+                    className={cn(
+                      'flex w-full flex-col overflow-hidden',
+                      activeNavLink === extractPathname(item.path)
+                        ? 'h-fit'
+                        : 'h-0'
+                    )}
+                    // className={cn('flex w-full flex-col overflow-hidden pl-5')}
                   >
                     {item.subLinks.map((subItem) => (
                       <li key={subItem.id} className={cn('h-14 w-full')}>
