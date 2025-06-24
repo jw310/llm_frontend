@@ -126,25 +126,121 @@ function LoginPage() {
   return (
     <div
       className={cn(
-        'flex h-screen items-center justify-center',
-        'bg-linear-65 from-[#3498db] to-[#2ecc71]'
+        'font-noto-sans-tc relative mx-auto flex h-screen justify-center overflow-hidden bg-[#E5EDF9]'
+        // 'bg-linear-65 from-[#3498db] to-[#2ecc71]'
       )}
     >
-      <div className={cn('flex flex-col items-center justify-center gap-8')}>
+      {/* 圓圈背景 */}
+      <div
+        className={cn(
+          'absolute top-[160px] right-[240px] h-[300px] w-[300px] translate-x-32 -translate-y-32 transform rounded-full opacity-30',
+          'bg-gradient-to-r from-[#C8E1FF] from-[12.1%] to-[#FFF] to-[85.32%]'
+        )}
+      ></div>
+      <div
+        className={cn(
+          'absolute top-[330px] left-[212px] h-[353px] w-[353px] -translate-x-24 translate-y-24 transform rounded-full bg-indigo-200 opacity-30'
+        )}
+      ></div>
+      <div
+        className={cn(
+          'absolute right-[188px] bottom-10 h-[353px] w-[353px] rounded-full',
+          'to-[#B0D3FB bg-gradient-to-r from-[#C9DFF9] from-[13.22%] via-[#E5EDF9] via-[62.98%] to-[86.51%]'
+        )}
+      ></div>
+
+      <div
+        className={cn(
+          'absolute right-[188px] bottom-10 h-[353px] w-[353px] rounded-full',
+          'to-[#B0D3FB bg-gradient-to-r from-[#C9DFF9] from-[13.22%] via-[#E5EDF9] via-[62.98%] to-[86.51%]'
+        )}
+      ></div>
+      {/* 輸入框 */}
+      <div
+        className={cn(
+          'relative z-10 mt-[125px] flex h-[510px] w-[795px] flex-col items-center justify-center',
+          'rounded-2xl bg-white opacity-90 shadow-lg',
+          'border-t-42 border-[#F2F6FC]',
+          'border-b-8 border-[#F2F6FC]',
+          'border-l-8 border-[#F2F6FC]',
+          'border-r-8 border-[#F2F6FC]'
+        )}
+      >
+        <div
+          className={cn(
+            'absolute -top-[20px] left-10 h-2 w-2 rounded-full bg-[#EAEFF6]',
+            'before:absolute before:top-0 before:-left-6 before:h-2 before:w-2',
+            "before:rounded-full before:bg-[#EAEFF6] before:content-['']",
+            'after:absolute after:top-0 after:left-6 after:h-2 after:w-2',
+            "after:rounded-full after:bg-[#EAEFF6] after:content-['']"
+          )}
+        ></div>
+        <div
+          className={cn(
+            'absolute -top-[28px] left-[160px] h-5 w-[475px] bg-white'
+          )}
+        ></div>
+
+        <div className={cn('absolute top-0 left-[700px] h-full w-full')}>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            width='79'
+            height='153'
+            viewBox='0 0 79 153'
+            fill='none'
+          >
+            <path
+              d='M73 0C76.3137 1.61064e-07 79 2.68629 79 6V152.362C31.982 127.172 0 77.5721 0 20.5C0 14.4385 0.36327 8.46156 1.06445 2.58887C2.1474 1.02492 3.95369 9.94617e-08 6 0H73Z'
+              fill='url(#paint0_linear_194_2073)'
+            />
+            <defs>
+              <linearGradient
+                id='paint0_linear_194_2073'
+                x1='13'
+                y1='75.9995'
+                x2='74.9996'
+                y2='6.99956'
+                gradientUnits='userSpaceOnUse'
+              >
+                <stop stop-color='#C9E1FF' />
+                <stop offset='1' stop-color='#D9EAFF' />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+
+        <div className={cn('absolute top-[262px] left-0 h-full w-full')}>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            width='140'
+            height='198'
+            viewBox='0 0 140 198'
+            fill='none'
+          >
+            <path
+              d='M0 0.78125C79.9642 17.5955 140 88.5355 140 173.5C140 181.813 139.424 189.993 138.312 198H8C3.58172 198 0 194.418 0 190V0.78125Z'
+              fill='#B7D3F3'
+              fill-opacity='0.5'
+            />
+          </svg>
+        </div>
         <h1
           className={cn(
-            'text-center text-2xl leading-[34.5px] font-bold whitespace-pre-wrap text-white'
+            'mb-8 text-center text-2xl leading-[34.5px] font-medium whitespace-pre-wrap'
           )}
         >
           {t('loginPage.title')}
         </h1>
+
         <form
           onSubmit={handleSubmit(onSubmit)}
           className={cn('flex h-fit w-[594px] flex-col items-center gap-6')}
         >
           <div className={cn('flex h-fit w-full flex-col gap-2')}>
             <div className={cn('flex flex-col items-start gap-1')}>
-              <label className={cn('mb-1 font-medium text-white')}>
+              <label
+                className={cn('mb-1 block text-sm font-medium text-gray-700')}
+              >
                 *{t('loginPage.username')}：
               </label>
               <input
@@ -157,7 +253,7 @@ function LoginPage() {
                 type='text'
                 placeholder={t('loginPage.usernamePlaceholder')}
                 className={cn(
-                  'focus:none border-grey-600 bg-grey-700 h-11 w-full rounded border px-3 py-[10px] text-white focus:outline-none'
+                  'w-full rounded-lg border border-transparent bg-gray-100 px-4 py-2 focus:ring-2 focus:ring-blue-300 focus:outline-none'
                 )}
               />
               {errors?.username?.type && (
@@ -167,7 +263,9 @@ function LoginPage() {
               )}
             </div>
             <div className={cn('flex flex-col items-start gap-1')}>
-              <label className={cn('mb-1 font-medium text-white')}>
+              <label
+                className={cn('mb-1 block text-sm font-medium text-gray-700')}
+              >
                 *{t('loginPage.password')}：
               </label>
               <input
@@ -180,7 +278,7 @@ function LoginPage() {
                 placeholder={t('loginPage.passwordPlaceholder')}
                 type='password'
                 className={cn(
-                  'focus:none border-grey-600 bg-grey-700 h-11 w-full rounded border px-3 py-[10px] text-white focus:outline-none'
+                  'w-full rounded-lg border border-transparent bg-gray-100 px-4 py-2 focus:ring-2 focus:ring-blue-300 focus:outline-none'
                 )}
               />
               {errors?.password?.type && (
@@ -194,8 +292,8 @@ function LoginPage() {
           <button
             type='submit'
             className={cn(
-              'h-fit w-fit rounded bg-gray-100 p-[10px] text-xl font-medium text-gray-600',
-              'cursor-pointer hover:bg-gray-300 hover:text-gray-600'
+              'flex w-fit rounded-xl bg-[#e0e9f6] px-6 py-2 text-sm font-medium text-gray-700 shadow-sm transition-all hover:bg-[#d5e3f4]',
+              'cursor-pointer shadow-xl hover:bg-gray-300 hover:text-gray-600'
             )}
           >
             {t('loginPage.submit')}

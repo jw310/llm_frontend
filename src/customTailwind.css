@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap");
-
 /* setting color e.g. bg-mint-500, text-mint-500, border-mint-500, background-color: var(--color-mint-500) */
 @theme {
   --color-mint-500: oklch(0.72 0.11 178);

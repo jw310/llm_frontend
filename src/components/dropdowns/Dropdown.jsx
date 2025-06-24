@@ -54,7 +54,7 @@ function Dropdown() {
                 'w-fit rounded-2xl p-3 text-base font-normal text-black'
               )}
             >
-              {t('header.finish')}
+              {'Other'}
             </button>
           </div>
           <div className={cn('text-center')}>
@@ -68,7 +68,7 @@ function Dropdown() {
           </div>
         </div>
       )}
-      {t('header.applicant')}
+      {'Open'}
     </div>
   );
 }
