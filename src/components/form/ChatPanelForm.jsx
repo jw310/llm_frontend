@@ -170,11 +170,37 @@ function ChatPanel() {
               )}
               {/* <button
                 className={cn(
+                  'absolute top-1 right-2 mt-1 w-fit p-2',
+                  'cursor-pointer'
+                )}
+                className={cn(
                   'mt-1 w-fit self-end rounded bg-blue-600 p-2 text-base text-white shadow-md',
                   'cursor-pointer hover:bg-yellow-500 hover:text-black'
                 )}
                 type='submit'
               >
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  width='24'
+                  height='24'
+                  viewBox='0 0 24 24'
+                  fill='none'
+                >
+                  <path
+                    d='M9.51026 4.23001L18.0703 8.51001C21.9103 10.43 21.9103 13.57 18.0703 15.49L9.51026 19.77C3.75026 22.65 1.40026 20.29 4.28026 14.54L5.15026 12.81C5.37026 12.37 5.37026 11.64 5.15026 11.2L4.28026 9.46001C1.40026 3.71001 3.76026 1.35001 9.51026 4.23001Z'
+                    stroke='#C2C3C7'
+                    strokeWidth='2.25'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                  <path
+                    d='M5.43945 12H10.8395'
+                    stroke='#C2C3C7'
+                    strokeWidth='2.25'
+                    strokeLinecap='round'
+                    strokeLinejoin='round'
+                  />
+                </svg>
                 {t('common.submit')}
               </button> */}
             </div>

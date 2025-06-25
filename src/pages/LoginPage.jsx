@@ -202,14 +202,14 @@ function LoginPage() {
                 y2='6.99956'
                 gradientUnits='userSpaceOnUse'
               >
-                <stop stop-color='#C9E1FF' />
-                <stop offset='1' stop-color='#D9EAFF' />
+                <stop stopColor='#C9E1FF' />
+                <stop offset='1' stopColor='#D9EAFF' />
               </linearGradient>
             </defs>
           </svg>
         </div>
 
-        <div className={cn('absolute top-[262px] left-0 h-full w-full')}>
+        <div className={cn('absolute top-[262px] left-0 h-fit w-fit')}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
             width='140'
@@ -220,7 +220,7 @@ function LoginPage() {
             <path
               d='M0 0.78125C79.9642 17.5955 140 88.5355 140 173.5C140 181.813 139.424 189.993 138.312 198H8C3.58172 198 0 194.418 0 190V0.78125Z'
               fill='#B7D3F3'
-              fill-opacity='0.5'
+              fillOpacity='0.5'
             />
           </svg>
         </div>
@@ -240,6 +240,7 @@ function LoginPage() {
             <div className={cn('flex flex-col items-start gap-1')}>
               <label
                 className={cn('mb-1 block text-sm font-medium text-gray-700')}
+                htmlFor='username'
               >
                 *{t('loginPage.username')}：
               </label>
@@ -251,6 +252,7 @@ function LoginPage() {
                   },
                 })}
                 type='text'
+                id='username'
                 placeholder={t('loginPage.usernamePlaceholder')}
                 className={cn(
                   'w-full rounded-lg border border-transparent bg-gray-100 px-4 py-2 focus:ring-2 focus:ring-blue-300 focus:outline-none'
@@ -265,6 +267,7 @@ function LoginPage() {
             <div className={cn('flex flex-col items-start gap-1')}>
               <label
                 className={cn('mb-1 block text-sm font-medium text-gray-700')}
+                htmlFor='password'
               >
                 *{t('loginPage.password')}：
               </label>
@@ -275,8 +278,9 @@ function LoginPage() {
                     message: t('errorMessage.inputEmptyAlert'),
                   },
                 })}
-                placeholder={t('loginPage.passwordPlaceholder')}
                 type='password'
+                id='password'
+                placeholder={t('loginPage.passwordPlaceholder')}
                 className={cn(
                   'w-full rounded-lg border border-transparent bg-gray-100 px-4 py-2 focus:ring-2 focus:ring-blue-300 focus:outline-none'
                 )}
