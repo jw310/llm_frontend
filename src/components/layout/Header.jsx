@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import { useTranslation } from 'react-i18next';
 
-import Language from '@/components/modal/Language';
+import Language from '@/components/dropdowns/Language';
 import Dropdown from '@/components/dropdowns/Dropdown';
 import { SmallSpinner } from '@/components/loader/Spinner.jsx';
 

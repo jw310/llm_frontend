@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from 'react';
 import toThousands from '@/utils/toThousands';
 import { cn } from '@/utils/clsx';
 
-function Countdown({ counterObserverRef }) {
+function Count({ countObserverRef }) {
   const [counters, setCounters] = useState([
     { initialNum: 0, targetNum: 3250 },
   ]);
@@ -13,7 +13,7 @@ function Countdown({ counterObserverRef }) {
     // const section = counterObserverRef.current;
     // if (!counterObserverRef.current) return;
 
-    const counterObserver = new IntersectionObserver(
+    const countObserver = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
         if (!entry.isIntersecting || hasAnimated) return;
@@ -61,15 +61,15 @@ function Countdown({ counterObserverRef }) {
       }
     );
 
-    counterObserver.observe(counterObserverRef.current);
+    countObserver.observe(countObserverRef.current);
 
     return () => {
-      counterObserver.disconnect();
+      countObserver.disconnect();
     };
   }, []);
 
   return (
-    <div ref={counterObserverRef} className='w-fit text-black'>
+    <div ref={countObserverRef} className='w-fit text-black'>
       <div className='space-y-6'>
         {counters.map((item, i) => (
           <div
@@ -85,4 +85,4 @@ function Countdown({ counterObserverRef }) {
   );
 }
 
-export default Countdown;
+export default Count;
