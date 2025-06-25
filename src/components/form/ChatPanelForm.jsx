@@ -32,7 +32,10 @@ function ChatPanel() {
     },
     {
       role: 'assistant',
-      content: 'I am fine, thank you for asking.',
+      content: `# I am fine, thank you for asking.
+    \b
+    # Test
+    `,
     },
   ];
 
