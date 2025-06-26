@@ -53,6 +53,8 @@ const DataRangePicker = ({
   onChange,
   value = { from: undefined, to: undefined },
   error,
+  customStyle,
+  placeholderText,
 }) => {
   const [timeFrom, setTimeFrom] = useState('12:00');
   const [timeTo, setTimeTo] = useState('12:00');
@@ -103,13 +105,14 @@ const DataRangePicker = ({
   }, []);
 
   return (
-    <div className={cn('relative ml-5 inline-block w-fit')} ref={pickerRef}>
+    <div className={cn('relative inline-block w-fit')} ref={pickerRef}>
       <button
         onClick={() => setOpen((prev) => !prev)}
         className={cn(
-          'flex w-full items-center justify-between rounded-md border px-4 py-3 text-sm shadow-sm transition',
+          'flex h-12 w-full items-center justify-between rounded-md border px-4 py-3 text-sm shadow-sm transition',
           error ? 'border-red-500' : 'border-slate-300',
-          'bg-white hover:border-slate-400'
+          'bg-white hover:border-slate-400',
+          customStyle
         )}
       >
         <span
@@ -121,7 +124,31 @@ const DataRangePicker = ({
           <span className={cn('mx-1')}>→</span>
           <span>{displayTo}</span>
         </span>
-        <CalendarIcon className={cn('ml-2 h-4 text-gray-400')} />
+        {/* <CalendarIcon className={cn('ml-2 h-4 text-gray-400')} /> */}
+        <div className={cn('ml-3 h-4 text-gray-300')}>
+          <svg
+            xmlns='http://www.w3.org/2000/svg'
+            width='18'
+            height='18'
+            viewBox='0 0 18 18'
+            fill='none'
+          >
+            <path
+              d='M13.8 2.59998H4.2C2.43269 2.59998 1 4.03266 1 5.79998V13.8C1 15.5673 2.43269 17 4.2 17H13.8C15.5673 17 17 15.5673 17 13.8V5.79998C17 4.03266 15.5673 2.59998 13.8 2.59998Z'
+              stroke='black'
+              strokeWidth='1.5'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+            <path
+              d='M5.8 1V4.2M12.2 1V4.2M1 7.4H17'
+              stroke='black'
+              strokeWidth='1.5'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+          </svg>
+        </div>
       </button>
 
       {open && (
@@ -144,17 +171,15 @@ const DataRangePicker = ({
                 // fixedWeeks
                 disabled={{ dayOfWeek: [0, 6] }}
                 className={cn('')}
-                classNames={
-                  {
-                    // outside: 'bg-gray-300',
-                    // outsideDay: 'bg-white',
-                    // selected: 'bg-blue-500',
-                    // today: 'text-blue-500',
-                    // day: 'bg-gray-300',
-                    // root: `${defaultClassNames.root} shadow-lg p-5`,
-                    // chevron: `${defaultClassNames.chevron} fill-amber-500`,
-                  }
-                }
+                classNames={{
+                  // outside: 'bg-gray-300',
+                  // outsideDay: 'bg-white',
+                  selected: `bg-amber-500 border-amber-500 text-white`,
+                  today: 'text-green-500 border-1 border-green-500',
+                  // day: 'bg-gray-300',
+                  // root: `${defaultClassNames.root} shadow-lg p-5`,
+                  // chevron: `${defaultClassNames.chevron} fill-amber-500`,
+                }}
               />
               <div className={cn('flex gap-4')}>
                 {/* <div>

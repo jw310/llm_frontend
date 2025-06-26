@@ -5,7 +5,7 @@ import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
 import { cn } from '@/utils/clsx.js';
 
-function Select({ options, name, value, onChange, placeholder }) {
+function Select({ options, name, value, onChange, placeholder, customStyle }) {
   const { t } = useTranslation();
   const [openSelect, setOpenSelect] = useState(false);
 
@@ -19,24 +19,26 @@ function Select({ options, name, value, onChange, placeholder }) {
 
   return (
     <div
-      className={cn('relative flex h-[46px] w-full items-center gap-2')}
+      className={cn('relative flex h-[48px] w-full items-center gap-2')}
       onClick={() => setOpenSelect((currentOpenSelect) => !currentOpenSelect)}
     >
       <div
         className={cn(
-          'relative flex h-full w-full cursor-pointer items-center rounded-md border-2 border-gray-700 bg-gray-700 px-[14px] py-[10px] text-sm font-medium lg:text-base',
-          `${value ? 'text-white' : 'text-gray-400'}`
+          'relative flex h-full w-full cursor-pointer items-center rounded-md bg-white px-[14px] py-[10px] text-sm font-medium lg:text-base',
+          'focus-outline-none border-1 border-gray-300 outline-none',
+          `${value ? 'text-black' : 'text-gray-400'}`,
+          customStyle
         )}
       >
         {showSelectedOption()}
         {openSelect && (
-          <div className='f-hit shadow-custom absolute top-full left-0 z-20 w-full rounded bg-gray-700 text-white'>
+          <div className='f-hit absolute top-full left-0 z-20 w-full rounded bg-gray-200 text-white'>
             <ul>
               {options?.map((el) =>
                 value === el.value ? (
                   <li
                     key={el.value}
-                    className='text-body text-primary-yellow-500 hover:bg-grey-600 flex cursor-pointer items-center gap-1 px-[14px] py-[10px] font-bold'
+                    className='text-body hover:bg-grey-600 flex cursor-pointer items-center gap-1 px-3 py-[10px] font-bold text-yellow-500'
                     onClick={() => onChange(el.value)}
                   >
                     <ChevronRightIcon
@@ -44,15 +46,17 @@ function Select({ options, name, value, onChange, placeholder }) {
                       width={24}
                       height={24}
                     />
-                    {name === 'role' ? `${t(el.name)}` : t(el.name)}
+                    {/* {name === 'role' ? `${t(el.name)}` : t(el.name)} */}
+                    {el.name}
                   </li>
                 ) : (
                   <li
                     key={el.value}
-                    className='text-body text-grey-100 hover:bg-grey-600 cursor-pointer px-[14px] py-[10px]'
+                    className='cursor-pointer px-[14px] py-[10px] text-base text-gray-100 hover:bg-gray-600'
                     onClick={() => onChange(el.value)}
                   >
-                    {name === 'role' ? `${t(el.name)}` : t(el.name)}
+                    {/* {name === 'role' ? `${t(el.name)}` : t(el.name)} */}
+                    {el.name}
                   </li>
                 )
               )}

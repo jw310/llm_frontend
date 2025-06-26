@@ -1,6 +1,6 @@
 import { useState, useRef, lazy, Suspense } from 'react';
 
-import DatePickerForm from '@/components/form/datePickerForm';
+import SearchForm from '@/components/form/SearchForm';
 import PayModal from '@/components/modal/PayModal';
 import TabGroup from '@/components/tab/TabGroup';
 import Tab1Content from '@/components/tab/Tab1Content';
@@ -130,7 +130,7 @@ const HomePage = () => {
 
   return (
     <>
-      <DatePickerForm />
+      <SearchForm />
       {showDeleteModal && (
         <LazyDeleteModal
           onCloseClick={() =>

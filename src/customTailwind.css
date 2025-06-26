@@ -201,8 +201,26 @@
   }
 }
 
+/* 新增自定義的元件，例如：按鈕樣式 */
 @layer components {
   .checkbox-label:has(input:checked) {
     @apply border-blue-800 bg-blue-400 text-blue-800;
+  }
+  .card {
+    background-color: theme('colors.white');
+    border-radius: theme('borderRadius.lg');
+    padding: theme('spacing.6');
+    box-shadow: theme('boxShadow.xl');
+  }
+  .btn {
+    @apply ml-2 h-fit w-fit cursor-pointer rounded-2xl bg-[#E5EDF9] p-[8px_12px] text-black;
+  }
+}
+
+
+/* 新增 Tailwind css 本身沒有的 css */
+@layer utilities {
+  .content-auto {
+    content-visibility: auto;
   }
 }
