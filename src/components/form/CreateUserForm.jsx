@@ -30,7 +30,6 @@ function CreateUserForm() {
     handleSubmit,
     control,
     formState: { errors },
-    watch,
   } = useForm();
 
   // const { mutate } = useMutation({
@@ -90,6 +89,10 @@ function CreateUserForm() {
       placeholder: t('createUser.emailPlaceholder'),
       rules: {
         required: { value: true, message: t('errorMessage.required') },
+        pattern: {
+          value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
+          message: '請輸入有效的電子郵件',
+        },
       },
     },
     {
