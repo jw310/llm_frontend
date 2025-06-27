@@ -10,6 +10,7 @@ import PrintBtn from '@/components/print/PrintBtn';
 import Print from '@/components/print/Print';
 import Count from '@/components/Count';
 import CountdownTimer from '@/components/CountdownTimer';
+import ResetPasswordForm from '@/components/form/ResetPasswordForm';
 
 const LazyProgressBar = lazy(() => import('@/components/progress/ProgressBar'));
 const LazyProgressCircle = lazy(
@@ -130,6 +131,7 @@ const HomePage = () => {
 
   return (
     <>
+      <ResetPasswordForm />
       <SearchForm />
       {showDeleteModal && (
         <LazyDeleteModal

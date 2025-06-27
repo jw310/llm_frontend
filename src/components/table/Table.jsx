@@ -10,7 +10,7 @@ import { cn } from '@/utils/clsx';
 
 const tableHeader = ['單號', '假別', '時長', '功能'];
 
-function LeaveRecordTable({ tableHead = tableHeader, tableData }) {
+function Table({ tableHead = tableHeader, tableData }) {
   const [showDetailModal, setShowDetailModal] = useState(false);
 
   tableHead ? tableHead : tableHeader;
@@ -102,4 +102,4 @@ function LeaveRecordTable({ tableHead = tableHeader, tableData }) {
   );
 }
 
-export default LeaveRecordTable;
+export default Table;
