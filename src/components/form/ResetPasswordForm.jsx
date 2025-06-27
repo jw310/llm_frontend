@@ -18,17 +18,18 @@ function ResetPasswordForm() {
     register,
     handleSubmit,
     formState: { errors },
-    watch,
     reset,
-    // reset,
+    watch,
   } = useForm();
 
-  // 使用 reset 方法重置表單到初始狀態。
-  // reset({
-  //   originalPassword: '',
-  //   newPassword: '',
-  //   confirmPassword: '',
-  // });
+  const handleReset = () => {
+    // 使用 reset 方法重置表單到初始狀態。
+    reset({
+      originalPassword: '',
+      newPassword: '',
+      confirmPassword: '',
+    });
+  };
 
   // const { mutate, isPending } = useCustomMutation({
   //   mutationFn: updateUserPasswordApi,
