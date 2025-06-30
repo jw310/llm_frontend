@@ -114,6 +114,7 @@ export default function RadarChart({ isExecute }) {
         beginAtZero: true,
         startAngle: 0,
         angleLines: {
+          display: false,
           color: '#949EAE',
           lineWidth: 0.5,
         },
