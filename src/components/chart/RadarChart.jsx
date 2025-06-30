@@ -89,6 +89,7 @@ export default function RadarChart({ isExecute }) {
       // 上方 data label 隱藏
       legend: {
         display: false,
+        // position: "top",
       },
       title: {
         display: false,
@@ -100,29 +101,33 @@ export default function RadarChart({ isExecute }) {
           family: 'sans-serif',
         },
         padding: {
-          bottom: 20,
+          bottom: 10,
         },
+      },
+      tooltip: {
+        enabled: true,
       },
     },
     scales: {
       r: {
         // 旋轉角度
+        beginAtZero: true,
         startAngle: 0,
         angleLines: {
           color: '#949EAE',
           lineWidth: 0.5,
         },
-        // x 邊型
+        // x 邊型，網格線
         grid: {
-          color: '#949EAE',
+          color: '#000',
           circular: false,
         },
         pointLabels: {
           font: {
-            size: 14,
-            family: 'sans-serif',
+            size: 16,
+            family: 'Noto Sans TC',
           },
-          color: '#CED2DA',
+          color: '#000',
         },
         // Data value
         ticks: {
@@ -132,12 +137,18 @@ export default function RadarChart({ isExecute }) {
           color: '#CED2DA',
           showLabelBackdrop: false,
         },
+        // 數值最小值、最大值
+        // suggestedMin: 0,
+        // suggestedMax: 100,
       },
     },
     // result
     elements: {
+      line: {
+        borderWidth: 2,
+      },
       point: {
-        radius: 5,
+        radius: 1,
       },
     },
   };
