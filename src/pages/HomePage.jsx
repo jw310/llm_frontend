@@ -11,6 +11,8 @@ import Print from '@/components/print/Print';
 import Count from '@/components/Count';
 import CountdownTimer from '@/components/CountdownTimer';
 import ResetPasswordForm from '@/components/form/ResetPasswordForm';
+import Timeline2 from '@/components/timeline/Timeline2';
+import AnimatedButton from '@/components/button/AnimatedButton';
 
 const LazyProgressBar = lazy(() => import('@/components/progress/ProgressBar'));
 const LazyProgressCircle = lazy(
@@ -80,6 +82,33 @@ const HomePage = () => {
 
   const progress = '60';
 
+  const timeLineList = [
+    {
+      title: 'First Event',
+      date: '2023-01-01',
+      content: 'This is the first event in the timeline.',
+      time: '10:00 AM',
+      depictionTitle: 'First Event Title',
+      depictionOne: 'This is the description for the first event.',
+    },
+    {
+      title: 'First Event',
+      date: '2023-01-01',
+      content: 'This is the first event in the timeline.',
+      time: '10:00 AM',
+      depictionTitle: 'First Event Title',
+      depictionOne: 'This is the description for the first event.',
+    },
+    {
+      title: 'First Event',
+      date: '2023-01-01',
+      content: 'This is the first event in the timeline.',
+      time: '10:00 AM',
+      depictionTitle: 'First Event Title',
+      depictionOne: 'This is the description for the first event.',
+    },
+  ];
+
   const handleConfirmDeleteClick = async () => {
     setShowDeleteModal((prev) => !prev);
     // const response = await removeChatbotKnowledgeByIdApi(
@@ -131,6 +160,8 @@ const HomePage = () => {
 
   return (
     <>
+      <AnimatedButton />
+      <Timeline2 timeLineList={timeLineList} locale='us' />
       <ResetPasswordForm />
       <SearchForm />
       {showDeleteModal && (
