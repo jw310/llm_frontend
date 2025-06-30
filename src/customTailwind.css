@@ -5,8 +5,48 @@
   --color-red-100: oklch(0.936 0.032 17.717);
   --color-red-200: oklch(0.885 0.062 18.334);
 
-  --font-sans: 'Noto Sans TC', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji";
-  --font-inter:'Inter', system-ui, sans-serif;
+    --color-scale-gray-20: #fbfbfc;
+  --color-scale-gray-50: #f7f9fa;
+  --color-scale-gray-100: #eff2f5;
+  --color-scale-gray-200: #e8e9ed;
+  --color-scale-gray-300: #ced2da;
+  --color-scale-gray-400: #949eae;
+  --color-scale-gray-500: #656e80;
+  --color-scale-gray-600: #465465;
+  --color-scale-gray-700: #323f52;
+  --color-scale-gray-800: #1b2839;
+  --color-scale-gray-900: #0e1727;
+
+  --color-tertiary-blue-100: #e5edf9;
+  --color-tertiary-blue-200: #c4daf3;
+  --color-tertiary-blue-300: #91bbe8;
+  --color-tertiary-blue-400: #5698da;
+  --color-tertiary-blue-500: #307bc7;
+  --color-tertiary-blue-600: #205ea4;
+
+  --color-success-green-100: #edfcf3;
+  --color-success-green-200: #cde6d4;
+  --color-success-green-300: #3bcc80;
+  --color-success-green-400: #17b267;
+  --color-success-green-500: #0b9052;
+  --color-success-green-600: #097646;
+
+  --color-error-red-100: #fbf0ef;
+  --color-error-red-200: #fae1df;
+  --color-error-red-300: #f19c96;
+  --color-error-red-400: #e14537;
+  --color-error-red-500: #cb3023;
+  --color-error-red-600: #841a1a;
+
+  --color-warning-yellow-100: #f8f2c9;
+  --color-warning-yellow-200: #f1e497;
+  --color-warning-yellow-300: #e1b72e;
+  --color-warning-yellow-400: #dda923;
+  --color-warning-yellow-500: #b57c19;
+  --color-warning-yellow-600: #905b18;
+
+  --font-noto-sans-tc: "Noto Sans TC", system-ui, sans-serif, "Apple Color Emoji";
+  --font-inter: "Inter", system-ui, sans-serif;
   --font-poppins: Poppins, sans-serif;
 
   --shadow-2xs: 0 1px rgb(0 0 0 / 0.05);
