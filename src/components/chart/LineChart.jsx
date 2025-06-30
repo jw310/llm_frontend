@@ -87,7 +87,6 @@ export default function LineChart({ isExecute }) {
           'rgba(255, 159, 64, 1)',
         ],
         borderWidth: 1,
-        borderColor: '#DDA923',
         lineTension: 0.5,
         pointBackgroundColor: '#DDA923',
         pointRadius: 0,
