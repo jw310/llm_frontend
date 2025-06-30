@@ -1,10 +1,10 @@
-import { useRef, useEffect } from 'react';
+// import { useRef, useEffect } from 'react';
 import { marked } from 'marked';
 
 import { cn } from '@/utils/clsx';
 
 function AssistantMessage({ content }) {
-  const contentRef = useRef(null);
+  // const contentRef = useRef(null);
   const contentHtml = marked(content, {
     breaks: true,
     gfm: true,
@@ -16,18 +16,20 @@ function AssistantMessage({ content }) {
     // },
   });
 
-  useEffect(() => {
-    contentRef.current.innerHTML = contentHtml;
-  }, [contentRef]);
+  // useEffect(() => {
+  //   contentRef.current.innerHTML = contentHtml;
+  // }, [contentRef]);
 
   return (
     <div className={cn('flex flex-row items-center justify-between')}>
       <div
-        ref={contentRef}
+        // ref={contentRef}
         className={cn(
           'my-0.25 max-w-4/5 self-start bg-blue-500 px-2.5 py-1.5 text-gray-100',
           'rounded-md border break-words'
         )}
+        // 替代 JS 的 innerHTML，可以將 HTML 塞入 DOM 元素中
+        dangerouslySetInnerHTML={{ __html: contentHtml }}
       >
         {/* {content} */}
       </div>
