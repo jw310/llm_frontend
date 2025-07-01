@@ -10,7 +10,6 @@ import PrintBtn from '@/components/print/PrintBtn';
 import Print from '@/components/print/Print';
 import Count from '@/components/Count';
 import CountdownTimer from '@/components/CountdownTimer';
-import ResetPasswordForm from '@/components/form/ResetPasswordForm';
 import Timeline2 from '@/components/timeline/Timeline2';
 import AnimatedButton from '@/components/button/AnimatedButton';
 
@@ -173,7 +172,6 @@ const HomePage = () => {
     <>
       <AnimatedButton />
       <Timeline2 timeLineList={timeLineList} locale='us' />
-      <ResetPasswordForm />
       <SearchForm />
       {showDeleteModal && (
         <LazyDeleteModal

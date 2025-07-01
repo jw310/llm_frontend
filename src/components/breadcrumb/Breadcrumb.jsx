@@ -35,12 +35,12 @@ const Breadcrumb = () => {
       });
     }
 
-    // 建構麵包屑路徑
+    // 建立麵包屑路徑
     let currentPath = '';
     pathSegments.forEach((segment) => {
       currentPath += `/${segment}`;
 
-      // 從路由設定中獲取標題，如果沒有設定則使用路徑段作為標題
+      // 從路由設定中得取標題，如果沒有設定則使用路徑段作為標題
       const title =
         routeConfig[currentPath]?.title ||
         segment.charAt(0).toUpperCase() + segment.slice(1);

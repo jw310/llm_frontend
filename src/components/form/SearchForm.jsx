@@ -12,12 +12,6 @@ import { cn } from '@/utils/clsx';
 function SearchForm() {
   const { t } = useTranslation();
 
-  const {
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm();
-
   const genderOptions = [
     {
       value: 'male',
@@ -28,6 +22,22 @@ function SearchForm() {
       name: 'female',
     },
   ];
+
+  const {
+    handleSubmit,
+    control,
+    formState: { errors },
+    reset,
+  } = useForm();
+
+  const handleReset = () => {
+    // 使用 reset 方法重置表單到初始狀態。
+    reset({
+      originalPassword: '',
+      newPassword: '',
+      confirmPassword: '',
+    });
+  };
 
   const onSubmit = async (data) => {
     console.log(data);
@@ -145,8 +155,12 @@ function SearchForm() {
             control={control}
             name='dateRange'
             rules={{
-              validate: (v) =>
-                v?.from && v?.to ? true : '請選擇開始與結束的日期時間',
+              required: {
+                value: false,
+                message: '請選擇開始與結束的日期時間',
+              },
+              // validate: (v) =>
+              //   v?.from && v?.to ? true : '請選擇開始與結束的日期時間',
             }}
             render={({ field: { onChange, value } }) => (
               <DataRangePicker
@@ -173,7 +187,7 @@ function SearchForm() {
           Search
         </button>
         <button
-          // onClick={}
+          onClick={handleReset}
           className={cn(
             'h-12 rounded-2xl bg-[#E5EDF9] p-[8px_24px]',
             'shadow-custom cursor-pointer'

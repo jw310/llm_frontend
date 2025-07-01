@@ -16,6 +16,7 @@ import {
   Colors,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 // import { getGPUStatusById } from '@/actions/actions';
 
 // Register ChartJS components using ChartJS.register
@@ -30,7 +31,8 @@ ChartJS.register(
   Title,
   Legend,
   Filler,
-  Colors
+  Colors,
+  ChartDataLabels
 );
 
 const arrayLength = 13;
@@ -102,6 +104,20 @@ export default function LineChart({ isExecute }) {
       padding: 20,
     },
     plugins: {
+      datalabels: {
+        display: false,
+        color: '#000', // Label text color
+        formatter: (value, context) => {
+          // Custom formatting for the label
+          return value;
+        },
+        anchor: 'end', // Position the label at the end of the data element
+        align: 'end', // Align the label to the end
+        font: {
+          size: 16,
+          weight: 'bold',
+        },
+      },
       colors: {
         // 內建顏色套件
         enabled: false,

@@ -9,6 +9,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Radar } from 'react-chartjs-2';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 ChartJS.register(
   RadialLinearScale,
@@ -16,7 +17,8 @@ ChartJS.register(
   LineElement,
   Filler,
   Tooltip,
-  Legend
+  Legend,
+  ChartDataLabels
 );
 
 const labels = [
@@ -63,7 +65,7 @@ export default function RadarChart({ isExecute }) {
           // gradient.addColorStop(0, 'rgba(221, 169, 35, 1)');
           // // bg.addColorStop(0.5, 'rgba(221, 169, 35, 0.5)');
           // gradient.addColorStop(1, 'rgba(221, 169, 35, 0)');
-          // ctx.fillStyle = bg;
+          // ctx.fillStyle = gradient;
           // let x0 = 100;
           // let y0 = 100;
           // let w = 500;
@@ -106,6 +108,20 @@ export default function RadarChart({ isExecute }) {
       },
       tooltip: {
         enabled: true,
+      },
+      datalabels: {
+        display: true,
+        color: '#000', // Label text color
+        formatter: (value, context) => {
+          // Custom formatting for the label
+          return value + '%';
+        },
+        anchor: 'end', // Position the label at the end of the data element
+        align: 'end', // Align the label to the end
+        font: {
+          size: 14,
+          weight: 'bold',
+        },
       },
     },
     scales: {
