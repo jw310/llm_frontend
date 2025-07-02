@@ -32,13 +32,19 @@ function Select({ options, name, value, onChange, placeholder, customStyle }) {
       >
         {showSelectedOption()}
         {openSelect && (
-          <div className='f-hit absolute top-full left-0 z-20 w-full rounded bg-gray-200 text-white'>
+          <div
+            className={cn(
+              'f-hit absolute top-full left-0 z-20 w-full rounded bg-gray-200 text-white'
+            )}
+          >
             <ul>
               {options?.map((el) =>
                 value === el.value ? (
                   <li
                     key={el.value}
-                    className='text-body hover:bg-grey-600 flex cursor-pointer items-center gap-1 px-3 py-[10px] font-bold text-yellow-500'
+                    className={cn(
+                      'text-body hover:bg-grey-600 flex cursor-pointer items-center gap-1 px-3 py-[10px] font-bold text-yellow-500'
+                    )}
                     onClick={() => onChange(el.value)}
                   >
                     <ChevronRightIcon
@@ -52,7 +58,9 @@ function Select({ options, name, value, onChange, placeholder, customStyle }) {
                 ) : (
                   <li
                     key={el.value}
-                    className='cursor-pointer px-[14px] py-[10px] text-base text-gray-100 hover:bg-gray-600'
+                    className={cn(
+                      'cursor-pointer px-[14px] py-[10px] text-base text-gray-100 hover:bg-gray-600'
+                    )}
                     onClick={() => onChange(el.value)}
                   >
                     {/* {name === 'role' ? `${t(el.name)}` : t(el.name)} */}

@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router';
 
-import Alert from '../modal/Alert';
-import Select from '../select/Select';
-import FileUploadBtn from '../button/FileUploadBtn';
+import Alert from '@/components/modal/Alert';
+import Select from '@/components/select/Select';
+import FileUploadBtn from '@/components/button/FileUploadBtn';
 
 import { cn } from '@/utils/clsx.js';
 import trimString from '@/utils/trimString.js';

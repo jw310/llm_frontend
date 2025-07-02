@@ -11,6 +11,7 @@ import Alert from '../modal/Alert';
 
 // import { deleteUploadFileApi } from '@/api/api';
 import { AuthContext } from '@/context/auth';
+import { cn } from '@/utils/clsx.js';
 
 const IMAGE_BASE_URL = import.meta.env.VITE_IMAGE_URL;
 
@@ -25,6 +26,7 @@ function FileUploadBtn({
   name,
   defaultData,
   max,
+  customStyle,
 }) {
   const maxFiles = max;
   const { logout } = useContext(AuthContext);
@@ -94,11 +96,11 @@ function FileUploadBtn({
   };
 
   const handleRemoveFileClick = (index) => {
-    //重置formData物件
+    //重設 formData 物件
     uploadFormDataRef.current = new FormData();
     //準備上傳的檔案刪除，顯示用
     setUploadedFiles((prev) => prev.filter((_, i) => i !== index));
-    //準備上傳的formData中移除不需要的檔案並重新append
+    //準備上傳的 formData 中移除不需要的檔案並重新 append
     const newFormDataArray = uploadedFormData.filter((_, i) => i !== index);
     setUploadedFormData(newFormDataArray);
 
@@ -110,7 +112,7 @@ function FileUploadBtn({
       uploadFormDataRef.current.append('files', item);
     });
 
-    //將formData傳遞給onChange
+    //將 formData 傳遞給 onChange
     onChange(uploadFormDataRef.current);
   };
 
@@ -150,12 +152,12 @@ function FileUploadBtn({
         return [...prev, fileObj];
       });
 
-      // 現在準備上傳的formData儲存在state中
+      // 現在準備上傳的 formData 儲存在 state 中
       setUploadedFormData((prev) => [...prev, filesArray[i]]);
-      // 現在準備上傳的formData append到useRef裡的formData
+      // 現在準備上傳的 formData append 到 useRef 裡的 formData
       uploadFormDataRef.current.append('files', filesArray[i]);
     }
-    //將formData傳遞給onChange
+    //將 formData 傳遞給 onChange
     onChange(uploadFormDataRef.current);
   };
 
@@ -196,9 +198,12 @@ function FileUploadBtn({
     <>
       {inputContent}
       {editableDefaultData?.map((attach) => (
-        <div key={attach.id} className='relative flex h-fit w-16 flex-col'>
+        <div
+          key={attach.id}
+          className={cn('relative flex h-fit w-16 flex-col')}
+        >
           <a
-            className='h-fit w-fit cursor-pointer'
+            className={cn('h-fit w-fit cursor-pointer')}
             href={`${IMAGE_BASE_URL}${attach.path}`}
             target='_blank'
           >
@@ -209,12 +214,14 @@ function FileUploadBtn({
                   : `${IMAGE_BASE_URL}${attach.path}`
               }
               alt={`file${attach.id}`}
-              className='h-16 w-16 object-cover'
+              className={cn('h-16 w-16 object-cover')}
             />
           </a>
-          <p className='w-full truncate text-xs'>{attach.name}</p>
+          <p className={cn('w-full truncate text-xs')}>{attach.name}</p>
           <div
-            className='absolute -top-2 -left-2 h-fit w-fit cursor-pointer rounded-full bg-red-600'
+            className={cn(
+              'absolute -top-2 -left-2 h-fit w-fit cursor-pointer rounded-full bg-red-600'
+            )}
             onClick={() => handleDeleteFileClick(attach.id)}
           >
             <XMarkIcon className='h-4 w-4 text-white' />
@@ -222,34 +229,40 @@ function FileUploadBtn({
         </div>
       ))}
       {uploadedFiles?.map((file, index) => (
-        <div key={index} className='relative flex h-fit w-16 flex-col'>
+        <div key={index} className={cn('relative flex h-fit w-16 flex-col')}>
           <a
-            className='h-fit w-fit cursor-pointer'
+            className={cn('h-fit w-fit cursor-pointer')}
             href={file.url}
             target='_blank'
           >
             <img
               src={file.type === 'application/pdf' ? pdfIcon : file.url}
               alt={`file${index}`}
-              className='h-16 w-16 object-cover'
+              className={cn('h-16 w-16 object-cover')}
             />
           </a>
-          <p className='w-full truncate text-xs'>{file.name}</p>
+          <p className={cn('w-full truncate text-xs')}>{file.name}</p>
           <div
-            className='absolute -top-2 -left-2 h-fit w-fit cursor-pointer rounded-full bg-red-600'
+            className={cn(
+              'absolute -top-2 -left-2 h-fit w-fit cursor-pointer rounded-full bg-red-600'
+            )}
             onClick={() => handleRemoveFileClick(index)}
           >
-            <XMarkIcon className='h-4 w-4 text-white' />
+            <XMarkIcon className={cn('h-4 w-4 text-white')} />
           </div>
         </div>
       ))}
       <button
         type='button'
         onClick={handleUploadClick}
-        className='flex h-fit w-fit cursor-pointer items-center justify-between gap-2 rounded-md bg-indigo-300 px-7 py-2 text-lg hover:bg-indigo-600 hover:text-white'
+        className={cn(
+          'flex h-fit w-fit items-center justify-between gap-2 rounded-md bg-gray-300 px-7 py-2 text-lg',
+          'cursor-pointer hover:bg-gray-600 hover:text-white',
+          customStyle
+        )}
       >
-        <ArrowUpOnSquareIcon className='h-6 w-6' />
-        檔案上傳
+        <ArrowUpOnSquareIcon className={cn('h-6 w-6')} />
+        FileUpload
       </button>
       {showAlert.isShow && (
         <Alert type={showAlert.type} message={showAlert.message} />

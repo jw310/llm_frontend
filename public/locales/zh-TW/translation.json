@@ -55,8 +55,8 @@
   "errorMessage": {
     "required": "此欄位為必填",
     "number": "請輸入數字",
-    "maxResponse": "請輸入3位數字",
-    "weight": "請輸入2位數字",
+    "maxResponse": "請輸入 3 位數字",
+    "weight": "請輸入 2 位數字",
     "confirmPassword": "確認密碼與原始密碼不一致",
     "atLeastSixCharacters": "請輸入至少六個字元",
     "failedAlert": "帳號密碼錯誤",
