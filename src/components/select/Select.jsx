@@ -12,9 +12,7 @@ function Select({ options, name, value, onChange, placeholder, customStyle }) {
   const showSelectedOption = () => {
     const selectedOption = options?.find((el) => el.value === value);
     if (!selectedOption) return placeholder;
-    return name === 'role'
-      ? `${t(selectedOption.name)}`
-      : t(selectedOption.name);
+    return name === 'role' ? `${t(selectedOption.name)}` : selectedOption.name;
   };
 
   return (
@@ -24,7 +22,7 @@ function Select({ options, name, value, onChange, placeholder, customStyle }) {
     >
       <div
         className={cn(
-          'relative flex h-full w-full cursor-pointer items-center rounded-md bg-white px-[14px] py-[10px] text-sm font-medium lg:text-base',
+          'relative flex h-full w-full cursor-pointer items-center rounded-md px-[14px] py-[10px] text-sm font-medium lg:text-base',
           'focus-outline-none border-1 border-gray-300 outline-none',
           `${value ? 'text-black' : 'text-gray-400'}`,
           customStyle
@@ -34,7 +32,7 @@ function Select({ options, name, value, onChange, placeholder, customStyle }) {
         {openSelect && (
           <div
             className={cn(
-              'f-hit absolute top-full left-0 z-20 w-full rounded bg-gray-200 text-white'
+              'f-hit absolute top-full left-0 z-20 w-full rounded bg-gray-200'
             )}
           >
             <ul>
@@ -43,7 +41,8 @@ function Select({ options, name, value, onChange, placeholder, customStyle }) {
                   <li
                     key={el.value}
                     className={cn(
-                      'text-body hover:bg-grey-600 flex cursor-pointer items-center gap-1 px-3 py-[10px] font-bold text-yellow-500'
+                      'flex items-center gap-1 px-3 py-[10px] font-bold text-yellow-500',
+                      'flex cursor-pointer hover:bg-gray-300'
                     )}
                     onClick={() => onChange(el.value)}
                   >
@@ -59,7 +58,8 @@ function Select({ options, name, value, onChange, placeholder, customStyle }) {
                   <li
                     key={el.value}
                     className={cn(
-                      'cursor-pointer px-[14px] py-[10px] text-base text-gray-100 hover:bg-gray-600'
+                      'px-[14px] py-[10px] text-base text-gray-100',
+                      'cursor-pointer hover:bg-gray-300'
                     )}
                     onClick={() => onChange(el.value)}
                   >

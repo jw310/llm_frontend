@@ -3,6 +3,7 @@
 
 import CreateUserForm from '@/components/form/CreateUserForm.jsx';
 import CrewEditForm from '@/components/form/CrewEditForm.jsx';
+import InterfaceForm from '@/components/form/InterfaceForm.jsx';
 
 import { cn } from '@/utils/clsx.js';
 
@@ -12,7 +13,8 @@ function CreateUserPage() {
   return (
     <div className={cn('flex w-full items-center justify-center py-[30px]')}>
       {/* <CreateUserForm /> */}
-      <CrewEditForm />
+      {/* <CrewEditForm /> */}
+      <InterfaceForm />
     </div>
   );
 }
