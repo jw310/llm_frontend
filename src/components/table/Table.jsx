@@ -43,10 +43,21 @@ function Table({ tableHead = tableHeader, tableData }) {
           'border-b-2 border-slate-200 last:border-b-0 even:bg-slate-50'
         )}
       >
-        <td className={cn('w-1/4 text-center')}>{item.date}</td>
-        <td className={cn('w-1/4 text-center')}>{item.Status}</td>
-        <td className={cn('w-1/4 text-center')}>{item.title}</td>
-        <td className={cn('w-1/4 p-2 text-center')}>
+        <td className={cn('p-4 text-center')}>{item.date}</td>
+        <td className={cn('text-center')}>{item.title}</td>
+        <td className={cn('text-center')}>
+          <div
+            className={cn(
+              'mx-auto w-fit rounded-2xl bg-[#EDFCF3] p-[4px_10px] font-bold',
+              item.status === 'enabled'
+                ? 'text-[#0B9052]'
+                : 'bg-[#FBF0EF] text-[#CB3023]'
+            )}
+          >
+            {item.status}
+          </div>
+        </td>
+        <td className={cn('text-center')}>
           <button
             onClick={() => handleDetailClick(item.offerId)}
             className={cn(

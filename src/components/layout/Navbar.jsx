@@ -114,7 +114,8 @@ function Navbar() {
     <>
       <nav
         className={cn(
-          'hide-scrollbar flex w-fit flex-shrink-0 flex-col items-center justify-between gap-16 overflow-y-scroll bg-slate-100 p-5'
+          'flex w-fit flex-shrink-0 flex-col items-center justify-between gap-16 bg-slate-100 p-5',
+          'hide-scrollbar overflow-y-scroll drop-shadow-[0px_4px_24px_rgba(0,0,0,0.25)]'
         )}
       >
         <div className={cn('flex w-[240px] flex-col gap-10 px-4')}>
@@ -162,8 +163,8 @@ function Navbar() {
                           to={subItem.path}
                           className={({ isActive }) =>
                             isActive
-                              ? 'flex h-full w-full items-center pl-[60px] font-medium text-indigo-500'
-                              : 'hover:animate-shake hover:bg-opacity-5 flex h-full w-full cursor-pointer items-center pl-[60px] hover:bg-gray-300'
+                              ? 'flex h-full w-full items-center pl-19 font-medium text-indigo-500'
+                              : 'hover:animate-shake hover:bg-opacity-5 flex h-full w-full cursor-pointer items-center pl-19 hover:bg-gray-300'
                           }
                         >
                           {subItem.name}
