@@ -26,17 +26,17 @@ function ChatPanel() {
   });
 
   const messages = [
-    {
-      role: 'user',
-      content: 'Hello, how are you?',
-    },
-    {
-      role: 'assistant',
-      content: `# I am fine, thank you for asking.
-    \b
-    # Test
-    `,
-    },
+    // {
+    //   role: 'user',
+    //   content: 'Hello, how are you?',
+    // },
+    // {
+    //   role: 'assistant',
+    //   content: `# I am fine, thank you for asking.
+    // \b
+    // # Test
+    // `,
+    // },
   ];
 
   const conversations = [
@@ -94,7 +94,7 @@ function ChatPanel() {
           'flex h-[calc(100vh-80px)] flex-col rounded-xl bg-slate-50 shadow'
         )}
       >
-        <div
+        {/* <div
           className={cn(
             'flex flex-row items-center justify-between rounded border-b px-3 py-1'
           )}
@@ -109,12 +109,16 @@ function ChatPanel() {
           </div>
           <div className={cn('flex gap-2')}>
             <ConversationSelect conversations={conversations} />
-            {/* <button className={cn("rounded text-sm border border-blue-500 px-2 py-0.5")}
+            <button
+              className={cn(
+                'rounded border border-blue-500 px-2 py-0.5 text-sm'
+              )}
               onClick={handleNewChat}
-              >New Chat</button
-            > */}
+            >
+              New Chat
+            </button>
           </div>
-        </div>
+        </div> */}
         <div className={cn('flex flex-1 flex-col overflow-y-scroll px-3 py-2')}>
           <ChatList messages={messages || []} />
           <div className={cn('relative')}>

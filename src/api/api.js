@@ -78,8 +78,8 @@ export const requestLoginApi = async (payload) => {
 };
 
 export const getUserInfoByIdApi = async (userId) => {
-  const queryString = paramsToQueryString({ id: userId });
-  const response = await fetcher(`${BASE_URL}/user/id${queryString}`, 'GET');
+  // const queryString = paramsToQueryString({ id: userId });
+  const response = await fetcher(`${BASE_URL}/user/${userId}`, 'GET');
 
   const { data } = response;
 
