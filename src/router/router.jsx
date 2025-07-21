@@ -14,6 +14,7 @@ import CreateUserPage from '@/pages/admin/CreateUserPage.jsx';
 import ChatPage from '@/pages/chat/ChatPage.jsx';
 import RecentPage from '@/pages/chat/RecentPage.jsx';
 import PdfViewerPage from '@/pages/PdfPage';
+import ApiPlaygroundPage from '@/pages/ApiPlaygroundPage.jsx';
 
 // const router = createBrowserRouter([
 //   {
@@ -135,6 +136,11 @@ const router = createBrowserRouter([
       {
         path: 'svg',
         Component: SvgPage,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: 'apiPlayground',
+        Component: ApiPlaygroundPage,
         errorElement: <ErrorPage />,
       },
       {
