@@ -1,8 +1,10 @@
 import dayjs from 'dayjs';
 import isSameOrBefore from 'dayjs/plugin/isSameOrBefore';
 import isSameOrAfter from 'dayjs/plugin/isSameOrAfter';
+import duration from 'dayjs/plugin/duration';
 dayjs.extend(isSameOrBefore);
 dayjs.extend(isSameOrAfter);
+dayjs.extend(duration);
 
 export function formatDate(date) {
   const pad = (num) => String(num).padStart(2, '0');
@@ -102,7 +104,7 @@ export const mergeDataArrays = (dateArray, leaveArray, attendanceArray) => {
     });
 
     // calculate work hours
-    let workHours = { formatted: 0 };
+    let workHours = { hours: 0, formatted: `0h` };
     if (
       attendanceRecord &&
       attendanceRecord.clockInTime &&
@@ -110,10 +112,13 @@ export const mergeDataArrays = (dateArray, leaveArray, attendanceArray) => {
     ) {
       const clockIn = dayjs(attendanceRecord.clockInTime);
       const clockOut = dayjs(attendanceRecord.clockOutTime);
-      const diffInHours = clockOut.diff(clockIn, 'hour', true);
+      const calcHours = clockOut.diff(clockIn, 'hour', true);
+      const diffTime = dayjs.duration(clockOut.diff(clockIn));
+      const diffInHours = diffTime.hours();
+      const diffInMinutes = diffTime.minutes();
       workHours = {
-        hours: diffInHours,
-        formatted: `${diffInHours}`,
+        hours: calcHours,
+        formatted: `${diffInHours}h${diffInMinutes}m`,
       };
     }
 
@@ -122,22 +127,28 @@ export const mergeDataArrays = (dateArray, leaveArray, attendanceArray) => {
     if (leaveRecord && leaveRecord.startTime && leaveRecord.endTime) {
       const leaveStart = dayjs(leaveRecord.startTime);
       const leaveEnd = dayjs(leaveRecord.endTime);
-      const diffInHours = leaveEnd.diff(leaveStart, 'hour', true);
+      const calcHours = leaveEnd.diff(leaveStart, 'hour', true);
+      const diffTime = dayjs.duration(leaveEnd.diff(leaveStart));
+      const diffInHours = diffTime.hours();
+      const diffInMinutes = diffTime.minutes();
       vacation = {
-        hours: diffInHours,
-        formatted: `${diffInHours}`,
+        hours: calcHours,
+        formatted: `${diffInHours}h${diffInMinutes}m`,
       };
     }
 
     // calculate scheduled hours
-    let scheduledHours = { formatted: 9 };
+    let scheduledHours = { hours: 9, formatted: `9h` };
     if (leaveRecord && leaveRecord.startTime && leaveRecord.endTime) {
       const leaveStart = dayjs(leaveRecord.startTime);
       const leaveEnd = dayjs(leaveRecord.endTime);
-      const diffInHours = leaveEnd.diff(leaveStart, 'hour', true);
+      const calcHours = leaveEnd.diff(leaveStart, 'hour', true);
+      const diffTime = dayjs.duration(leaveEnd.diff(leaveStart));
+      const diffInHours = diffTime.hours();
+      const diffInMinutes = diffTime.minutes();
       scheduledHours = {
-        hours: diffInHours,
-        formatted: `${diffInHours - vacation.hours}`,
+        hours: calcHours,
+        formatted: `${diffInHours}h${diffInMinutes}m`,
       };
     }
 
