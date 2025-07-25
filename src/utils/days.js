@@ -148,7 +148,7 @@ export const mergeDataArrays = (dateArray, leaveArray, attendanceArray) => {
       const diffInMinutes = diffTime.minutes();
       scheduledHours = {
         hours: calcHours,
-        formatted: `${diffInHours}h${diffInMinutes}m`,
+        formatted: `${9 - diffInHours}h${diffInMinutes}m`,
       };
     }
 
