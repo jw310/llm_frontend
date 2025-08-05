@@ -3,6 +3,7 @@ import I18nWrapper from '@/components/I18nWrapper';
 
 import ProtectedRoute from '@/router/ProtectedRoute.jsx';
 import DemoPage from '@/pages/DemoPage.jsx';
+import TailwindCSSPage from '@/pages/TailwindCSSPage.jsx';
 import LandingPage from '@/pages/LandingPage.jsx';
 import SvgPage from '@/pages/SvgPage.jsx';
 import LoginPage from '@/pages/LoginPage.jsx';
@@ -121,6 +122,11 @@ const router = createBrowserRouter([
         path: 'demo',
         // element: <DemoPage />,
         Component: DemoPage,
+        errorElement: <ErrorPage />,
+      },
+      {
+        path: 'tailwindcss',
+        Component: TailwindCSSPage,
         errorElement: <ErrorPage />,
       },
       {
