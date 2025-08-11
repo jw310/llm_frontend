@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import SingleDatePicker from '@/components/date-picker/SingleDatePicker.jsx';
-import DataRangePicker from '@/components/date-picker/DataRangePicker.jsx';
+import DateRangePicker from '@/components/date-picker/DateRangePicker.jsx';
 
 import { DayPicker } from 'react-day-picker';
 import { setHours, setMinutes } from 'date-fns';
@@ -77,11 +77,19 @@ const DatePickerForm = () => {
           control={control}
           name='dateRange'
           rules={{
+            required: {
+              value: false,
+              message: '請選擇開始與結束的日期時間',
+            },
+            // validate: (v) =>
+            //   v?.from && v?.to ||  ? true : '請選擇開始與結束的日期時間',
             validate: (v) =>
-              v?.from && v?.to ? true : '請選擇開始與結束的日期時間',
+              dayjs(v?.from).isAfter(dayjs(v?.to))
+                ? '結束日期必須在開始日期之後'
+                : true,
           }}
           render={({ field: { onChange, value } }) => (
-            <DataRangePicker
+            <DateRangePicker
               onChange={onChange}
               value={value}
               error={errors?.dateRange}

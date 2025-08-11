@@ -49,7 +49,7 @@ const TIME_OPTIONS = Array.from(
 //     .format('HH:mm')
 // );
 
-const DataRangePicker = ({
+const DateRangePicker = ({
   onChange,
   value = { from: undefined, to: undefined },
   error,
@@ -78,6 +78,7 @@ const DataRangePicker = ({
   useEffect(() => {
     if (!value.to) return;
     const [h, m] = timeTo.split(':').map(Number);
+
     onChange({
       from: dayjs(value.from).format('YYYY-MM-DD HH:mm'),
       to: dayjs(setHours(setMinutes(value.to, m), h)).format(
@@ -252,4 +253,4 @@ const DataRangePicker = ({
   );
 };
 
-export default DataRangePicker;
+export default DateRangePicker;

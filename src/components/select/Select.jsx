@@ -5,14 +5,17 @@ import { ChevronDownIcon, ChevronRightIcon } from '@heroicons/react/24/outline';
 
 import { cn } from '@/utils/clsx.js';
 
-function Select({ options, name, value, onChange, placeholder, customStyle }) {
+function Select({ options, label, value, onChange, placeholder, customStyle }) {
   const { t } = useTranslation();
   const [openSelect, setOpenSelect] = useState(false);
 
   const showSelectedOption = () => {
     const selectedOption = options?.find((el) => el.value === value);
     if (!selectedOption) return placeholder;
-    return name === 'role' ? `${t(selectedOption.name)}` : selectedOption.name;
+    return selectedOption.label;
+    // return label === 'role'
+    //   ? `${t(selectedOption.label)}`
+    //   : selectedOption.label;
   };
 
   return (
@@ -52,7 +55,7 @@ function Select({ options, name, value, onChange, placeholder, customStyle }) {
                       height={24}
                     />
                     {/* {name === 'role' ? `${t(el.name)}` : t(el.name)} */}
-                    {el.name}
+                    {el.label}
                   </li>
                 ) : (
                   <li
@@ -64,7 +67,7 @@ function Select({ options, name, value, onChange, placeholder, customStyle }) {
                     onClick={() => onChange(el.value)}
                   >
                     {/* {name === 'role' ? `${t(el.name)}` : t(el.name)} */}
-                    {el.name}
+                    {el.label}
                   </li>
                 )
               )}

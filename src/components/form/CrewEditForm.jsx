@@ -122,26 +122,26 @@ function CrewEditForm() {
   const roleOptions = [
     {
       value: 'management',
-      name: 'management',
+      label: 'management',
     },
     {
       value: 'hr',
-      name: 'hr',
+      label: 'hr',
     },
     {
       value: 'applicant',
-      name: 'applicant',
+      label: 'applicant',
     },
   ];
 
   const statusOptions = [
     {
       value: 'enable',
-      name: 'enable',
+      label: 'enable',
     },
     {
       value: 'disable',
-      name: 'disable',
+      label: 'disable',
     },
   ];
 

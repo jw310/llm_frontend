@@ -64,15 +64,15 @@ function InterfaceForm() {
   const mediaOptions = [
     {
       value: 'line',
-      name: 'Line@',
+      label: 'Line@',
     },
     {
       value: 'instagram',
-      name: 'Instagram',
+      label: 'Instagram',
     },
     {
       value: 'facebook',
-      name: 'Facebook (Messenger)',
+      label: 'Facebook (Messenger)',
     },
   ];
 

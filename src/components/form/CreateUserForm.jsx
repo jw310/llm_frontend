@@ -121,11 +121,11 @@ function CreateUserForm() {
   const roleOptions = [
     {
       value: '1',
-      name: 'Admin',
+      label: 'Admin',
     },
     {
       value: '2',
-      name: 'User',
+      label: 'User',
     },
   ];
 

@@ -5,7 +5,8 @@ import { useTranslation } from 'react-i18next';
 import SearchBar from '@/components/searchBar/SearchBar';
 import Select from '@/components/select/Select';
 import SingleDatePicker from '@/components/date-picker/SingleDatePicker';
-import DataRangePicker from '@/components/date-picker/DataRangePicker.jsx';
+import DateRangePicker from '@/components/date-picker/DateRangePicker.jsx';
+import dayjs from 'dayjs';
 
 import { cn } from '@/utils/clsx';
 
@@ -15,11 +16,11 @@ function SearchForm() {
   const genderOptions = [
     {
       value: 'male',
-      name: 'male',
+      label: 'male',
     },
     {
       value: 'female',
-      name: 'female',
+      label: 'female',
     },
   ];
 
@@ -160,10 +161,14 @@ function SearchForm() {
                 message: '請選擇開始與結束的日期時間',
               },
               // validate: (v) =>
-              //   v?.from && v?.to ? true : '請選擇開始與結束的日期時間',
+              //   v?.from && v?.to ||  ? true : '請選擇開始與結束的日期時間',
+              validate: (v) =>
+                dayjs(v?.from).isAfter(dayjs(v?.to))
+                  ? '結束日期必須在開始日期之後'
+                  : true,
             }}
             render={({ field: { onChange, value } }) => (
-              <DataRangePicker
+              <DateRangePicker
                 onChange={onChange}
                 value={value}
                 error={errors?.dateRange}
