@@ -1,6 +1,7 @@
 import { useState, forwardRef, useImperativeHandle, useEffect } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 
+// forwardRef 讓父元件存取子元件的 ref
 const PayModal = forwardRef(({ options, onChange }, ref) => {
   const [isOpen, setIsOpen] = useState(false);
   const { control, watch, setValue } = useForm({
@@ -44,29 +45,26 @@ const PayModal = forwardRef(({ options, onChange }, ref) => {
               <Controller
                 control={control}
                 name='checks'
-                render={({ field }) => (
+                render={({ field: { value } }) => (
                   <input
                     type='checkbox'
-                    value={opt.id}
-                    checked={field.value.includes(opt.id)}
+                    value={opt}
+                    checked={value.includes(opt.id)}
                     onChange={(e) => {
                       const checked = e.target.checked;
-                      const next = checked
-                        ? [...field.value, opt.id]
-                        : field.value.filter((v) => v !== opt.id);
-                      setValue('checks', next);
+                      const checkedArray = checked
+                        ? [...value, opt.id]
+                        : value.filter((v) => v !== opt.id);
+                      console.log('checkedArray', checkedArray);
+                      setValue('checks', checkedArray);
                     }}
-                    disabled={!field.value.includes(opt.id) && maxSelected}
+                    disabled={!value.includes(opt.id) && maxSelected}
                     className='form-checkbox'
                   />
                 )}
               />
               <div className='ml-4 flex items-center'>
-                <img
-                  src={`/assets/images/other/${opt.img}.png`}
-                  alt={opt.name}
-                  className='h-6 w-6'
-                />
+                <img src={opt.img} alt={opt.name} className='h-6 w-6' />
                 <span className='ml-3'>{opt.name}</span>
               </div>
             </label>

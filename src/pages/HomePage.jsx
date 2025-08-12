@@ -22,16 +22,24 @@ const LazyRadarChart = lazy(() => import('@/components/chart/RadarChart'));
 const LazyDeleteModal = lazy(() => import('@/components/modal/DeleteModal'));
 const LazyDetailModal = lazy(() => import('@/components/modal/DetailModal'));
 
+import PayCashIcon from '@/assets/ic_pay_cash.png';
+import PayJkoIcon from '@/assets/ic_pay_jko.png';
+import PayLineIcon from '@/assets/ic_pay_line.png';
+import PayBankIcon from '@/assets/ic_pay_bank.png';
+import PayWechatIcon from '@/assets/ic_pay_wechat.png';
+import PayAliIcon from '@/assets/ic_pay_ali.png';
+import PayOtherIcon from '@/assets/ic_pay_other.png';
+
 import { cn } from '@/utils/clsx';
 
 const checkboxOptions = [
-  { id: 'cash', img: 'ic_pay_cash_24', name: '現金' },
-  { id: 'jko', img: 'ic_pay_jko_24', name: '街口支付' },
-  { id: 'line', img: 'ic_pay_line_24', name: 'LINE Pay' },
-  { id: 'bank', img: 'ic_pay_bank', name: '銀行轉帳' },
-  { id: 'wechat', img: 'ic_pay_wechat', name: '微信支付' },
-  { id: 'ali', img: 'ic_pay_ali', name: '支付寶' },
-  { id: 'other', img: 'ic_pay_other_24', name: '其他' },
+  { id: 'cash', img: PayCashIcon, name: '現金' },
+  { id: 'jko', img: PayJkoIcon, name: '街口支付' },
+  { id: 'line', img: PayLineIcon, name: 'LINE Pay' },
+  { id: 'bank', img: PayBankIcon, name: '銀行轉帳' },
+  { id: 'wechat', img: PayWechatIcon, name: '微信支付' },
+  { id: 'ali', img: PayAliIcon, name: '支付寶' },
+  { id: 'other', img: PayOtherIcon, name: '其他' },
 ];
 
 const tabs = [
@@ -70,6 +78,9 @@ const HomePage = () => {
   const countObserverRef = useRef(null);
 
   const [selected, setSelected] = useState([]);
+
+  const checkedArray = checkboxOptions.filter((el) => selected.includes(el.id));
+  console.log('temp', checkedArray);
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedDeleteTheme, setSelectedDeleteTheme] = useState({
@@ -231,7 +242,7 @@ const HomePage = () => {
         <div className='print:hidden'>僅畫面上顯示</div>
       </div> */}
       {/* <TabGroup tabs={tabs} /> */}
-      {/* <div className='h-fit bg-gray-100 p-4'>
+      <div className='h-fit bg-gray-100 p-4'>
         <h3 className='mb-2 text-sm'>Pay Method</h3>
 
         <button
@@ -242,13 +253,14 @@ const HomePage = () => {
         </button>
 
         <div className='mb-4 flex gap-2'>
-          {selected.map((id) => (
-            <img
-              key={id}
-              // src={`/assets/images/other/${id}.png`}
-              alt={id}
-              className='h-8 w-8'
-            />
+          {checkedArray.map((el) => (
+            <div
+              key={el.id}
+              className={'flex items-center gap-2 rounded bg-gray-200 p-2'}
+            >
+              <img src={el.img} alt={el.id} className='h-8 w-8' />
+              <div>{el.id}</div>
+            </div>
           ))}
         </div>
 
@@ -257,7 +269,7 @@ const HomePage = () => {
           options={checkboxOptions}
           onChange={setSelected}
         />
-      </div> */}
+      </div>
       <div>
         <Count countObserverRef={countObserverRef} />
       </div>
