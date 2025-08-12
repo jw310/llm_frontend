@@ -5,24 +5,25 @@ import 'react-day-picker/dist/style.css';
 import { CalendarIcon } from '@heroicons/react/24/outline';
 import { setHours, setMinutes } from 'date-fns';
 import dayjs from 'dayjs';
+import { fetchHolidays } from '@/utils/holiday.js';
 import { cn } from '@/utils/clsx';
 
 // 今天的時間：取到小時整點
-// let availableHours = [];
+let availableHours = [];
 
-// //禁止選取的時間：24小時中小於9點或大於18點或是12點
-// const disabledTime = () => {
-//   return {
-//     disabledHours: () => {
-//       for (let i = 0; i < 24; i++) {
-//         if (i < 9 || i > 18 || i === 12) {
-//           availableHours.push(i);
-//         }
-//       }
-//       return availableHours;
-//     },
-//   };
-// };
+//禁止選取的時間：24小時中小於9點或大於18點或是12點
+const disabledTime = () => {
+  return {
+    disabledHours: () => {
+      for (let i = 0; i < 24; i++) {
+        if (i < 9 || i > 18 || i === 12) {
+          availableHours.push(i);
+        }
+      }
+      return availableHours;
+    },
+  };
+};
 // //用戶不可選取的日期
 // const disabledDate = (current, holidaysArr, validStart, validEnd) => {
 //   const currentDay = dayjs(current).format('YYYYMMDD');
@@ -61,12 +62,15 @@ const DateRangePicker = ({
   const [open, setOpen] = useState(false);
   const pickerRef = useRef(null);
 
-  const defaultClassNames = getDefaultClassNames();
+  const holidaysArr = useRef([]);
 
   // 當改變時間 input 時，更新日期時間
   useEffect(() => {
     if (!value.from) return;
+    // map(Number) => map((str, ind, arr) => Number(str, ind, arr));
+    // Number 它忽略了除第一個參數之外的所有參數
     const [h, m] = timeFrom.split(':').map(Number);
+
     onChange({
       from: dayjs(setHours(setMinutes(value.from, m), h)).format(
         'YYYY-MM-DD HH:mm'
@@ -103,6 +107,17 @@ const DateRangePicker = ({
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  useEffect(() => {
+    const fetchHolidayAsync = async () => {
+      const res = await fetchHolidays();
+      const holidays = res.filter((item) => item.isHoliday === true);
+      holidaysArr.current = holidays.map(
+        (item) => new Date(dayjs(item.date).format('YYYY-MM-DD'))
+      );
+    };
+    fetchHolidayAsync();
   }, []);
 
   return (
@@ -170,7 +185,7 @@ const DateRangePicker = ({
                 showOutsideDays
                 // showWeekNumber
                 // fixedWeeks
-                disabled={{ dayOfWeek: [0, 6] }}
+                disabled={holidaysArr.current}
                 className={cn('')}
                 classNames={{
                   // outside: 'bg-gray-300',
@@ -203,10 +218,14 @@ const DateRangePicker = ({
                 </div> */}
                 {/* 時間欄 From */}
                 <div>
-                  <label className='text-sm font-medium text-gray-700'>
+                  <label className={cn('text-sm font-medium text-gray-700')}>
                     From：
                   </label>
-                  <div className='mt-1 max-h-[260px] w-[80px] overflow-y-auto rounded-md border'>
+                  <div
+                    className={cn(
+                      'mt-1 max-h-[260px] w-[80px] overflow-y-auto rounded-md border'
+                    )}
+                  >
                     {TIME_OPTIONS.map((time) => (
                       <div
                         key={time}
@@ -225,10 +244,14 @@ const DateRangePicker = ({
 
                 {/* 時間欄 To */}
                 <div>
-                  <label className='text-sm font-medium text-gray-700'>
+                  <label className={cn('text-sm font-medium text-gray-700')}>
                     To：
                   </label>
-                  <div className='mt-1 max-h-[260px] w-[80px] overflow-y-auto rounded-md border'>
+                  <div
+                    className={cn(
+                      'mt-1 max-h-[260px] w-[80px] overflow-y-auto rounded-md border'
+                    )}
+                  >
                     {TIME_OPTIONS.map((time) => (
                       <div
                         key={time}
