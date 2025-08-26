@@ -11,7 +11,7 @@ function AnimatedButton() {
         <button
           onClick={handleClick}
           className={cn(
-            'relative flex h-10 w-fit items-center justify-center overflow-hidden rounded bg-gradient-to-b from-orange-500 to-red-600 px-5 py-2 text-base text-white uppercase hover:from-red-600 hover:to-orange-500',
+            'relative flex h-10 w-fit cursor-pointer items-center justify-center overflow-hidden rounded bg-gradient-to-b from-orange-500 to-red-600 px-5 py-2 text-base text-white uppercase hover:from-red-600 hover:to-orange-500',
             "before:absolute before:top-0 before:left-0 before:h-full before:w-1/2 before:translate-x-[160px] before:skew-x-[45deg] before:bg-white/50 before:content-['']",
             'shadow-[2px_5px_10px_rgba(255,153, 132, 0.5)] before:animate-gloss transition-all duration-200'
           )}

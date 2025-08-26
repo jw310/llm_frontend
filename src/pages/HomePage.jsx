@@ -12,6 +12,7 @@ import Count from '@/components/Count';
 import CountdownTimer from '@/components/CountdownTimer';
 import Timeline2 from '@/components/timeline/Timeline2';
 import AnimatedButton from '@/components/button/AnimatedButton';
+import ExportCSVButton from '@/components/button/ExportCSVButton';
 
 const LazyProgressBar = lazy(() => import('@/components/progress/ProgressBar'));
 const LazyProgressCircle = lazy(
@@ -71,6 +72,57 @@ const planList = [
   },
 ];
 
+const sampleData = [
+  {
+    clockInIp: '',
+    clockInLocation: '',
+    clockInTime: '',
+    clockOutIp: '',
+    clockOutLocation: '',
+    clockOutTime: '',
+    department: '',
+    employeeId: '',
+    endTime: '',
+    isWeekend: false,
+    leaveCode: '',
+    leaveEndTime: '',
+    leaveName: '',
+    leaveStartTime: '',
+    leaveStatus: '',
+    recordDate: '2025-03-06',
+    scheduledHours: { hours: 9, formatted: '9h' },
+    startTime: '',
+    updatedAt: '',
+    updatedBy: '',
+    vacation: { hours: 0, formatted: '0h' },
+    workHours: { hours: 0, formatted: '0h' },
+  },
+  {
+    clockInIp: '',
+    clockInLocation: '',
+    clockInTime: '08:56:00',
+    clockOutIp: '',
+    clockOutLocation: '',
+    clockOutTime: '16:02:00',
+    department: 2,
+    employeeId: '0024',
+    endTime: '2025-03-07 16:02:00',
+    isWeekend: false,
+    leaveCode: 5,
+    leaveEndTime: '18:00',
+    leaveName: '績效大師躺平日',
+    leaveStartTime: '16:00',
+    leaveStatus: 2,
+    recordDate: '2025-03-07 00:00:00',
+    scheduledHours: { hours: 7, formatted: '7h0m' },
+    startTime: '2025-03-07 08:56:00',
+    updatedAt: '2025-07-25 11:00:54',
+    updatedBy: '0001',
+    vacation: { hours: 2, formatted: '2h0m' },
+    workHours: { hours: 7.1, formatted: '7h6m' },
+  },
+];
+
 const HomePage = () => {
   const modalRef = useRef();
   const printRef = useRef();
@@ -79,9 +131,6 @@ const HomePage = () => {
 
   const [selected, setSelected] = useState([]);
 
-  const checkedArray = checkboxOptions.filter((el) => selected.includes(el.id));
-  console.log('temp', checkedArray);
-
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedDeleteTheme, setSelectedDeleteTheme] = useState({
     id: '1',
@@ -89,6 +138,8 @@ const HomePage = () => {
   });
 
   const [showDetailModal, setShowDetailModal] = useState(false);
+
+  const checkedArray = checkboxOptions.filter((el) => selected.includes(el.id));
 
   const progress = '60';
 
@@ -181,6 +232,9 @@ const HomePage = () => {
 
   return (
     <>
+      <div className='mb-5'>
+        <ExportCSVButton data={sampleData} />
+      </div>
       <AnimatedButton />
       <Timeline2 timeLineList={timeLineList} locale='us' />
       <SearchForm />
